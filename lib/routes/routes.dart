@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:walletwise/features/auth/screen/login_view.dart';
+import 'package:walletwise/features/auth/screen/login/login_view.dart';
 import 'package:walletwise/home_screen.dart';
 
 class WalletWiseRoute {
