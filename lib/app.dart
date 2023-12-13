@@ -11,6 +11,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'WalletWise',
       darkTheme: WalletWiseTheme.darkTheme,
       theme: WalletWiseTheme.lightTheme,
