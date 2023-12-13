@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/features/auth/screen/signup_view.dart';
+import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -39,14 +41,25 @@ class Login extends StatelessWidget {
                       ],
                     ),
                     ElevatedButton(
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll<Color>(Colors.blue)),
                         onPressed: () {},
-                        child: const Text(
-                          "Sign in",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                        child: const Padding(
+                          padding: EdgeInsets.all(6),
+                          child: Text(
+                            "Sign in",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
                         )),
+                    const SizedBox(
+                      height: 30,
+                    ),
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => (Get.to(() => const SignUpScreen())),
                         child: const Text(
                           "Create Account",
                           style: TextStyle(
@@ -67,7 +80,7 @@ class Login extends StatelessWidget {
                       endIndent: 5,
                     )),
                     Text(
-                      'Or SignIn with',
+                      'or login with',
                       style: TextStyle(
                           color: Colors.grey, fontWeight: FontWeight.bold),
                     ),
@@ -80,9 +93,19 @@ class Login extends StatelessWidget {
                     )),
                   ],
                 ),
-                const Row(
+                const SizedBox(height: 30),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text('Google')],
+                  children: [
+                    const Image(
+                      image: AssetImage('assets/socials/google.png'),
+                      width: 40,
+                      height: 40,
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(),
+                    )
+                  ],
                 )
               ],
             ),
