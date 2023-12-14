@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/features/auth/screen/signup/verify_email.dart';
+import 'package:get/get.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -47,7 +49,9 @@ class SignUpForm extends StatelessWidget {
         ElevatedButton(
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(VerifyEmail());
+            },
             child: const Padding(
               padding: EdgeInsets.all(16),
               child: Text(

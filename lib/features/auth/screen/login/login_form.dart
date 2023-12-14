@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/features/auth/screen/password_config/forget_password.dart';
 import 'package:walletwise/features/auth/screen/signup/signup_view.dart';
+import 'package:walletwise/navigation_menu.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -23,15 +25,25 @@ class LoginForm extends StatelessWidget {
           height: 30,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Checkbox(value: true, onChanged: (value) {}),
-            const Text('Remember Me')
+            Row(
+              children: [
+                Checkbox(value: true, onChanged: (value) {}),
+                const Text('Remember Me')
+              ],
+            ),
+            TextButton(
+                onPressed: () {
+                  Get.to(() => const ForgetPassword());
+                },
+                child: const Text("Forget Password?"))
           ],
         ),
         ElevatedButton(
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)),
-            onPressed: () {},
+            onPressed: () => (Get.to(() => const BottomNavigation())),
             child: const Padding(
               padding: EdgeInsets.all(6),
               child: Text(

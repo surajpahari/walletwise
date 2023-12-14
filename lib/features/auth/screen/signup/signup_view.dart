@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/common/widgets/divider.dart';
+import 'package:walletwise/common/widgets/social_buttons.dart';
 import 'package:walletwise/features/auth/screen/signup/signup_form.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -21,7 +23,15 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              SignUpForm()
+              SignUpForm(),
+              SizedBox(
+                height: 20,
+              ),
+              Dividertext(dividerText: 'or sign up with'),
+              SizedBox(
+                height: 20,
+              ),
+              SocialButtons()
             ],
           ),
         )));
