@@ -13,7 +13,7 @@ use Auth;
 class UserController extends Controller
 {
     public function create(Request $request){
-
+        printf('hi');
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['required', 'unique:users'],
@@ -27,6 +27,7 @@ class UserController extends Controller
                 'errors' => $validator->errors(),
             ], 422); // 422 Unprocessable Entity status code for validation errors
         }
+        echo("hii");
 
         try {
 

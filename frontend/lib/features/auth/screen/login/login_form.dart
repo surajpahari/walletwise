@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/features/auth/controllers/login/login_controller.dart';
 import 'package:walletwise/features/auth/screen/password_config/forget_password.dart';
 import 'package:walletwise/features/auth/screen/signup/signup_view.dart';
-import 'package:walletwise/navigation_menu.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = LoginController();
     return Form(
         child: Column(
       children: [
         TextFormField(
+          controller: controller.email,
           decoration: const InputDecoration(labelText: 'Email'),
         ),
         const SizedBox(
           height: 30,
         ),
         TextFormField(
+          controller: controller.password,
           decoration: const InputDecoration(labelText: 'Password'),
         ),
         const SizedBox(
@@ -43,7 +46,7 @@ class LoginForm extends StatelessWidget {
         ElevatedButton(
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue)),
-            onPressed: () => (Get.to(() => const BottomNavigation())),
+            onPressed: () => (controller.login()),
             child: const Padding(
               padding: EdgeInsets.all(6),
               child: Text(

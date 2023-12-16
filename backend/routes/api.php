@@ -22,6 +22,6 @@ Route::post('test', function(){
     ];
 
     return response()->json($data);
-})->middleware('auth:sanctum');
+});
 Route::post('/auth/register',[UserController::class,'create']);
 Route::post('/auth/login',[UserController::class,'login']);
