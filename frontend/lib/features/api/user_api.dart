@@ -6,6 +6,24 @@ import 'package:walletwise/features/api/api_token.dart';
 
 class HttpProvider {
   final String baseUrl = 'http://127.0.0.1:8000';
+  //testing for the api token
+  //
+  Future<dynamic> test() async {
+    try {
+      String apiToken = Get.find<TokenController>().getApiToken();
+      print(apiToken);
+      final response = await http.get(
+        Uri.parse('$baseUrl/api/test'),
+        // Send authorization headers to the backend.
+        headers: {
+          'Authorization': 'Bearer $apiToken',
+        },
+      );
+      return response.body;
+    } catch (e) {
+      return false;
+    }
+  }
 
   Future<bool> login(
       TextEditingController email, TextEditingController password) async {
@@ -21,8 +39,15 @@ class HttpProvider {
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
         if (jsonResponse['status'] == true) {
           final String token = jsonResponse['token'];
-          Get.find<TokenController>().setApiToken(token);
-          return true;
+          final List<String> tokenPart = token.split('|');
+          if (tokenPart.length == 2) {
+            final tokenString = tokenPart[1];
+            Get.find<TokenController>().setApiToken(tokenString);
+            print(tokenString);
+            return true;
+          } else {
+            return false;
+          }
         } else {
           return false;
         }
@@ -30,6 +55,7 @@ class HttpProvider {
         return false;
       }
     } catch (error) {
+      print(error);
       return false;
     }
   }

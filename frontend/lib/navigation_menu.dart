@@ -20,12 +20,11 @@ class BottomNavigation extends StatelessWidget {
                 (controller.selectedIndex.value = index),
             destinations: const [
               NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-              NavigationDestination(icon: Icon(Icons.undo), label: "Budget"),
+              NavigationDestination(icon: Icon(Icons.money), label: "Budget"),
               NavigationDestination(
                   icon: Icon(Icons.bar_chart), label: "your stocks"),
               NavigationDestination(icon: Icon(Icons.history), label: "Record"),
-              NavigationDestination(
-                  icon: Icon(Icons.history), label: "options"),
+              NavigationDestination(icon: Icon(Icons.logout), label: "log out"),
             ],
           )),
       body: Obx(() => controller.screen[controller.selectedIndex.value]),
@@ -36,8 +35,8 @@ class BottomNavigation extends StatelessWidget {
 class NavigationContorller extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screen = [
-    const WW(),
-    Container(color: Colors.yellow),
+    const Test(),
+    Container(color: Colors.purple),
     Container(color: Colors.blue),
     Container(color: Colors.green),
     Container(color: Colors.black),
