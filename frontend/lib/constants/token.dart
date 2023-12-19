@@ -1,0 +1,3 @@
+class ApiToken {
+  String? authToken;
+}

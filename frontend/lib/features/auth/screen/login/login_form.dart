@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/features/auth/controllers/login/login_controller.dart';
+import 'package:walletwise/controllers/auth/login_controller.dart';
 import 'package:walletwise/features/auth/screen/password_config/forget_password.dart';
 import 'package:walletwise/features/auth/screen/signup/signup_view.dart';
 

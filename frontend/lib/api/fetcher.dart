@@ -10,14 +10,15 @@ class FetchAPI {
   final baseUrl = AppConstant.baseUrl;
   bool isAuth;
   Url url;
+  Object body;
   HttpMethod method;
-  FetchAPI(this.url, this.method, {this.isAuth = false});
+  FetchAPI(this.url, this.method, {this.body = const {}, this.isAuth = false});
   Future<dynamic> fetchAuthorizedAPI() async {
     try {
-      print('$baseUrl${url.value}');
       final response = await http.post(
         Uri.parse('$baseUrl${url.value}'),
         // Send authorization headers to the backend.
+        body: body,
       );
       print(response.body);
       return response;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/features/auth/controllers/singup/signup_controller.dart';
+import 'package:walletwise/controllers/auth/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/utils/validators/validation.dart';
 
@@ -8,7 +8,7 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SignupController());
+    final controller = Get.put(SignUpController());
     return Form(
         key: controller.signupFormkey,
         child: Column(
@@ -64,7 +64,7 @@ class SignUpForm extends StatelessWidget {
                     backgroundColor:
                         MaterialStatePropertyAll<Color>(Colors.blue)),
                 onPressed: () {
-                  controller.signup();
+                  controller.signUp();
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(16),

@@ -69,7 +69,7 @@ class UserController extends Controller
             return response()->json([
                 'status'=>false,
                 'message'=>"Credentials does not match."
-            ]);
+            ],422);
         }
         $user = User::where('email',$request->email)->first();
         return response()->json([

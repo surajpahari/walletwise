@@ -21,7 +21,13 @@ Route::post('test', function(){
         [
             'category'=>'gym',
             'amount'=>1500
-        ]
+        ],
+
+        [
+            'category'=>'gym',
+            'amount'=>1500
+        ],
+
     ];
 
     return response()->json($data);
