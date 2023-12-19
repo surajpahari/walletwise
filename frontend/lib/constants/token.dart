@@ -1,3 +1,3 @@
 class ApiToken {
-  String? authToken;
+  static String? authToken;
 }

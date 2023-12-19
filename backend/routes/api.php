@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('test', function(){
     $data = [
         [
-            'category'=>'gym',
+            'category'=>'petrol',
             'amount'=>1500
         ],
 
@@ -31,6 +31,6 @@ Route::post('test', function(){
     ];
 
     return response()->json($data);
-});
+})->middleware('auth:sanctum');
 Route::post('/auth/register',[UserController::class,'create']);
 Route::post('/auth/login',[UserController::class,'login']);

@@ -19,7 +19,7 @@ class LoginController extends ApiToken {
       'password': password.text,
     };
     await FetchAPI(ApiUrls.loginUrl, HttpMethod.post, body: body)
-        .fetchAuthorizedAPI()
+        .fetchUnauthorizedAPI()
         .then((response) => _handleSucessfullLogin(response));
   }
 
@@ -33,7 +33,7 @@ class LoginController extends ApiToken {
           final List<String> tokenPart = token.split('|');
           if (tokenPart.length == 2) {
             final tokenString = tokenPart[1];
-            super.authToken = tokenString;
+            ApiToken.authToken = tokenString;
             Get.to(const BottomNavigation());
           }
         }

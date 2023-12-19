@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/screens/budget_screen.dart';
 import 'package:walletwise/test.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -36,7 +37,7 @@ class NavigationContorller extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screen = [
     const Test(),
-    Container(color: Colors.purple),
+    const BudgetScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.green),
     Container(color: Colors.black),

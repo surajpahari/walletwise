@@ -23,7 +23,7 @@ class SignUpController extends ApiToken {
       'password_confirmation': password.text,
     };
     await FetchAPI(ApiUrls.signupUrl, HttpMethod.post, body: body)
-        .fetchAuthorizedAPI()
+        .fetchUnauthorizedAPI()
         .then((response) => _handleSucessfullSingup(response));
   }
 
