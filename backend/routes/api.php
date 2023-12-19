@@ -22,12 +22,18 @@ Route::post('test', function(){
             'category'=>'petrol',
             'amount'=>1500
         ],
-
+        [
+            'category'=>'groceries',
+            'amount'=>1500
+        ],
+        [
+            'category'=>'electricity bill',
+            'amount'=>1500
+        ],
         [
             'category'=>'gym',
             'amount'=>1500
         ],
-
     ];
 
     return response()->json($data);
