@@ -9,7 +9,12 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: const Text('WalletWise')),
+        appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: const Text(
+              'WalletWise',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            )),
         body: const SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(12),
@@ -17,10 +22,6 @@ class Login extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Heading of the Login form
-                Text(
-                  'walletwise',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
-                ),
                 LoginForm(),
                 SizedBox(
                   height: 45,

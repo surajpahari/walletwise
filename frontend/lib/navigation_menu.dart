@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/controllers/auth/logout_controller.dart';
 import 'package:walletwise/screens/budget_screen.dart';
 import 'package:walletwise/test.dart';
 
@@ -19,13 +20,18 @@ class BottomNavigation extends StatelessWidget {
             selectedIndex: controller.selectedIndex.value,
             onDestinationSelected: (index) =>
                 (controller.selectedIndex.value = index),
-            destinations: const [
-              NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-              NavigationDestination(icon: Icon(Icons.money), label: "Budget"),
-              NavigationDestination(
+            destinations: [
+              const NavigationDestination(
+                  icon: Icon(Icons.home), label: "Home"),
+              const NavigationDestination(
+                  icon: Icon(Icons.money), label: "Budget"),
+              const NavigationDestination(
                   icon: Icon(Icons.bar_chart), label: "your stocks"),
-              NavigationDestination(icon: Icon(Icons.history), label: "Record"),
-              NavigationDestination(icon: Icon(Icons.logout), label: "log out"),
+              const NavigationDestination(
+                  icon: Icon(Icons.history), label: "Record"),
+              ElevatedButton(
+                  onPressed: () => LogoutController().logout(),
+                  child: const Icon(Icons.logout))
             ],
           )),
       body: Obx(() => controller.screen[controller.selectedIndex.value]),
@@ -40,6 +46,5 @@ class NavigationContorller extends GetxController {
     const BudgetScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.green),
-    Container(color: Colors.black),
   ];
 }

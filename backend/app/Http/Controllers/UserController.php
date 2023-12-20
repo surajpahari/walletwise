@@ -52,6 +52,17 @@ class UserController extends Controller
         }
     }
 
+    public function logout(Request $request){
+               $user = Auth::user();
+
+        if ($user) {
+            // Revoke the user's access token
+            $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+        }
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
     public function login(Request $request){
         try{
         $validator = Validator::make($request->all(), [
