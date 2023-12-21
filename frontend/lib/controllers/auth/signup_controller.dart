@@ -23,6 +23,9 @@ class SignUpController extends ApiToken {
       'name': '${firstName.text} ${lastName.text}',
       'password_confirmation': confirmPassword.text,
     };
+    if (!signupFormkey.currentState!.validate()) {
+      return;
+    }
     await FetchAPI(ApiUrls.signupUrl, HttpMethod.post, body: body)
         .fetchUnauthorizedAPI()
         .then((response) => _handleSucessfullSingup(response));
