@@ -47,6 +47,12 @@ class SignUpForm extends StatelessWidget {
               validator: (value) => WwValidator.isInputEmpty(value),
               decoration: const InputDecoration(labelText: 'Password'),
             ),
+            TextFormField(
+              expands: false,
+              controller: controller.confirmPassword,
+              validator: (value) => WwValidator.isInputEmpty(value),
+              decoration: const InputDecoration(labelText: 'Confirm-Password'),
+            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -13,6 +13,7 @@ class SignUpController extends ApiToken {
   final email = TextEditingController();
   final userName = TextEditingController();
   final password = TextEditingController();
+  final confirmPassword = TextEditingController();
   final phoneNumber = TextEditingController();
   GlobalKey<FormState> signupFormkey = GlobalKey<FormState>();
   Future<dynamic> signUp() async {
@@ -20,7 +21,7 @@ class SignUpController extends ApiToken {
       'email': email.text,
       'password': password.text,
       'name': '${firstName.text} ${lastName.text}',
-      'password_confirmation': password.text,
+      'password_confirmation': confirmPassword.text,
     };
     await FetchAPI(ApiUrls.signupUrl, HttpMethod.post, body: body)
         .fetchUnauthorizedAPI()
