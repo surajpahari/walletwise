@@ -44,12 +44,14 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               expands: false,
               controller: controller.password,
+              obscureText: true,
               validator: (value) => WwValidator.isInputEmpty(value),
               decoration: const InputDecoration(labelText: 'Password'),
             ),
             TextFormField(
               expands: false,
               controller: controller.confirmPassword,
+              obscureText: true,
               validator: (value) => WwValidator.isInputEmpty(value),
               decoration: const InputDecoration(labelText: 'Confirm-Password'),
             ),

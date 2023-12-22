@@ -11,7 +11,7 @@ class LoginController extends ApiToken {
   static LoginController get instance => Get.find();
   final email = TextEditingController();
   final password = TextEditingController();
-  GlobalKey<FormState> signupFormkey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   Future<dynamic> login() async {
     Object body = {
