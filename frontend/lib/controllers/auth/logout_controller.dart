@@ -2,7 +2,6 @@ import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/constants/token.dart';
-import 'package:walletwise/controllers/auth/login_controller.dart';
 import 'package:walletwise/features/auth/screen/login/login_view.dart';
 
 class LogoutController {

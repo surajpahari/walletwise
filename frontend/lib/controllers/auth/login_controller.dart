@@ -18,6 +18,10 @@ class LoginController extends ApiToken {
       'email': email.text,
       'password': password.text,
     };
+    if (!loginFormKey.currentState!.validate()) {
+      return;
+    }
+
     await FetchAPI(ApiUrls.loginUrl, HttpMethod.post, body: body)
         .fetchUnauthorizedAPI()
         .then((response) => _handleSucessfullLogin(response));
