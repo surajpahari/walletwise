@@ -29,9 +29,12 @@ class BottomNavigation extends StatelessWidget {
                   icon: Icon(Icons.bar_chart), label: "your stocks"),
               const NavigationDestination(
                   icon: Icon(Icons.history), label: "Record"),
-              ElevatedButton(
-                  onPressed: () => LogoutController().logout(),
-                  child: const Icon(Icons.logout))
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                ElevatedButton(
+                    onPressed: () => LogoutController().logout(),
+                    child: const Icon(Icons.logout)),
+                const Text("Logout")
+              ])
             ],
           )),
       body: Obx(() => controller.screen[controller.selectedIndex.value]),
