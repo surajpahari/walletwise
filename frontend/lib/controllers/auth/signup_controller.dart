@@ -22,6 +22,7 @@ class SignUpController extends ApiToken {
       'password': password.text,
       'name': '${firstName.text} ${lastName.text}',
       'password_confirmation': confirmPassword.text,
+      'phone_number': phoneNumber.text
     };
     if (!signupFormkey.currentState!.validate()) {
       return;
