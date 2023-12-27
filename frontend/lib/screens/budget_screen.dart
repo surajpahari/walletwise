@@ -21,6 +21,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
           return const Text("Error loading budget");
         } else {
           return ListView.builder(
+            shrinkWrap: true,
             itemCount: BudgetController.budgets.length,
             itemBuilder: (context, index) {
               return BudgetCard(budget: BudgetController.budgets[index]);
