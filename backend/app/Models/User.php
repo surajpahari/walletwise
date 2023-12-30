@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getPlainApiToken(){
+     $plainTextToken =  $this->createToken("API TOKEN")->plainTextToken;
+     /* list(id,token)= explode('|',$plainTextToken); */
+    return  explode('|',$plainTextToken)[1];
+    }
 }
