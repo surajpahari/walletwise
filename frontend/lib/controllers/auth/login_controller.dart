@@ -34,12 +34,8 @@ class LoginController extends ApiToken {
         if (responseData['status'] = true) {
           //filtering token from the token
           String token = responseData['token'];
-          final List<String> tokenPart = token.split('|');
-          if (tokenPart.length == 2) {
-            final tokenString = tokenPart[1];
-            ApiToken.authToken = tokenString;
-            Get.to(const BottomNavigation());
-          }
+          ApiToken.authToken = token;
+          Get.to(const BottomNavigation());
         }
       }
     }
