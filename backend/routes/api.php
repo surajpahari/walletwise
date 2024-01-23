@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,31 +14,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// Protected Routes
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('test', function(){
-    $data = [
-        [
-            'category'=>'petrol',
-            'amount'=>1500
-        ],
-        [
-            'category'=>'groceries',
-            'amount'=>1500
-        ],
-        [
-            'category'=>'electricity bill',
-            'amount'=>1500
-        ],
-        [
-            'category'=>'gym',
-            'amount'=>1500
-        ],
-    ];
 
-    return response()->json($data);
-})->middleware('auth:sanctum');
-Route::post('/auth/register',[UserController::class,'create']);
-Route::post('/auth/login',[UserController::class,'login']);
-Route::post('/auth/logout',[UserController::class,'logout']);
+Route::prefix('/auth')->name('auth.')->group(function () {
+    // Open routes
+    Route::post('/register', [UserController::class, 'store'])->name('register');
+    Route::post('/login', [UserController::class, 'authenticate'])->name('login');
+
+    // Protected Routes
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    });
+});

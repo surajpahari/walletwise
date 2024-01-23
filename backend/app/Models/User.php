@@ -10,7 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,9 +45,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getPlainApiToken(){
-     $plainTextToken =  $this->createToken("API TOKEN")->plainTextToken;
-     /* list(id,token)= explode('|',$plainTextToken); */
-    return  explode('|',$plainTextToken)[1];
+    public function getPlainApiToken()
+    {
+        $plainTextToken =  $this->createToken("API TOKEN")->plainTextToken;
+        return  explode('|', $plainTextToken)[1];
     }
 }
