@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/constants/app_text.dart';
 import 'package:walletwise/controllers/auth/logout_controller.dart';
 import 'package:walletwise/screens/budget_screen.dart';
 import 'package:walletwise/test.dart';
@@ -13,7 +14,14 @@ class BottomNavigation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("WalletWise"),
+        title: AppText.title,
+        actions: const [
+          CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://placekitten.com/100/100'), // Replace with your profile image URL
+          ),
+          SizedBox(width: 16.0),
+        ],
       ),
       backgroundColor: Colors.greenAccent,
       bottomNavigationBar: Obx(() => NavigationBar(
@@ -26,7 +34,7 @@ class BottomNavigation extends StatelessWidget {
               const NavigationDestination(
                   icon: Icon(Icons.money), label: "Budget"),
               const NavigationDestination(
-                  icon: Icon(Icons.bar_chart), label: "your stocks"),
+                  icon: Icon(Icons.bar_chart), label: "Stocks"),
               const NavigationDestination(
                   icon: Icon(Icons.history), label: "Record"),
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [

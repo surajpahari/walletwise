@@ -21,7 +21,6 @@ class FetchAPI extends ApiToken {
         // Send authorization headers to the backend.
         body: body,
       );
-      print(response.body);
       return response;
     } catch (e) {
       print(e);
@@ -35,7 +34,6 @@ class FetchAPI extends ApiToken {
             // Send authorization headers to the backend.
             body: body,
             headers: {'Authorization': 'Bearer ${ApiToken.authToken}'});
-        print(response.body);
         return response;
       } catch (e) {
         print(e);

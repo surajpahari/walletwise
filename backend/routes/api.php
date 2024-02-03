@@ -19,21 +19,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('test', function(){
     $data = [
         [
-            'category'=>'petrol',
-            'amount'=>1500
+            'category'=>'Education',
+            'amount'=>7300,
+            'duration'=>"Oct01 to Oct10"
         ],
         [
-            'category'=>'groceries',
-            'amount'=>1500
+            'category'=>'Fitness',
+            'amount'=>1500,
+            'duration'=>"Oct01 to Oct10"
         ],
         [
-            'category'=>'electricity bill',
-            'amount'=>1500
+            'category'=>'Government and bills',
+            'amount'=>1500,
+            'duration'=>"Oct01 to Oct10"
         ],
+
         [
-            'category'=>'gym',
-            'amount'=>1500
+            'category'=>'Transportation',
+            'amount'=>1500,
+            'duration'=>"Oct01 to Oct10"
         ],
+
     ];
 
     return response()->json($data);
