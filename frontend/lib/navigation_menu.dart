@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:walletwise/constants/app_text.dart';
 import 'package:walletwise/controllers/auth/logout_controller.dart';
 import 'package:walletwise/screens/budget_screen.dart';
-import 'package:walletwise/test.dart';
+import 'package:walletwise/screens/main_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({super.key});
@@ -23,7 +23,7 @@ class BottomNavigation extends StatelessWidget {
           SizedBox(width: 16.0),
         ],
       ),
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.grey[900],
       bottomNavigationBar: Obx(() => NavigationBar(
             selectedIndex: controller.selectedIndex.value,
             onDestinationSelected: (index) =>
@@ -53,9 +53,9 @@ class BottomNavigation extends StatelessWidget {
 class NavigationContorller extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screen = [
-    const Test(),
+    const MainScreen(),
+    Container(color: Colors.red),
     const BudgetScreen(),
-    Container(color: Colors.blue),
     Container(color: Colors.green),
   ];
 }

@@ -9,14 +9,12 @@ class BudgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(budget.category);
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: SizedBox(
-        height: 600,
-        width: 600,
+      child: Flexible(
         child: Card(
           elevation: 4,
+          color: Colors.white,
           margin: const EdgeInsets.all(16),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -36,32 +34,30 @@ class BudgetCard extends StatelessWidget {
                 Text(
                   budget.category,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   "Rs ${budget.amount.toString()}",
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red,
+                  ),
                 ),
-                SizedBox(height: 8),
-                Text(
+                const SizedBox(height: 8),
+                const Text(
                   "Duration: Oct01 to Oct10",
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  double calculateExpenditureRate() {
-    // Replace this with your logic to calculate the expenditure rate
-    // Example: return budget.spentAmount / budget.totalAmount;
-    return 0.5; // Placeholder value (50% progress)
   }
 }

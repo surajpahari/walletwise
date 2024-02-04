@@ -40,6 +40,13 @@ Route::post('test', function(){
             'duration'=>"Oct01 to Oct10"
         ],
 
+        [
+            'category'=>'Others',
+            'amount'=>1500,
+            'duration'=>"Oct01 to Oct10"
+        ],
+
+
     ];
 
     return response()->json($data);

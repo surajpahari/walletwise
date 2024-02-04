@@ -23,6 +23,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 350, // Maximum width of each item
+              mainAxisExtent: 300,
               mainAxisSpacing: 16.0,
               crossAxisSpacing: 16.0,
             ),
