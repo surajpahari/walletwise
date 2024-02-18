@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   http: ^1.1.2
   get_storage: ^2.1.1
+  syncfusion_flutter_charts: ^24.2.4+1
 
 dev_dependencies:
   flutter_test:

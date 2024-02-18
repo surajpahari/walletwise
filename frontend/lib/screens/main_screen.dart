@@ -5,20 +5,94 @@ class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   void _hello(BuildContext context) {
+    String? _selectedType; // Variable to hold the selected type
+    TextEditingController amountController =
+        TextEditingController(); // Controller for amount field
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Hello'),
-          content: const Text('This is a popup modal.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
+        return Theme(
+          data: ThemeData.dark(), // Use dark theme
+          child: AlertDialog(
+            backgroundColor: Colors.grey[900], // Dark background color
+            title: Text(
+              'Add new',
+              style: TextStyle(color: Colors.white), // Title text color
             ),
-          ],
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DropdownButtonFormField<String>(
+                  value: _selectedType,
+                  onChanged: (String? newValue) {
+                    _selectedType = newValue!;
+                  },
+                  items: ['Type 1', 'Type 2', 'Type 3', 'Type 4']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(
+                            color: Colors.white), // Dropdown item text color
+                      ),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(
+                    labelText: 'Type',
+                    labelStyle:
+                        TextStyle(color: Colors.white), // Label text color
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  controller: amountController,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  style: TextStyle(color: Colors.white), // Text input color
+                  decoration: InputDecoration(
+                    labelText: 'Amount',
+                    labelStyle:
+                        TextStyle(color: Colors.white), // Label text color
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'Close',
+                  style: TextStyle(
+                      color: Colors.white), // Action button text color
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Validate input fields and handle form submission
+                  if (_selectedType != null &&
+                      amountController.text.isNotEmpty) {
+                    double amount = double.parse(amountController.text);
+                    // Use _selectedType and amount as needed
+                    print('Type: $_selectedType, Amount: $amount');
+                    Navigator.of(context).pop();
+                  } else {
+                    // Show error message if fields are not filled
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Please fill all fields')),
+                    );
+                  }
+                },
+                child: Text(
+                  'Save',
+                  style: TextStyle(
+                      color: Colors.white), // Action button text color
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
