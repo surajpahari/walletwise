@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/profit_card.dart';
+import 'package:walletwise/utils/charts/bar_chart.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -130,6 +131,10 @@ class MainScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            SizedBox(height: 20), // Add some space before the chart
+            Expanded(
+              child: MyLineChart(getChartData()), // Add the line chart here
             ),
           ],
         ),

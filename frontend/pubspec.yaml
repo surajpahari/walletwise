@@ -39,6 +39,7 @@ dependencies:
   http: ^1.1.2
   get_storage: ^2.1.1
   syncfusion_flutter_charts: ^24.2.4+1
+  fl_chart: ^0.66.2
 
 dev_dependencies:
   flutter_test:
