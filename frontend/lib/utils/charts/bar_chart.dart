@@ -9,7 +9,42 @@ class ChartData {
 }
 
 List<ChartData> getChartData() {
-  final data = <double>[10, 30, 23, 41, 581, 100];
+  final data = <double>[
+    100,
+    30,
+    50,
+    40,
+    20,
+    40,
+    30,
+    50,
+    200,
+    20,
+    20,
+    30,
+    90,
+    100,
+    300,
+    100,
+    30,
+    50,
+    40,
+    20,
+    40,
+    30,
+    50,
+    200,
+    20,
+    20,
+    30,
+    90,
+    100,
+    300,
+    1100,
+    300,
+    00,
+    300
+  ];
   return data.asMap().entries.map((entry) {
     final index = entry.key.toDouble();
     final value = entry.value;

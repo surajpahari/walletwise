@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:walletwise/constants/app_icons.dart';
 import 'package:walletwise/models/budgets.dart';
+import 'package:walletwise/screens/category_screen.dart';
 
 class BudgetCard extends StatelessWidget {
   final Budget budget;
@@ -11,7 +13,19 @@ class BudgetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: Flexible(
+      child: GestureDetector(
+        onTap: () {
+          // Navigate to the detail page when the card is tapped
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CategoryScreen(
+                category: budget.category,
+                total: budget.amount,
+              ),
+            ),
+          );
+        },
         child: Card(
           elevation: 4,
           color: Colors.white,

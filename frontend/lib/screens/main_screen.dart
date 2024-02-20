@@ -35,23 +35,37 @@ class MainScreen extends StatelessWidget {
                       value: value,
                       child: Text(
                         value,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white), // Dropdown item text color
                       ),
                     );
                   }).toList(),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Type',
                     labelStyle:
                         TextStyle(color: Colors.white), // Label text color
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: amountController,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(color: Colors.white), // Text input color
-                  decoration: InputDecoration(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style:
+                      const TextStyle(color: Colors.white), // Text input color
+                  decoration: const InputDecoration(
+                    labelText: 'Category',
+                    labelStyle:
+                        TextStyle(color: Colors.white), // Label text color
+                  ),
+                ),
+                TextFormField(
+                  controller: amountController,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style:
+                      const TextStyle(color: Colors.white), // Text input color
+                  decoration: const InputDecoration(
                     labelText: 'Amount',
                     labelStyle:
                         TextStyle(color: Colors.white), // Label text color
@@ -64,7 +78,7 @@ class MainScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   'Close',
                   style: TextStyle(
                       color: Colors.white), // Action button text color
@@ -82,7 +96,7 @@ class MainScreen extends StatelessWidget {
                   } else {
                     // Show error message if fields are not filled
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Please fill all fields')),
+                      const SnackBar(content: Text('Please fill all fields')),
                     );
                   }
                 },
@@ -132,7 +146,20 @@ class MainScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20), // Add some space before the chart
+            const SizedBox(height: 20), // Add some space before the chart
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Oct 20-",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  "Oct 20",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
             Expanded(
               child: MyLineChart(getChartData()), // Add the line chart here
             ),
