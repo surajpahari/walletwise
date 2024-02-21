@@ -3,8 +3,11 @@ import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/models/budgets.dart';
 import 'dart:convert';
 
+import 'package:walletwise/models/category.dart';
+
 class BudgetController {
   static List<Budget> budgets = [];
+  static List<Category> categories = [];
   BudgetController._();
   //provides the array of budget for the ui
   static Future<dynamic> getBudgets() async {
@@ -17,4 +20,24 @@ class BudgetController {
       throw Exception('Failed to load budgets');
     }
   }
+
+  static Future<dynamic> getFullBudgets(int id) async {
+    var response = await FetchAPI(ApiUrls.test2Url, HttpMethod.get,
+        body: {'id': id.toString()}).fetchAuthorizedAPI();
+    if (response.statusCode == 200) {
+      print(response.body);
+      final List<dynamic> jsonResponse = jsonDecode(response.body);
+      categories = jsonResponse.map((item) => Category.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load budgets');
+    }
+  }
+
+  // // static Future<dynamic> getFullBudgets() async {
+  // //   var response =
+  // //       await FetchAPI(ApiUrls.test2Url, HttpMethod.get).fetchAuthorizedAPI();
+  // //   if (response.statusCode == 200) {
+  // //     final List<dynamic> jsonResponse = jsonDecode(response.body);
+  // //   }
+  // // }
 }

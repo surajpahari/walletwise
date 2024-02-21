@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/profit_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
+import 'package:walletwise/utils/forms/add_budget.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   void _hello(BuildContext context) {
-    String? _selectedType; // Variable to hold the selected type
-    TextEditingController amountController =
-        TextEditingController(); // Controller for amount field
-
+    AddBudgetForm form = AddBudgetForm();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -17,62 +15,11 @@ class MainScreen extends StatelessWidget {
           data: ThemeData.dark(), // Use dark theme
           child: AlertDialog(
             backgroundColor: Colors.grey[900], // Dark background color
-            title: Text(
+            title: const Text(
               'Add new',
               style: TextStyle(color: Colors.white), // Title text color
             ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                DropdownButtonFormField<String>(
-                  value: _selectedType,
-                  onChanged: (String? newValue) {
-                    _selectedType = newValue!;
-                  },
-                  items: ['Type 1', 'Type 2', 'Type 3', 'Type 4']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                            color: Colors.white), // Dropdown item text color
-                      ),
-                    );
-                  }).toList(),
-                  decoration: const InputDecoration(
-                    labelText: 'Type',
-                    labelStyle:
-                        TextStyle(color: Colors.white), // Label text color
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  controller: amountController,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  style:
-                      const TextStyle(color: Colors.white), // Text input color
-                  decoration: const InputDecoration(
-                    labelText: 'Category',
-                    labelStyle:
-                        TextStyle(color: Colors.white), // Label text color
-                  ),
-                ),
-                TextFormField(
-                  controller: amountController,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  style:
-                      const TextStyle(color: Colors.white), // Text input color
-                  decoration: const InputDecoration(
-                    labelText: 'Amount',
-                    labelStyle:
-                        TextStyle(color: Colors.white), // Label text color
-                  ),
-                ),
-              ],
-            ),
+            content: form,
             actions: [
               TextButton(
                 onPressed: () {
@@ -87,20 +34,10 @@ class MainScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // Validate input fields and handle form submission
-                  if (_selectedType != null &&
-                      amountController.text.isNotEmpty) {
-                    double amount = double.parse(amountController.text);
-                    // Use _selectedType and amount as needed
-                    print('Type: $_selectedType, Amount: $amount');
-                    Navigator.of(context).pop();
-                  } else {
-                    // Show error message if fields are not filled
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Please fill all fields')),
-                    );
-                  }
+                  form.submit();
+                  Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   'Save',
                   style: TextStyle(
                       color: Colors.white), // Action button text color
