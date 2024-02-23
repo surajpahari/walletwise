@@ -20,7 +20,8 @@ class BudgetCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => CategoryScreen(
-                category: budget.category,
+                id: budget.category.id,
+                category: budget.category.category,
                 total: budget.amount,
               ),
             ),
@@ -46,7 +47,7 @@ class BudgetCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  budget.category,
+                  budget.category.category,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

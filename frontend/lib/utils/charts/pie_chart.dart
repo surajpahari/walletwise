@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class ChartData {
-  final String category;
+class PieData {
+  final String name;
   final double value;
-
-  ChartData({required this.category, required this.value});
-}
-
-List<ChartData> getChartData() {
-  return [
-    ChartData(category: 'Category A', value: 30),
-    ChartData(category: 'Category B', value: 40),
-    ChartData(category: 'Category C', value: 20),
-    ChartData(category: 'Category D', value: 10),
-  ];
+  PieData({required this.name, required this.value});
 }
 
 class MyPieChart extends StatelessWidget {
-  final List<ChartData> data;
-
+  final List<PieData> data;
   const MyPieChart(this.data, {Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -31,8 +19,8 @@ class MyPieChart extends StatelessWidget {
           sections: data
               .map((item) => PieChartSectionData(
                     value: item.value,
-                    title: item.category,
-                    color: getColor(data.indexOf(item)),
+                    title: item.name,
+                    color: Colors.red,
                     radius: 100,
                   ))
               .toList(),

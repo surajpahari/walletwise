@@ -1,5 +1,7 @@
+import 'package:walletwise/models/category.dart';
+
 class Budget {
-  String category;
+  Category category;
   int amount;
   String duration;
   Budget(
@@ -11,8 +13,12 @@ class Budget {
         'category': String category,
         'amount': int amount,
         'duration': String duration,
+        'id': int id,
       } =>
-        Budget(category: category, amount: amount, duration: duration),
+        Budget(
+            category: Category(id: id, category: category),
+            amount: amount,
+            duration: duration),
       _ => throw const FormatException('Failed to the budget.'),
     };
   }

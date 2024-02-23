@@ -26,21 +26,24 @@ Route::post('test2', function(Request $request){
             $data = [
                 [
                     'category'=>'Education',
+                    'id'=>1,
                     'items'=>[["name"=>"college fee", "amount"=>2000],["name"=>"stationary", "amount"=>20],["name"=>"Other", "amount"=>20]],
                 ]
             ];
             break;
-        case 2:
+        case 4:
             $data = [
                 [
                     'category'=>'Transportation',
-                    'items'=>[["name"=>"Electricity", "amount"=>2000],["name"=>"Home Tax", "amount"=>20],["name"=>"Internet", "amount"=>20]],
+                    'id'=>4,
+                    'items'=>[["name"=>"Petrol", "amount"=>2000],["name"=>"Servicing", "amount"=>20],["name"=>"other", "amount"=>20]],
                 ]
             ];
             break;
         case 3:
             $data = [
                 [
+                    'id'=>3,
                     'category'=>'Government and bills',
                     'items'=>[["name"=>"Electricity", "amount"=>2000],["name"=>"Home Tax", "amount"=>20],["name"=>"Internet", "amount"=>20]],
                 ]

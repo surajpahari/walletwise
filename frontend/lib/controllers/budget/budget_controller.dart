@@ -22,6 +22,7 @@ class BudgetController {
   }
 
   static Future<dynamic> getFullBudgets(int id) async {
+    print(id);
     var response = await FetchAPI(ApiUrls.test2Url, HttpMethod.get,
         body: {'id': id.toString()}).fetchAuthorizedAPI();
     if (response.statusCode == 200) {

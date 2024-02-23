@@ -2,10 +2,11 @@ import "package:walletwise/models/item.dart";
 
 class Category {
   String category;
-  List<Item> items;
+  List<Item> items = [];
   int amount = 0;
+  int id;
 
-  Category({required this.category, required this.items}) {
+  Category({required this.id, required this.category, this.items = const []}) {
     amount = _calculateTotal();
   }
 
@@ -22,10 +23,10 @@ class Category {
     //   throw const FormatException('Failed to parse the Category from JSON.');
     // }
     String category = json['category'];
+    int id = json['id'].toInt();
     List<Item> items = (json['items'] as List<dynamic>)
         .map((itemJson) => Item.fromJson(itemJson as Map<String, dynamic>))
         .toList();
-
-    return Category(category: category, items: items);
+    return Category(id: id, category: category, items: items);
   }
 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
-import 'package:walletwise/utils/charts/pie_char.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String category;
   final int total;
+  final int id;
 
-  const CategoryScreen({Key? key, required this.category, required this.total})
+  const CategoryScreen(
+      {Key? key, required this.category, required this.id, required this.total})
       : super(key: key);
 
   @override
@@ -15,13 +16,10 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  late List<ChartData> chartData;
-
   @override
   void initState() {
     super.initState();
     // Call getChartData function to get chart data
-    chartData = getChartData();
   }
 
   @override
@@ -45,7 +43,17 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(50),
-                  child: MyPieChart(chartData),
+                  child: Text(
+                    "Error loading PieChart",
+                    style: TextStyle(color: Colors.white),
+                  ),
+
+                  // child: chartData.isNotEmpty
+                  //     ? MyPieChart(chartData)
+                  //     : Text(
+                  //         "Error loading the pie chart",
+                  //         style: TextStyle(color: Colors.white),
+                  //       ), // Render chart only when data is available
                 ),
                 const SizedBox(height: 20, width: 20),
                 const Text(
@@ -55,7 +63,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ],
             ),
             FutureBuilder(
-              future: BudgetController.getFullBudgets(2),
+              future: BudgetController.getFullBudgets(widget.id),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
