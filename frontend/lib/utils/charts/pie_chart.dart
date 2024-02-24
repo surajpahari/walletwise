@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
-class PieData {
-  final String name;
-  final double value;
-  PieData({required this.name, required this.value});
-}
+import 'package:walletwise/utils/charts/chart_data.dart';
 
 class MyPieChart extends StatelessWidget {
   final List<PieData> data;
@@ -18,9 +13,10 @@ class MyPieChart extends StatelessWidget {
         PieChartData(
           sections: data
               .map((item) => PieChartSectionData(
+                    titleStyle: const TextStyle(color: Colors.white),
                     value: item.value,
                     title: item.name,
-                    color: Colors.red,
+                    color: getColor(data.indexOf(item) + 1),
                     radius: 100,
                   ))
               .toList(),
@@ -32,11 +28,11 @@ class MyPieChart extends StatelessWidget {
   Color getColor(int index) {
     switch (index % 4) {
       case 0:
-        return Colors.red;
-      case 1:
-        return Colors.blue;
-      case 2:
         return Colors.green;
+      case 1:
+        return Colors.green;
+      case 2:
+        return Colors.purple;
       case 3:
         return Colors.orange;
       default:

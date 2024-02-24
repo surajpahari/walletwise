@@ -29,14 +29,14 @@ class BudgetCard extends StatelessWidget {
         },
         child: Card(
           elevation: 4,
-          color: Colors.white,
+          color: Colors.grey[800], // Adjusted card color to match background
           margin: const EdgeInsets.all(16),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.blue,
                   radius: 30,
                   child: Icon(
@@ -51,6 +51,7 @@ class BudgetCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white, // Text color adjusted for visibility
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -65,7 +66,10 @@ class BudgetCard extends StatelessWidget {
                 const SizedBox(height: 8),
                 const Text(
                   "Duration: Oct01 to Oct10",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      fontSize: 16,
+                      color:
+                          Colors.white), // Adjusted text color for visibility
                 ),
                 const SizedBox(height: 16),
               ],

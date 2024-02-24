@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/constants/app_text.dart';
 import 'package:walletwise/screens/budget_screen.dart';
+import 'package:walletwise/screens/income_screen.dart';
 import 'package:walletwise/screens/main_screen.dart';
-import 'package:walletwise/screens/test_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key});
@@ -12,23 +12,11 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: AppText.title,
-        // actions: [
-        //   GestureDetector(
-        //     onTap: () {
-        //       Get.to(() => ProfileScreen());
-        //     },
-        //     child: CircleAvatar(
-        //       backgroundImage: NetworkImage(
-        //           'https://placekitten.com/100/100'), // Replace with your profile image URL
-        //     ),
-        //   ),
-        //   SizedBox(width: 16.0),
-        // ],
       ),
-      backgroundColor: Colors.grey[900],
       bottomNavigationBar: Obx(() => Visibility(
             visible: !controller.hideNavigationBar.value,
             child: BottomNavigationBar(
@@ -37,7 +25,7 @@ class BottomNavigation extends StatelessWidget {
               selectedItemColor: Colors.green,
               unselectedItemColor: Colors.black,
               backgroundColor: Colors.grey[900],
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: 'Home',
@@ -69,7 +57,7 @@ class NavigationController extends GetxController {
   final screen = [
     const MainScreen(),
     const BudgetScreen(),
-    const TestScreen(),
+    Container(color: Colors.red),
     Container(color: Colors.green),
   ];
 }
@@ -81,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
     Get.find<NavigationController>().hideNavigationBar.value = true;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: Center(
         child: Text('Profile Screen'),

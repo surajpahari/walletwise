@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/profit_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
-import 'package:walletwise/utils/forms/add_budget.dart';
+import 'package:walletwise/utils/forms/income_expense.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   void _hello(BuildContext context) {
-    AddBudgetForm form = AddBudgetForm();
+    IncomeExpenseSelect form = const IncomeExpenseSelect();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -15,35 +15,38 @@ class MainScreen extends StatelessWidget {
           data: ThemeData.dark(), // Use dark theme
           child: AlertDialog(
             backgroundColor: Colors.grey[900], // Dark background color
-            title: const Text(
-              'Add new',
-              style: TextStyle(color: Colors.white), // Title text color
-            ),
+            title: const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Center(
+                    child: Text(
+                  'Add new',
+                  style: TextStyle(color: Colors.white), // Title text color
+                ))),
             content: form,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Close',
-                  style: TextStyle(
-                      color: Colors.white), // Action button text color
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  // Validate input fields and handle form submission
-                  form.submit();
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Save',
-                  style: TextStyle(
-                      color: Colors.white), // Action button text color
-                ),
-              ),
-            ],
+            // actions: [
+            //   TextButton(
+            //     onPressed: () {
+            //       Navigator.of(context).pop();
+            //     },
+            //     child: const Text(
+            //       'Close',
+            //       style: TextStyle(
+            //           color: Colors.white), // Action button text color
+            //     ),
+            //   ),
+            //   TextButton(
+            //     onPressed: () {
+            //       // Validate input fields and handle form submission
+            //       form.submit();
+            //       Navigator.of(context).pop();
+            //     },
+            //     child: const Text(
+            //       'Save',
+            //       style: TextStyle(
+            //           color: Colors.white), // Action button text color
+            //     ),
+            //   ),
+            // ],
           ),
         );
       },
@@ -105,10 +108,12 @@ class MainScreen extends StatelessWidget {
         Positioned(
           bottom: 16.0,
           right: 16.0,
-          child: FloatingActionButton(
-            onPressed: () => _hello(context),
-            child: const Icon(Icons.add),
-          ),
+          child: Padding(
+              padding: EdgeInsets.all(16),
+              child: FloatingActionButton(
+                onPressed: () => _hello(context),
+                child: const Icon(Icons.add),
+              )),
         ),
       ],
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
+import 'package:walletwise/models/item.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
+import 'package:walletwise/utils/charts/chart_data.dart';
+import 'package:walletwise/utils/charts/pie_chart.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String category;
@@ -41,20 +44,23 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   "Total: Rs ${widget.total}",
                   style: const TextStyle(color: Colors.white, fontSize: 30.0),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Text(
-                    "Error loading PieChart",
-                    style: TextStyle(color: Colors.white),
-                  ),
-
-                  // child: chartData.isNotEmpty
-                  //     ? MyPieChart(chartData)
-                  //     : Text(
-                  //         "Error loading the pie chart",
-                  //         style: TextStyle(color: Colors.white),
-                  //       ), // Render chart only when data is available
-                ),
+                FutureBuilder(
+                    future: BudgetController.getFullBudgets(widget.id),
+                    builder: (context, snapshot) {
+                      List<PieData> pieDatas = [];
+                      if (BudgetController.categories.isNotEmpty) {
+                        for (Item item
+                            in BudgetController.categories[0].items) {
+                          PieData data = PieData(
+                              name: item.name, value: item.amount.toDouble());
+                          pieDatas.add(data);
+                        }
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: MyPieChart(pieDatas),
+                      );
+                    }),
                 const SizedBox(height: 20, width: 20),
                 const Text(
                   "Nov-20 to Nov-30",
