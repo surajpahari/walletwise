@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/constants/app_text.dart';
 import 'package:walletwise/screens/budget_screen.dart';
-import 'package:walletwise/screens/income_screen.dart';
 import 'package:walletwise/screens/main_screen.dart';
+import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key});
@@ -13,10 +12,8 @@ class BottomNavigation extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: AppText.title,
-      ),
+      appBar: WalletWiseBar.normalBar,
+      drawer: Text("This is the drawer"),
       bottomNavigationBar: Obx(() => Visibility(
             visible: !controller.hideNavigationBar.value,
             child: BottomNavigationBar(
