@@ -12,8 +12,8 @@ class BottomNavigation extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: WalletWiseBar.normalBar,
-      drawer: Text("This is the drawer"),
+      appBar:
+          WalletWiseBar.barWithProfile(context, "Hello"), // Updated this line
       bottomNavigationBar: Obx(() => Visibility(
             visible: !controller.hideNavigationBar.value,
             child: BottomNavigationBar(
