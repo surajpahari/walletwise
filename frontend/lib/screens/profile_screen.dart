@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/utils/appbar/walletWiseBar.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/navigation_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: WalletWiseBar.titleBar("Profile"));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
+      ),
+      body: Center(
+        child: Text('Profile Screen'),
+      ),
+    );
   }
 }

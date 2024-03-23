@@ -12,8 +12,7 @@ class BottomNavigation extends StatelessWidget {
     final controller = Get.put(NavigationController());
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar:
-          WalletWiseBar.barWithProfile(context, "Hello"), // Updated this line
+      appBar: WalletWiseBar.barWithProfile(context, "Hello"),
       bottomNavigationBar: Obx(() => Visibility(
             visible: !controller.hideNavigationBar.value,
             child: BottomNavigationBar(
@@ -49,7 +48,15 @@ class BottomNavigation extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final RxBool hideNavigationBar = false.obs; // Added hideNavigationBar
+  final RxBool hideNavigationBar = false.obs;
+
+  @override
+  void onInit() {
+    ever(Get.routing.obs, (_) {
+      hideNavigationBar.value = Get.currentRoute != '/';
+    });
+    super.onInit();
+  }
 
   final screen = [
     const MainScreen(),
@@ -57,20 +64,4 @@ class NavigationController extends GetxController {
     Container(color: Colors.red),
     Container(color: Colors.green),
   ];
-}
-
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // In this example, we just hide the bottom navigation bar when on the profile screen
-    Get.find<NavigationController>().hideNavigationBar.value = true;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
-      body: Center(
-        child: Text('Profile Screen'),
-      ),
-    );
-  }
 }

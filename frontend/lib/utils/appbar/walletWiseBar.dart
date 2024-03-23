@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_text.dart';
+import 'package:walletwise/screens/profile_screen.dart';
 
 class WalletWiseBar {
   static PreferredSizeWidget normalBar = AppBar(
@@ -44,12 +46,18 @@ class WalletWiseBar {
         ],
       ),
       actions: [
-        IconButton(
-          iconSize: 40,
-          icon: const Icon(Icons.account_circle),
-          onPressed: () {
-            // Navigate to profile view here
-            // Example: Navigator.pushNamed(context, '/profile');
+        Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              iconSize: 40,
+              icon: const Icon(Icons.account_circle),
+              onPressed: () {
+                // Use the context obtained from the Builder widget
+                Get.to(ProfileScreen());
+                // Navigate to profile view here
+                // Example: Navigator.pushNamed(context, '/profile');
+              },
+            );
           },
         ),
       ],
