@@ -26,29 +26,16 @@ class _AddBudgetFormState extends State<AddBudgetForm> {
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           style: const TextStyle(color: Colors.white), // Text input color
           controller: itemController,
-          decoration: const InputDecoration(
-            labelText: 'Item',
-            labelStyle: TextStyle(color: Colors.white), // Label text color
-          ),
         ),
-        const SizedBox(height: 10),
         TextFormField(
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           style: const TextStyle(color: Colors.white), // Text input color
           controller: categoryController,
-          decoration: const InputDecoration(
-            labelText: 'Category',
-            labelStyle: TextStyle(color: Colors.white), // Label text color
-          ),
         ),
         TextFormField(
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           style: const TextStyle(color: Colors.white), // Text input color
           controller: amountController,
-          decoration: const InputDecoration(
-            labelText: 'Amount',
-            labelStyle: TextStyle(color: Colors.white), // Label text color
-          ),
         ),
       ],
     );
