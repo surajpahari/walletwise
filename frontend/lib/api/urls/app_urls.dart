@@ -13,4 +13,5 @@ class ApiUrls {
   static Url loginUrl = Url('/api/auth/login');
   static Url signupUrl = Url('/api/auth/register');
   static Url logoutUrl = Url('/api/auth/logout');
+  static Url changePasswordUrl = Url('api/test');
 }

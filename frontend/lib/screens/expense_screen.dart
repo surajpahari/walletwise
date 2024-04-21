@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
+import 'package:walletwise/utils/search.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       backgroundColor: Colors.grey[900],
       body: Column(
         children: [
+          ExpenseSearchBar(),
           Expanded(
             child: FutureBuilder(
               future: BudgetController.getBudgets(),

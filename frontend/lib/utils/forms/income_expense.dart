@@ -19,9 +19,9 @@ class IncomeExpenseSelect extends StatelessWidget {
         ElevatedButton(
           onPressed: test,
           style: ElevatedButton.styleFrom(
-            primary: Colors.green, // Background color
-            onPrimary: Colors.white, // Text color
-            padding: EdgeInsets.symmetric(
+            backgroundColor: Colors.green, // Background color
+            foregroundColor: Colors.white, // Text color
+            padding: const EdgeInsets.symmetric(
                 horizontal: 20, vertical: 15), // Button padding
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10), // Button border radius
@@ -32,9 +32,9 @@ class IncomeExpenseSelect extends StatelessWidget {
         ElevatedButton(
           onPressed: test,
           style: ElevatedButton.styleFrom(
-            primary: Colors.red, // Background color
-            onPrimary: Colors.white, // Text color
-            padding: EdgeInsets.symmetric(
+            foregroundColor: Colors.white, // Background color
+            backgroundColor: Colors.red, // Text color
+            padding: const EdgeInsets.symmetric(
                 horizontal: 20, vertical: 15), // Button padding
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10), // Button border radius
