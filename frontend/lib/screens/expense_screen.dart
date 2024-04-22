@@ -53,7 +53,9 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         padding: const EdgeInsets.all(16.0),
         child: FloatingActionButton(
           backgroundColor: Colors.red,
-          onPressed: () => print("hello"),
+          onPressed: () => const AlertDialog(
+              content: Text("Add expense form",
+                  style: TextStyle(color: Colors.white))),
           child: const Icon(Icons.add),
         ),
       ),
