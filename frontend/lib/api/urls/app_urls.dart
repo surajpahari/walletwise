@@ -14,4 +14,7 @@ class ApiUrls {
   static Url signupUrl = Url('/api/auth/register');
   static Url logoutUrl = Url('/api/auth/logout');
   static Url changePasswordUrl = Url('api/test');
+
+  //urls related to the income
+  static Url addIncome = Url('/api/income/add');
 }

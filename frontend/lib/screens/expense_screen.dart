@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
-import 'package:walletwise/utils/search.dart';
+import 'package:walletwise/utils/forms/expense_form.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -17,7 +17,6 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       backgroundColor: Colors.grey[900],
       body: Column(
         children: [
-          ExpenseSearchBar(),
           Expanded(
             child: FutureBuilder(
               future: BudgetController.getBudgets(),
@@ -46,16 +45,21 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               },
             ),
           ),
-          const Text("This is the budget screen"),
         ],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FloatingActionButton(
           backgroundColor: Colors.red,
-          onPressed: () => const AlertDialog(
-              content: Text("Add expense form",
-                  style: TextStyle(color: Colors.white))),
+          onPressed: () => {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return (Theme(
+                      data: ThemeData.dark(),
+                      child: AlertDialog(content: ExpenseForm())));
+                })
+          },
           child: const Icon(Icons.add),
         ),
       ),

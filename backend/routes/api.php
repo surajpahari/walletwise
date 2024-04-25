@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route ::post('income/add',function(Request $request){
+
+    $requestBody = file_get_contents('php://input');
+     return response()->json(['request_body' => $requestBody]);
+});
 
 Route::post('test2', function(Request $request){
 

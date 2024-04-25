@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/income_card.dart';
-import 'package:walletwise/utils/forms/add_budget.dart';
+import 'package:walletwise/utils/forms/income_form.dart';
 
 class IncomeScreen extends StatefulWidget {
   const IncomeScreen({Key? key});
-  void _hello(BuildContext context) {
-    AddBudgetForm form = const AddBudgetForm();
+  void hello(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -14,13 +13,9 @@ class IncomeScreen extends StatefulWidget {
           child: AlertDialog(
             backgroundColor: Colors.grey[900], // Dark background color
             title: const Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Center(
-                    child: Text(
-                  'Add new',
-                  style: TextStyle(color: Colors.white), // Title text color
-                ))),
-            content: form,
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+            content: IncomeForm(),
             // actions: [
             //   TextButton(
             //     onPressed: () {
@@ -78,14 +73,13 @@ class _IncomeScreenState extends State<IncomeScreen> {
               ],
             ),
           ),
-          const Text("This is the budget screen"),
         ],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FloatingActionButton(
           backgroundColor: Colors.green,
-          onPressed: () => print("hello"),
+          onPressed: () => widget.hello(context),
           child: const Icon(Icons.add),
         ),
       ),

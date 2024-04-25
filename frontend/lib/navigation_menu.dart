@@ -12,39 +12,61 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      appBar: WalletWiseBar.barWithProfile(context, "Hello"),
-      bottomNavigationBar: Obx(() => Visibility(
-            visible: !controller.hideNavigationBar.value,
-            child: BottomNavigationBar(
-              currentIndex: controller.selectedIndex.value,
-              onTap: (index) => controller.selectedIndex.value = index,
-              selectedItemColor: Colors.green,
-              unselectedItemColor: Colors.black,
-              backgroundColor: Colors.grey[900],
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+    return Theme(
+        data: ThemeData.dark(),
+        child: Scaffold(
+          backgroundColor: Colors.grey[900],
+          appBar: WalletWiseBar.barWithProfile(context, "Hello"),
+          bottomNavigationBar: Obx(() => Visibility(
+                visible: !controller.hideNavigationBar.value,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[900], // Background color
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2), // Shadow color
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: BottomNavigationBar(
+                    currentIndex: controller.selectedIndex.value,
+                    onTap: (index) => controller.selectedIndex.value = index,
+                    selectedItemColor: Colors.green, // Selected item color
+                    unselectedItemColor: Colors.white, // Unselected item color
+                    selectedLabelStyle: TextStyle(
+                        fontWeight: FontWeight.bold), // Selected label style
+                    unselectedLabelStyle: TextStyle(
+                        fontWeight:
+                            FontWeight.normal), // Unselected label style
+                    backgroundColor: Colors.transparent,
+                    elevation: 0, // Remove default bottom bar shadow
+                    items: const [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.money),
+                        label: 'Budgets',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.bar_chart),
+                        label: 'Stocks',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.history),
+                        label: 'Record',
+                      ),
+                    ],
+                  ),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.money),
-                  label: 'Budgets',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.bar_chart),
-                  label: 'Stocks',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.history),
-                  label: 'Record',
-                ),
-              ],
-            ),
-          )),
-      body: Obx(() => controller.screen[controller.selectedIndex.value]),
-    );
+              )),
+          body: Obx(() => controller.screen[controller.selectedIndex.value]),
+        ));
   }
 }
 
