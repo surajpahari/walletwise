@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:walletwise/home_screen.dart';
 import 'package:walletwise/routes/routes.dart';
 import 'package:walletwise/utils/theme/theme.dart';
+import 'package:walletwise/welcome_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -37,6 +37,6 @@ class _HomePageState extends State<HomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return const HomeScreen();
+    return const WelcomeScreen();
   }
 }
