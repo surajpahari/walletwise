@@ -7,31 +7,37 @@ class Login extends StatelessWidget {
   const Login({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: const Text(
-              'WalletWise',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            )),
-        body: const SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Heading of the Login form
-                LoginForm(),
-                SizedBox(
-                  height: 45,
+    return Theme(
+        data: ThemeData.dark(),
+        child: Scaffold(
+            backgroundColor: Colors.grey[900],
+            appBar: AppBar(
+                centerTitle: true,
+                automaticallyImplyLeading: false,
+                title: const Text(
+                  'WalletWise',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                )),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //Heading of the Login form
+                    SizedBox(
+                      height: 40,
+                    ),
+                    LoginForm(),
+                    SizedBox(
+                      height: 45,
+                    ),
+                    Dividertext(dividerText: "or login with"),
+                    SizedBox(height: 30),
+                    SocialButtons()
+                  ],
                 ),
-                Dividertext(dividerText: "or login with"),
-                SizedBox(height: 30),
-                SocialButtons()
-              ],
-            ),
-          ),
-        ));
+              ),
+            )));
   }
 }

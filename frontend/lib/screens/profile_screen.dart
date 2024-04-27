@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/controllers/auth/logout_controller.dart';
+import 'package:walletwise/utils/forms/change_password.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +53,9 @@ class ProfileScreen extends StatelessWidget {
                 'Change Password',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(ChangePasswordForm());
+              },
             ),
             Divider(color: Colors.grey[700]),
             ListTile(
@@ -76,7 +82,9 @@ class ProfileScreen extends StatelessWidget {
                 'Logout',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
-              onTap: () {},
+              onTap: () {
+                LogoutController.logout();
+              },
             ),
             Divider(color: Colors.grey[700]),
           ],

@@ -5,9 +5,14 @@ import 'package:walletwise/features/auth/screen/password_config/forget_password.
 import 'package:walletwise/features/auth/screen/signup/signup_view.dart';
 import 'package:walletwise/utils/validators/validation.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
 
+class _LoginFormState extends State<LoginForm> {
+  bool _passwordVisibility = true;
   @override
   Widget build(BuildContext context) {
     final controller = LoginController();
@@ -17,17 +22,23 @@ class LoginForm extends StatelessWidget {
           children: [
             TextFormField(
               controller: controller.email,
-              validator: (value) => WwValidator.isInputEmpty(value),
               decoration: const InputDecoration(labelText: 'Email'),
             ),
             const SizedBox(
               height: 30,
             ),
             TextFormField(
-              controller: controller.password,
-              validator: (value) => WwValidator.isInputEmpty(value),
-              decoration: const InputDecoration(labelText: 'Password'),
-            ),
+                controller: controller.password,
+                obscureText: _passwordVisibility,
+                validator: (value) => WwValidator.isInputEmpty(value),
+                decoration: InputDecoration(
+                    hintText: 'Password',
+                    suffix: InkWell(
+                      child: InkWell(
+                        onTap: _togglePasswordView,
+                        child: const Icon(Icons.visibility),
+                      ),
+                    ))),
             const SizedBox(
               height: 30,
             ),
@@ -47,10 +58,13 @@ class LoginForm extends StatelessWidget {
                     child: const Text("Forget Password?"))
               ],
             ),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
                 style: const ButtonStyle(
                     backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.blue)),
+                        WidgetStatePropertyAll<Color>(Colors.green)),
                 onPressed: () => (controller.login()),
                 child: const Padding(
                   padding: EdgeInsets.all(6),
@@ -69,9 +83,18 @@ class LoginForm extends StatelessWidget {
                 onPressed: () => (Get.to(() => const SignUpScreen())),
                 child: const Text(
                   "Create Account",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green),
                 ))
           ],
         ));
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _passwordVisibility = !_passwordVisibility;
+    });
   }
 }

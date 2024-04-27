@@ -7,18 +7,18 @@ import 'package:walletwise/features/auth/screen/login/login_view.dart';
 class LogoutController {
   LogoutController get instance => Get.find();
 
-  Future<void> logout() async {
+  static Future<void> logout() async {
     try {
       await FetchAPI(ApiUrls.logoutUrl, HttpMethod.post)
           .fetchAuthorizedAPI()
-          .then((response) => _handleLogout(response));
+          .then((response) => handleLogout(response));
     } catch (error) {
       print('Logout failed: $error');
       // Handle error as needed
     }
   }
 
-  _handleLogout(response) {
+  static void handleLogout(response) {
     if (response.statusCode != null && response.statusCode == 200) {
       // Clear the stored authentication token
       ApiToken.authToken = null;

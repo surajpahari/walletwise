@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:walletwise/features/auth/screen/login/login_view.dart';
-import 'package:walletwise/home_screen.dart';
+import 'package:walletwise/welcome_screen.dart';
 
 class WalletWiseRoute {
   static String home = '/';
@@ -8,7 +8,7 @@ class WalletWiseRoute {
   static String getHomeRoute() => home;
   static String getLoginRoute() => login;
   static List<GetPage> routes = [
-    GetPage(page: () => const HomeScreen(), name: home),
-    GetPage(page: () => const Login(), name: login)
+    GetPage(page: () => WelcomeScreen(), name: home),
+    GetPage(page: () => Login(), name: login)
   ];
 }
