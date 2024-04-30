@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/auth/logout_controller.dart';
+import 'package:walletwise/models/user.dart';
 import 'package:walletwise/utils/forms/change_password.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final User user = User(name: 'Jhon Doe', id: 20, email: "jhondoe@gmail.com");
+  ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'John Doe',
+                    user.name,
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -39,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'john.doe@example.com',
+                    user.email,
                     style: TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                 ],

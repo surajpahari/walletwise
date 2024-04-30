@@ -8,8 +8,8 @@ class StockScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData.dark(),
-      child: Center(
-        child: Column(
+      child: Scaffold(
+        body: Column(
           children: [
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
@@ -49,10 +49,21 @@ class StockScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            StockCard(),
-            StockCard(),
-            StockCard(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 20),
+                    StockCard(),
+                    StockCard(),
+                    StockCard(),
+                    StockCard(),
+                    StockCard(),
+                    StockCard(),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

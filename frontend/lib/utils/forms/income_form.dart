@@ -1,9 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/controllers/budget/income_contorller.dart';
-import 'package:walletwise/models/income.dart';
+import 'package:intl/intl.dart'; // Import this for date formatting
 
-class IncomeForm extends StatelessWidget {
+class IncomeForm extends StatefulWidget {
   const IncomeForm({Key? key}) : super(key: key);
+
+  @override
+  _IncomeFormState createState() => _IncomeFormState();
+}
+
+class _IncomeFormState extends State<IncomeForm> {
+  late TextEditingController _dateController;
+
+  @override
+ 
+  void initState() {
+    super.initState();
+    _dateController = TextEditingController(
+      text: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+    );
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2024),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null) {
+      setState(() {
+        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +97,15 @@ class IncomeForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: _dateController,
+              readOnly: true,
               decoration: const InputDecoration(
                 labelText: "Date",
                 border: OutlineInputBorder(),
               ),
-              readOnly: true,
-              onTap: () {},
+              onTap: () {
+                _selectDate(context);
+              },
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please select the date';
@@ -78,8 +116,6 @@ class IncomeForm extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                IncomeContorller.addIncome(Income(
-                    amount: 1500, date: "today", category: "incomeCategory"));
                 // Implement form submission functionality
               },
               style: ElevatedButton.styleFrom(
