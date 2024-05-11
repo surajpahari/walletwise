@@ -1,47 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import this for date formatting
+import 'package:walletwise/controllers/budget/income_contorller.dart';
+import 'package:walletwise/models/income.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/utils/date_picker.dart';
 
-class IncomeForm extends StatefulWidget {
-  const IncomeForm({Key? key}) : super(key: key);
-
-  @override
-  _IncomeFormState createState() => _IncomeFormState();
-}
-
-class _IncomeFormState extends State<IncomeForm> {
-  late TextEditingController _dateController;
-
-  @override
- 
-  void initState() {
-    super.initState();
-    _dateController = TextEditingController(
-      text: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-    );
-  }
-
-  @override
-  void dispose() {
-    _dateController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2024),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null) {
-      setState(() {
-        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
-      });
-    }
-  }
+class IncomeForm extends StatelessWidget {
+  final controller = IncomeController();
 
   @override
   Widget build(BuildContext context) {
+    final controller = IncomeController();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -57,6 +25,7 @@ class _IncomeFormState extends State<IncomeForm> {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: controller.amount,
               decoration: const InputDecoration(
                 labelText: "Amount",
                 border: OutlineInputBorder(),
@@ -71,6 +40,7 @@ class _IncomeFormState extends State<IncomeForm> {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: controller.item,
               decoration: const InputDecoration(
                 labelText: "Item",
                 border: OutlineInputBorder(),
@@ -84,6 +54,7 @@ class _IncomeFormState extends State<IncomeForm> {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: controller.category,
               decoration: const InputDecoration(
                 labelText: "Category",
                 border: OutlineInputBorder(),
@@ -96,43 +67,21 @@ class _IncomeFormState extends State<IncomeForm> {
               },
             ),
             const SizedBox(height: 20),
-            TextFormField(
-              controller: _dateController,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: "Date",
-                border: OutlineInputBorder(),
-              ),
-              onTap: () {
-                _selectDate(context);
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please select the date';
-                }
-                return null;
-              },
-            ),
+            DatePicker(controller: controller.date),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Implement form submission functionality
-              },
+              onPressed: () => controller.addIncome(
+                  Income(amount: 100, category: "fitness", date: '1010100')),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Background color of the button
-                padding: const EdgeInsets.symmetric(
-                    vertical: 15), // Padding around the button content
-                elevation: 4, // Elevation of the button
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                elevation: 4,
                 shape: RoundedRectangleBorder(
-                  // Rounded corners for the button
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: const Text(
-                "Add",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white), // Text style of the button text
+              child: Obx(
+                () => Text(controller.submitState.value),
               ),
             ),
           ],

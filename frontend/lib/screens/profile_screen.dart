@@ -5,7 +5,7 @@ import 'package:walletwise/models/user.dart';
 import 'package:walletwise/utils/forms/change_password.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final User user = User(name: 'Jhon Doe', id: 20, email: "jhondoe@gmail.com");
+  final User user = User(name: 'Ram Hari', id: 20, email: "ram@gmail.com");
   ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -13,56 +13,57 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(
+        title: const Text(
           'Profile',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.grey[900],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
               child: Column(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/profile_pic.jpg'),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     user.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     user.email,
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
                 height: 40), // Add spacing between profile info and options
             ListTile(
-              leading: Icon(Icons.person_outline, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.person_outline, color: Colors.white),
+              title: const Text(
                 'Change Password',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               onTap: () {
-                Get.to(ChangePasswordForm());
+                Get.to(const ChangePasswordForm());
               },
             ),
             Divider(color: Colors.grey[700]),
             ListTile(
-              leading: Icon(Icons.notifications_outlined, color: Colors.white),
-              title: Text(
+              leading:
+                  const Icon(Icons.notifications_outlined, color: Colors.white),
+              title: const Text(
                 'Notifications',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
@@ -70,8 +71,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Divider(color: Colors.grey[700]),
             ListTile(
-              leading: Icon(Icons.settings_outlined, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.settings_outlined, color: Colors.white),
+              title: const Text(
                 'Settings',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
@@ -79,8 +80,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Divider(color: Colors.grey[700]),
             ListTile(
-              leading: Icon(Icons.logout, color: Colors.white),
-              title: Text(
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text(
                 'Logout',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),

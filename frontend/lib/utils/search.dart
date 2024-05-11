@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/controllers/stocks/stock_controller.dart';
 
-class ExpenseSearchBar extends StatelessWidget {
-  const ExpenseSearchBar({super.key});
+class SearchBar extends StatelessWidget {
+  const SearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SearchBar(
-      overlayColor: MaterialStateProperty.all<Color>(Colors.white),
-      constraints: BoxConstraints(maxWidth: 500, minHeight: 45),
+    final controller = StockController();
+    return TextFormField(
+      initialValue: "Stocks",
+      controller: controller.searchQuery,
     );
   }
 }

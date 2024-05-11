@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_icons.dart';
+import 'package:walletwise/models/income.dart';
 
 class IncomeCard extends StatelessWidget {
-  const IncomeCard({Key? key}) : super(key: key);
+  final Income income;
+  String interval = "Oct01-Oct10";
+  IncomeCard(this.interval, this.income);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class IncomeCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              "Income Category",
+              income.category,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -35,7 +38,7 @@ class IncomeCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              "Rs 1000",
+              "Rs ${income.amount.toString()}",
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
@@ -44,7 +47,7 @@ class IncomeCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              "Duration: Oct01 to Oct10",
+              "Duration:  Oct01 to Oct10",
               style: TextStyle(
                   fontSize: 16,
                   color: Colors.white), // Adjusted text color for visibility

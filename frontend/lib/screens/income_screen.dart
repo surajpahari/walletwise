@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/income.dart';
 import 'package:walletwise/utils/cards/income_card.dart';
 import 'package:walletwise/utils/forms/income_form.dart';
 
 class IncomeScreen extends StatefulWidget {
-  const IncomeScreen({Key? key});
+  IncomeScreen({Key? key});
   void hello(BuildContext context) {
     showDialog(
       context: context,
@@ -65,11 +66,31 @@ class _IncomeScreenState extends State<IncomeScreen> {
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
               ),
-              children: const [
-                IncomeCard(),
-                IncomeCard(),
-                IncomeCard(),
-                IncomeCard(),
+              children: [
+                IncomeCard(
+                    "Interval",
+                    Income(
+                        date: '01/02/03',
+                        amount: 2000,
+                        category: 'Freelancing')),
+                IncomeCard(
+                    "Interval",
+                    Income(
+                        date: '01/02/03',
+                        amount: 2000,
+                        category: 'Freelancing')),
+                IncomeCard(
+                    "Interval",
+                    Income(
+                        date: '01/02/03',
+                        amount: 2000,
+                        category: 'Freelancing')),
+                IncomeCard(
+                    "Interval",
+                    Income(
+                        date: '01/02/03',
+                        amount: 2000,
+                        category: 'Freelancing')),
               ],
             ),
           ),
