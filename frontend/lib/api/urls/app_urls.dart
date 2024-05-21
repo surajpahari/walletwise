@@ -6,7 +6,7 @@ class Url {
 
 class ApiUrls {
   ApiUrls._();
-  static String baseUrl = "https://localhost:8000/api";
+  static String baseUrl = "http://192.168.1.75:8000/api";
   static Url testUrl = Url('/api/test');
   static Url test2Url = Url('/api/test2');
   //urls related to atuthentication authentication

@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+class BalanceCard extends StatelessWidget {
+  BalanceCard({super.key});
+  final Color main = Color.fromRGBO(37, 150, 190, 1.0);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Padding(
+            padding: EdgeInsets.all(5),
+            child: Column(children: [
+              Container(
+                  constraints: BoxConstraints(
+                      minWidth: 400, maxWidth: 500, maxHeight: 200),
+                  decoration: BoxDecoration(
+                    color: main,
+                    borderRadius: BorderRadius.circular(
+                        10.0), // Optional: Adds rounded corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5), // Shadow color
+                        spreadRadius: 2, // Spread radius
+                        blurRadius: 7, // Blur radius
+                        offset: Offset(0, 3), // Changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey.withOpacity(0.3))
+                            ]),
+                        child: Padding(
+                          padding: EdgeInsets.all(4),
+                          child: Text("Income"),
+                        ),
+                      ),
+                      Text("Expense"),
+                      Text("Balance")
+                    ],
+                  ))
+            ])));
+  }
+}

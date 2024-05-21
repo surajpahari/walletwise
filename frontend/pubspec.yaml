@@ -40,6 +40,7 @@ dependencies:
   get_storage: ^2.1.1
   syncfusion_flutter_charts: ^24.2.4+1
   fl_chart: ^0.66.2
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
       - assets/socials/google.png
+      - assets/profile_pic.jpg
+      - assets/chat.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -10,6 +10,8 @@ class MyPieChart extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1,
       child: PieChart(
+        swapAnimationDuration: Duration(milliseconds: 150), // Optional
+        swapAnimationCurve: Curves.linear,
         PieChartData(
           sections: data
               .map((item) => PieChartSectionData(
@@ -17,7 +19,7 @@ class MyPieChart extends StatelessWidget {
                     value: item.value,
                     title: item.name,
                     color: getColor(data.indexOf(item) + 1),
-                    radius: 100,
+                    radius: 50,
                   ))
               .toList(),
         ),
@@ -28,13 +30,13 @@ class MyPieChart extends StatelessWidget {
   Color getColor(int index) {
     switch (index % 4) {
       case 0:
-        return Colors.green;
+        return const Color(0xFF1976D2); // Dark Blue
       case 1:
-        return Colors.green;
+        return const Color(0xFF388E3C); // Dark Green
       case 2:
-        return Colors.purple;
+        return const Color(0xFF512DA8); // Deep Purple
       case 3:
-        return Colors.orange;
+        return const Color(0xFFE64A19); // Deep Orange
       default:
         return Colors.black;
     }

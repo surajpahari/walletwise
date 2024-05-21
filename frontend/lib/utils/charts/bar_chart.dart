@@ -62,10 +62,10 @@ class MyLineChart extends StatelessWidget {
       aspectRatio: 1,
       child: LineChart(LineChartData(lineBarsData: [
         LineChartBarData(
-            barWidth: 5,
-            color: Colors.green,
-            spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
-            dotData: const FlDotData(show: true)),
+          barWidth: 3,
+          color: Colors.pink,
+          spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
+        ),
       ])),
     );
   }

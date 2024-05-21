@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:walletwise/navigation_menu.dart';
 import 'package:walletwise/routes/routes.dart';
+import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/theme/theme.dart';
 import 'package:walletwise/welcome_screen.dart';
 
@@ -13,8 +15,8 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'WalletWise',
-      darkTheme: WalletWiseTheme.darkTheme,
-      theme: WalletWiseTheme.lightTheme,
+      // darkTheme: WalletWiseTheme.darkTheme,
+      // theme: WalletWiseTheme.lightTheme,
       initialRoute: WalletWiseRoute.getHomeRoute(),
       getPages: WalletWiseRoute.routes,
     );
@@ -37,6 +39,10 @@ class _HomePageState extends State<HomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return const WelcomeScreen();
+    return Theme(
+        data: myTheme,
+        child: const Scaffold(
+          body: BottomNavigation(),
+        ));
   }
 }

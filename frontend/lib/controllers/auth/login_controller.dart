@@ -14,6 +14,7 @@ class LoginController extends ApiToken {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   Future<dynamic> login() async {
+    print("wait");
     Object body = {
       'email': email.text,
       'password': password.text,
@@ -28,14 +29,16 @@ class LoginController extends ApiToken {
   }
 
   void _handleSucessfullLogin(response) {
+    Get.to(const BottomNavigation());
+    return;
     if (response.statusCode != null) {
       if (response.statusCode == 200) {
         var responseData = json.decode(response.body);
-        if (responseData['status'] = true) {
+        if (responseData['status'] == true) {
           //filtering token from the token
           String token = responseData['token'];
           ApiToken.authToken = token;
-          Get.to(const BottomNavigation());
+          // Get.to(const BottomNavigation());
         }
       }
     }

@@ -33,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(bottom: 25),
                     child: const Text(
-                      'Welcome to the walletwise !!',
+                      "WalletWise",
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.bold,
