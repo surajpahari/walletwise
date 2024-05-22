@@ -34,8 +34,6 @@ class WalletWiseBar {
       BuildContext context, String title) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.grey[900],
-      foregroundColor: Colors.white,
       title: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

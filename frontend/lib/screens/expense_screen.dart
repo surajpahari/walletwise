@@ -14,7 +14,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      // backgroundColor: Colors.grey[900],
       body: Column(
         children: [
           Expanded(

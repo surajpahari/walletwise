@@ -56,7 +56,7 @@ class BottomNavigation extends StatelessWidget {
                               label: 'Home',
                             ),
                             BottomNavigationBarItem(
-                              icon: Icon(Icons.money),
+                              icon: Icon(Icons.account_balance_wallet),
                               label: 'Budgets',
                             ),
                             BottomNavigationBarItem(

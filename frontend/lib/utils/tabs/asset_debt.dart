@@ -85,7 +85,7 @@ class _AssetDebtState extends State<AssetDebt> {
         ),
         SizedBox(height: 20),
         Container(
-          constraints: BoxConstraints(maxWidth: 400, maxHeight: 300),
+          constraints: BoxConstraints(maxWidth: 250, maxHeight: 300),
           child: _selectedIndex == 0
               ? MyPieChart([
                   PieData(name: "Dikshyant", value: 100),

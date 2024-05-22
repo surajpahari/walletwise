@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
+import 'package:walletwise/theme/theme_constant.dart';
 
 class StockScreen extends StatelessWidget {
   const StockScreen({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class StockScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData.dark(),
+      data: myTheme,
       child: Scaffold(
         body: Column(
           children: [
@@ -65,6 +66,21 @@ class StockScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: FloatingActionButton(
+            onPressed: () => {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return (Theme(
+                        data: ThemeData.dark(),
+                        child: AlertDialog(content: Container())));
+                  })
+            },
+            child: const Icon(Icons.search),
+          ),
         ),
       ),
     );

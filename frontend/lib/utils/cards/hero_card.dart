@@ -29,7 +29,7 @@ class BalanceCard extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(12),
                     child: Row(
                       children: [
                         Expanded(
@@ -39,34 +39,32 @@ class BalanceCard extends StatelessWidget {
                               Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.transparent),
-                                child: const Center(
-                                    child: Column(
+                                child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Center(
-                                      child: Column(children: [
-                                        Text("Balance",
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text("Balance",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20)),
+                                          SizedBox(height: 2),
+                                          Text(
+                                            "May   01   2024",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          SizedBox(height: 20),
+                                          Text(
+                                            "Rs 16,000.00",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20)),
-                                        SizedBox(height: 2),
-                                        Text(
-                                          "May 01 2024",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 12),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          "Rs 16,000",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 24),
-                                        )
-                                      ]),
-                                    )
+                                                fontSize: 24),
+                                          )
+                                        ]),
                                   ],
-                                )),
+                                ),
                               )
                             ],
                           )),
@@ -83,8 +81,8 @@ class BalanceCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: AppColors.lightgreen,
                                   borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(10.0),
-                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(22.0),
+                                    topLeft: Radius.circular(22.0),
                                   ),
                                 ),
                                 child: const Column(
@@ -100,14 +98,16 @@ class BalanceCard extends StatelessWidget {
                                           ),
                                           Text(
                                             "in",
-                                            style:
-                                                TextStyle(color: Colors.green),
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 18),
                                           ),
                                         ]),
                                     Text(
                                       "Rs 1001",
-                                      style: TextStyle(color: Colors.black),
-                                    )
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20),
+                                    ),
                                   ],
                                 ),
                               )),
@@ -117,8 +117,8 @@ class BalanceCard extends StatelessWidget {
                                     const BoxConstraints(maxWidth: 150),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(10.0),
-                                    bottomRight: Radius.circular(10.0),
+                                    bottomLeft: Radius.circular(22.0),
+                                    bottomRight: Radius.circular(22.0),
                                   ),
                                   color: AppColors.lightgreen,
                                 ),
@@ -135,13 +135,16 @@ class BalanceCard extends StatelessWidget {
                                           ),
                                           Text(
                                             "out",
-                                            style: TextStyle(color: Colors.red),
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 18),
                                           ),
                                         ]),
                                     Text(
                                       "Rs 1001",
-                                      style: TextStyle(color: Colors.black),
-                                    )
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20),
+                                    ),
                                   ],
                                 ),
                               ))

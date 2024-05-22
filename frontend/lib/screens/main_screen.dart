@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/utils/cards/hero_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
+import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
 
 class MainScreen extends StatelessWidget {
@@ -8,23 +9,38 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          BalanceCard(),
-          SizedBox(
-            height: 20,
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              BalanceCard(),
+              SizedBox(
+                height: 20,
+              ),
+              AssetDebt(),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 500),
+                child: MyLineChart(getChartData()), // Add the line chart here
+              ),
+            ],
           ),
-          AssetDebt(),
-          SizedBox(
-            height: 20,
+        ),
+        Positioned(
+          bottom: 0.0,
+          right: 10.0,
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: FloatingActionButton(
+              onPressed: () => Dialogbuilder.hello(context),
+              child: const Icon(Icons.add),
+            ),
           ),
-          Container(
-            constraints: BoxConstraints(maxWidth: 500),
-            child: MyLineChart(getChartData()), // Add the line chart here
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
