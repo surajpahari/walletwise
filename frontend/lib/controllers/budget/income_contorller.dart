@@ -16,7 +16,6 @@ class IncomeController {
   Future<dynamic> addIncome(Income income) async {
     submitState.value = "Loading";
     String incomeJson = jsonEncode(income.toJson());
-    GlobalKey<FormState> incomeFormKey = GlobalKey<FormState>();
     if (incomeFormKey.currentState == null ||
         !incomeFormKey.currentState!.validate()) {
       submitState.value = "Error";

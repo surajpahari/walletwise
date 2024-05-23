@@ -70,6 +70,8 @@ class ExpenseForm extends StatelessWidget {
               const SizedBox(height: 20),
               DatePicker(
                 controller: controller.date,
+                firstDate: DateTime(2023),
+                lastDate: DateTime.now(),
               ),
               const SizedBox(height: 20),
               ElevatedButton(

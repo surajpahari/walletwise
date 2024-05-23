@@ -1,8 +1,15 @@
 import "package:flutter/material.dart";
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({required this.controller, Key? key}) : super(key: key);
+  const DatePicker(
+      {required this.controller,
+      required this.lastDate,
+      required this.firstDate,
+      Key? key})
+      : super(key: key);
   final TextEditingController controller;
+  final DateTime firstDate;
+  final DateTime lastDate;
 
   @override
   State<DatePicker> createState() => _DatePickerState();
@@ -30,8 +37,8 @@ class _DatePickerState extends State<DatePicker> {
     final DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: pickedDate,
-      firstDate: DateTime(2023),
-      lastDate: DateTime.now(),
+      firstDate: widget.firstDate,
+      lastDate: widget.lastDate,
     );
 
     if (selectedDate != null) {

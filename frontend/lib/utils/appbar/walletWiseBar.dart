@@ -4,6 +4,16 @@ import 'package:walletwise/constants/app_text.dart';
 import 'package:walletwise/screens/profile_screen.dart';
 
 class WalletWiseBar {
+  static PreferredSizeWidget normalPageBar(title) {
+    return AppBar(
+      automaticallyImplyLeading: true,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Text(title)],
+      ),
+    );
+  }
+
   static PreferredSizeWidget normalBar = AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.grey[900],
