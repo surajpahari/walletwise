@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/data/balance_card.dart';
 
 class BalanceCard extends StatelessWidget {
   BalanceCard({super.key});
@@ -39,7 +41,7 @@ class BalanceCard extends StatelessWidget {
                               Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.transparent),
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
@@ -56,12 +58,12 @@ class BalanceCard extends StatelessWidget {
                                             style: TextStyle(fontSize: 16),
                                           ),
                                           SizedBox(height: 20),
-                                          Text(
-                                            "Rs 16,000.00",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 24),
-                                          )
+                                          Obx(() => Text(
+                                                "Rs ${BalanceCardData.balance.toString()}.00",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 24),
+                                              ))
                                         ]),
                                   ],
                                 ),

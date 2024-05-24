@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/date_picker.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
+import 'package:walletwise/utils/validators/validation.dart';
 
 class SavingGoalForm extends StatelessWidget {
   const SavingGoalForm({super.key});
@@ -16,6 +18,7 @@ class SavingGoalForm extends StatelessWidget {
       child: Scaffold(
           appBar: WalletWiseBar.normalPageBar("Add Saving Goal"),
           body: Form(
+              key: controller.savingFormKey,
               child: Center(
                   child: Container(
                       constraints: BoxConstraints(maxWidth: 300),
@@ -25,6 +28,10 @@ class SavingGoalForm extends StatelessWidget {
                             height: 20,
                           ),
                           TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) =>
+                                WwValidator.isInputEmpty(value),
                             controller: controller.title,
                             decoration: const InputDecoration(
                               prefix: Icon(Icons.title),
@@ -74,23 +81,49 @@ class SavingGoalForm extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5))),
-                              onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Yay! A SnackBar!'),
-                                    duration: Duration(milliseconds: 100),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Add",
-                                style: TextStyle(color: Colors.white),
-                              )),
+                          Container(
+                              constraints: BoxConstraints(minWidth: 250),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                  onPressed: () {
+                                    print(controller.formState.value);
+                                    controller.addSaving(
+                                        Saving(
+                                            amount: 100,
+                                            note: "need money",
+                                            title: "for the gym",
+                                            date: "1000"),
+                                        context);
+                                    // ScaffoldMessenger.of(context).showSnackBar(
+                                    //   SnackBar(
+                                    //     content: Text('Yay! A SnackBar!'),
+                                    //     duration: Duration(milliseconds: 100),
+                                    //   ),
+                                    // );
+                                  },
+                                  child: Obx(
+                                    () => controller.formState.value == 1
+                                        ? Column(children: [
+                                            Text(
+                                              "Adding",
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  color: Colors.white),
+                                            ),
+                                            LinearProgressIndicator(
+                                                color: Colors.white)
+                                          ])
+                                        : Text(
+                                            "Add",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 24),
+                                          ),
+                                  ))),
                         ],
                       ))))),
     );

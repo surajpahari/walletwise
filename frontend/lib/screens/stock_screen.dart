@@ -76,7 +76,16 @@ class StockScreen extends StatelessWidget {
                   builder: (context) {
                     return (Theme(
                         data: ThemeData.dark(),
-                        child: AlertDialog(content: Container())));
+                        child: AlertDialog(
+                          alignment: Alignment.topCenter,
+                          content: TextFormField(
+                            decoration: InputDecoration(
+                                label: Row(children: [
+                              Icon(Icons.search),
+                              Text("Search for stock")
+                            ])),
+                          ),
+                        )));
                   })
             },
             child: const Icon(Icons.search),
