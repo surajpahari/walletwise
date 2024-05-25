@@ -6,7 +6,7 @@ class Url {
 
 class ApiUrls {
   ApiUrls._();
-  static String baseUrl = "http://192.168.1.75:8000/api";
+  static String baseUrl = "http://192.168.1.75:8000";
   static Url testUrl = Url('/api/test');
   static Url test2Url = Url('/api/test2');
   //urls related to atuthentication authentication
@@ -17,4 +17,7 @@ class ApiUrls {
 
   //urls related to the income
   static Url addIncome = Url('/api/income/add');
+
+  //urls realted to the saving
+  static Url addSaving = Url('/api/saving/add');
 }

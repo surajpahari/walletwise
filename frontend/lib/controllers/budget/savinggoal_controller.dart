@@ -4,10 +4,17 @@ import 'package:get/get.dart';
 import "package:walletwise/api/fetcher.dart";
 import "package:walletwise/api/urls/app_urls.dart";
 import "package:walletwise/data/balance_card.dart";
+import "package:walletwise/data/saving_goals.dart";
 import 'package:walletwise/models/saving.dart';
 import "package:walletwise/utils/forms/pages/saving_goal.dart";
 import "package:walletwise/utils/snackbar.dart";
 
+//user inputs the saving;
+//validate the saving
+//create saving model form the input
+//on sucess
+//display the sucess  snackbar
+// update the ui
 class SavinggoalController {
   final amount = TextEditingController();
   final endDate = TextEditingController();
@@ -16,17 +23,40 @@ class SavinggoalController {
   GlobalKey<FormState> savingFormKey = GlobalKey<FormState>();
   final RxInt formState = 0.obs;
 
-  Future<dynamic> addSaving(Saving saving, BuildContext context) async {
+//Validate the input and create  saving
+  Saving? createSaving() {
     if (!savingFormKey.currentState!.validate()) {
-      return;
+      return null;
     }
+    return Saving(
+      amount: int.parse(amount.text),
+      date: endDate.text.toString(),
+      title: title.text.toString(),
+      note: note.text.toString(),
+    );
+  }
 
-    print("hello");
-    formState.value = 1;
-    await Future.delayed(Duration(seconds: 2));
-    formState.value = 2;
-    BalanceCardData.balance += 20;
-    WwSackbar.builder(context, "New Saving Goal Added");
+  Future<dynamic> addSaving(BuildContext context) async {
+    Saving? saving = createSaving();
+    if (saving == null) {
+      return;
+    } else {
+      formState.value = 1;
+      var response = await FetchAPI(ApiUrls.addSaving, HttpMethod.post,
+          body: {'saving': '1000'}).fetchUnauthorizedAPI();
+      if (response.statusCode == 200) {
+        formState.value = 2;
+        WwSackbar.builder(context, "New Saving Goal Added");
+        updateSaving(saving);
+        clearInputField();
+      } else {
+        throw Exception('Failed to load budgets');
+      }
+
+      BalanceCardData.balance += 20;
+      //add to the server
+      //update the saving
+    }
     return;
 
     String incomeJson = jsonEncode(saving.toJson());
@@ -44,5 +74,16 @@ class SavinggoalController {
     } else {
       throw Exception('Failed to load budgets');
     }
+  }
+
+  void updateSaving(saving) {
+    SavingGoalData.savinglist.add(saving);
+  }
+
+  void clearInputField() {
+    amount.clear();
+    title.clear();
+    note.clear();
+    endDate.clear();
   }
 }

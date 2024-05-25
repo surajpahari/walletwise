@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/data/stock_search_result.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 
@@ -72,21 +73,71 @@ class StockScreen extends StatelessWidget {
           child: FloatingActionButton(
             onPressed: () => {
               showDialog(
-                  context: context,
-                  builder: (context) {
-                    return (Theme(
-                        data: ThemeData.dark(),
-                        child: AlertDialog(
-                          alignment: Alignment.topCenter,
-                          content: TextFormField(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[800],
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          TextFormField(
+                            style: TextStyle(color: Colors.white), // Text color
                             decoration: InputDecoration(
-                                label: Row(children: [
-                              Icon(Icons.search),
-                              Text("Search for stock")
-                            ])),
+                              labelText: "Search for stock",
+                              labelStyle:
+                                  TextStyle(color: Colors.white), // Label color
+                              prefixIcon: Icon(Icons.search,
+                                  color: Colors.white), // Icon color
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.white), // Border color
+                              ),
+                            ),
                           ),
-                        )));
-                  })
+                          SizedBox(height: 20),
+                          Text(
+                            "Suggestions:",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black, // Text color
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: StockSearchResult.searchList.length,
+                              itemBuilder: (context, index) {
+                                final suggestion =
+                                    StockSearchResult.searchList[index];
+                                return ListTile(
+                                  title: Text(
+                                    suggestion,
+                                    style: TextStyle(
+                                        color: Colors.black), // Text color
+                                  ),
+                                  onTap: () {
+                                    // Handle selection of suggestion
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              )
             },
             child: const Icon(Icons.search),
           ),

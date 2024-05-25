@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/data/saving_goals.dart';
+import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/utils/cards/hero_card.dart';
+import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
@@ -19,6 +23,25 @@ class MainScreen extends StatelessWidget {
                 height: 20,
               ),
               AssetDebt(),
+              SizedBox(
+                height: 20,
+              ),
+
+              Obx(() {
+                // Access the savinglist from SavingGoalData
+                List<Saving> savingList = SavingGoalData.savinglist.toList();
+                return Column(
+                  children: savingList.map((saving) {
+                    return SavingCard(
+                      // Assuming you have a widget called SavingGoalCard to display each saving goal
+                      saving: saving,
+                      // Add any other parameters you need to pass to SavingGoalCard constructor
+                    );
+                  }).toList(),
+                );
+              }),
+              //render saving goal
+
               SizedBox(
                 height: 20,
               ),
