@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/controllers/stocks/stock_controller.dart';
 import 'package:walletwise/data/stock_search_result.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/theme/theme_constant.dart';
@@ -8,6 +10,7 @@ class StockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = StockController();
     return Theme(
       data: myTheme,
       child: Scaffold(
@@ -89,6 +92,10 @@ class StockScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           TextFormField(
+                            onChanged: (value) {
+                              controller.onChange(value);
+                            },
+                            controller: controller.searchQuery,
                             style: TextStyle(color: Colors.white), // Text color
                             decoration: InputDecoration(
                               labelText: "Search for stock",
@@ -113,24 +120,27 @@ class StockScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 10),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: StockSearchResult.searchList.length,
-                              itemBuilder: (context, index) {
-                                final suggestion =
-                                    StockSearchResult.searchList[index];
-                                return ListTile(
-                                  title: Text(
-                                    suggestion,
-                                    style: TextStyle(
-                                        color: Colors.black), // Text color
-                                  ),
-                                  onTap: () {
-                                    // Handle selection of suggestion
-                                  },
-                                );
-                              },
-                            ),
+                          Obx(
+                            () {
+                              return Expanded(
+                                  child: ListView.builder(
+                                itemCount: StockSearchResult.searchList.length,
+                                itemBuilder: (context, index) {
+                                  final suggestion =
+                                      StockSearchResult.searchList[index];
+                                  return ListTile(
+                                    title: Text(
+                                      suggestion.name,
+                                      style: TextStyle(
+                                          color: Colors.black), // Text color
+                                    ),
+                                    onTap: () {
+                                      // Handle selection of suggestion
+                                    },
+                                  );
+                                },
+                              ));
+                            },
                           ),
                         ],
                       ),

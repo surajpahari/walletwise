@@ -1,7 +1,6 @@
 import "package:get/get.dart";
+import "package:walletwise/models/stock.dart";
 
 class StockSearchResult {
-  static RxList<String> searchList =
-      <String>["NMB", "Nic asia", "Macchapurche"].obs;
+  static RxList<Stock> searchList = <Stock>[].obs;
 }
-

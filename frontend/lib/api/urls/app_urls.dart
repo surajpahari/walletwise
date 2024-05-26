@@ -20,4 +20,7 @@ class ApiUrls {
 
   //urls realted to the saving
   static Url addSaving = Url('/api/saving/add');
+
+  //urls related to the stocks
+  static Url searchStocks = Url("/api/search_stock");
 }

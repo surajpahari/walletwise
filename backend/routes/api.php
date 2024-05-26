@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -20,6 +21,15 @@ Route ::post('income/add',function(Request $request){
 
     $requestBody = file_get_contents('php://input');
      return response()->json(['request_body' => $requestBody]);
+});
+
+Route::post('saving/add',function(Request $request){
+    return response()->json(["messagge"=>"hi"]);
+
+});
+
+Route::controller(StockController::class)->group(function(){
+    Route::post('search_stock','search');
 });
 
 Route::post('test2', function(Request $request){
