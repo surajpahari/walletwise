@@ -4,6 +4,7 @@ import 'package:walletwise/screens/budget_screen.dart';
 import 'package:walletwise/screens/history_screen.dart';
 import 'package:walletwise/screens/main_screen.dart';
 import 'package:walletwise/screens/stock_screen.dart';
+import 'package:walletwise/test.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 
@@ -95,6 +96,6 @@ class NavigationController extends GetxController {
     const MainScreen(),
     const BudgetScreen(),
     const StockScreen(),
-    HistoryScreen(),
+    TestScreen()
   ];
 }
