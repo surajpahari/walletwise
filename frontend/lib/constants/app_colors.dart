@@ -19,4 +19,7 @@ class AppColors {
   static Color glassWhite = Color(0x99FFFFFF);
   static Color darkReed = Color(0xff712b1f);
   static Color darkGrey = Color(0xFF424242); // Custom dark grey color
+  static Color black = Color(0xff111111);
+  static Color purple = Color(0xff1D1927);
+  static Color white = Color(0xffF7F7F7);
 }

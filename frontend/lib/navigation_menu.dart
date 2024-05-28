@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/screens/budget_screen.dart';
-import 'package:walletwise/screens/history_screen.dart';
 import 'package:walletwise/screens/main_screen.dart';
 import 'package:walletwise/screens/stock_screen.dart';
 import 'package:walletwise/test.dart';

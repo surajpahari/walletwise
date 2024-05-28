@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/stocks/stock_controller.dart';
 import 'package:walletwise/data/stock_search_result.dart';
+import 'package:walletwise/screens/stock_detail.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 
@@ -135,6 +136,9 @@ class StockScreen extends StatelessWidget {
                                           color: Colors.black), // Text color
                                     ),
                                     onTap: () {
+                                      Get.to(StockDetail(
+                                        stock: suggestion,
+                                      ));
                                       // Handle selection of suggestion
                                     },
                                   );

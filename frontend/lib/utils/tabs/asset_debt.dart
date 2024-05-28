@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/utils/charts/chart_data.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 
@@ -18,7 +19,7 @@ class _AssetDebtState extends State<AssetDebt> {
     return Column(
       children: [
         Container(
-          constraints: BoxConstraints(maxWidth: 400),
+          constraints: BoxConstraints(maxWidth: 300),
           child: Row(
             children: [
               Expanded(
@@ -30,9 +31,7 @@ class _AssetDebtState extends State<AssetDebt> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: _selectedIndex == 0
-                          ? Color(0xFF424242)
-                          : Color(0xFF00695C),
+                      color: AppColors.purple,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
@@ -58,11 +57,9 @@ class _AssetDebtState extends State<AssetDebt> {
                     });
                   },
                   child: Container(
-                    constraints: const BoxConstraints(maxWidth: 500),
+                    constraints: const BoxConstraints(maxWidth: 300),
                     decoration: BoxDecoration(
-                      color: _selectedIndex == 1
-                          ? Color(0xFF424242)
-                          : Color(0xFF00695C),
+                      color: AppColors.purple,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(10),
                         bottomRight: Radius.circular(10),
@@ -70,12 +67,18 @@ class _AssetDebtState extends State<AssetDebt> {
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(8),
-                      child: Center(
-                        child: Text(
+                      child: Column(children: [
+                        Text(
                           "Debt",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(
+                              letterSpacing: 2,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                              decorationThickness: 2),
                         ),
-                      ),
+                      ]),
                     ),
                   ),
                 ),

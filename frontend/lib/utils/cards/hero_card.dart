@@ -18,16 +18,17 @@ class BalanceCard extends StatelessWidget {
                 constraints: const BoxConstraints(
                     minWidth: 400, maxWidth: 500, maxHeight: 200),
                 decoration: BoxDecoration(
-                  color: AppColors.darkGrey,
+                  gradient: LinearGradient(
+                      colors: [Color(0xff2517DB), Color(0xff1180D1)]),
                   borderRadius: BorderRadius.circular(
                       16.0), // Optional: Adds rounded corners
                   boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5), // Shadow color
-                      spreadRadius: 2, // Spread radius
-                      blurRadius: 3, // Blur radius
-                      offset: const Offset(0, 3), // Changes position of shadow
-                    ),
+                    //BoxShadow(
+                    //  color: Colors.grey.withOpacity(0.5), // Shadow color
+                    //  spreadRadius: 2, // Spread radius
+                    //  blurRadius: 3, // Blur radius
+                    //  offset: const Offset(0, 3), // Changes position of shadow
+                    //),
                   ],
                 ),
                 child: Padding(
@@ -63,7 +64,57 @@ class BalanceCard extends StatelessWidget {
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24),
-                                              ))
+                                              )),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xff1f1a30),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.red,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      child: Icon(
+                                                          Icons.arrow_upward),
+                                                    ),
+                                                    Text("Rs 1001")
+                                                  ]),
+                                                ),
+                                              ),
+
+                                              SizedBox(
+                                                  width:
+                                                      16), // Add space between the two Container widgets
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xff1f1a30),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Row(children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: Colors.red,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5)),
+                                                      child: Icon(
+                                                          Icons.arrow_upward),
+                                                    ),
+                                                    Text("Rs 1001")
+                                                  ]),
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         ]),
                                   ],
                                 ),
@@ -71,88 +122,6 @@ class BalanceCard extends StatelessWidget {
                             ],
                           )),
                         ),
-                        Expanded(
-                          child: Container(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 150),
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightgreen,
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(22.0),
-                                    topLeft: Radius.circular(22.0),
-                                  ),
-                                ),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.trending_up,
-                                            color: Colors.green,
-                                          ),
-                                          Text(
-                                            "in",
-                                            style: TextStyle(
-                                                color: Colors.green,
-                                                fontSize: 18),
-                                          ),
-                                        ]),
-                                    Text(
-                                      "Rs 1001",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              )),
-                              Expanded(
-                                  child: Container(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 150),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(22.0),
-                                    bottomRight: Radius.circular(22.0),
-                                  ),
-                                  color: AppColors.lightgreen,
-                                ),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.trending_down,
-                                            color: Colors.red,
-                                          ),
-                                          Text(
-                                            "out",
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize: 18),
-                                          ),
-                                        ]),
-                                    Text(
-                                      "Rs 1001",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              ))
-                            ],
-                          )),
-                        )
                       ],
                     )),
               )

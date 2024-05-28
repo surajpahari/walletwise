@@ -57,9 +57,21 @@ class MainScreen extends StatelessWidget {
           right: 10.0,
           child: Padding(
             padding: EdgeInsets.all(16),
-            child: FloatingActionButton(
-              onPressed: () => Dialogbuilder.hello(context),
-              child: const Icon(Icons.add),
+            child: Container(
+              width: 56.0,
+              height: 56.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                shape: BoxShape.rectangle,
+                border: Border.all(
+                  color: Colors.white, // Border color
+                  width: 2.0, // Border width
+                ),
+              ),
+              child: FloatingActionButton(
+                onPressed: () => Dialogbuilder.hello(context),
+                child: const Icon(Icons.add),
+              ),
             ),
           ),
         ),

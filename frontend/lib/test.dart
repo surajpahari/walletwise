@@ -18,26 +18,18 @@ class _TestScreenState extends State<TestScreen> {
       _ChartData('RUSo', 37, 7, 17, 24),
       _ChartData('BRZo', 34, 9, 16, 27),
       _ChartData('CHNo', 38, 10, 21, 29),
-      _ChartData('CHi', 39, 10, 21, 29),
-      _ChartData('GERi', 32, 12, 19, 30),
-      _ChartData('RUSi', 37, 7, 17, 24),
-      _ChartData('BRZi', 34, 9, 16, 27),
       _ChartData('CHN', 38, 10, 21, 29),
       _ChartData('GER', 32, 12, 19, 30),
       _ChartData('RUS', 37, 7, 17, 24),
       _ChartData('BRZ', 34, 9, 16, 27),
-      _ChartData('GERa', 32, 12, 19, 30),
-      _ChartData('RUSa', 37, 7, 17, 24),
       _ChartData('BRZa', 34, 9, 16, 27),
-      _ChartData('CHNa', 38, 10, 21, 29),
-      _ChartData('CHi', 39, 10, 21, 29),
-      _ChartData('GERi', 32, 12, 19, 30),
-      _ChartData('RUSi', 37, 7, 17, 24),
-      _ChartData('BRZi', 34, 9, 16, 27),
-      _ChartData('CHN', 38, 10, 21, 29),
-      _ChartData('GER', 32, 12, 19, 30),
-      _ChartData('RUS', 37, 7, 17, 24),
-      _ChartData('BRZ', 34, 9, 16, 27),
+      _ChartData('BRZb', 34, 9, 16, 27),
+      _ChartData('BRZc', 34, 9, 16, 27),
+      _ChartData('GERd', 32, 12, 19, 30),
+      _ChartData('GERe', 32, 12, 19, 30),
+      _ChartData('GERf', 32, 12, 19, 30),
+      _ChartData('RUSg', 37, 7, 17, 24),
+      _ChartData('RUSh', 37, 7, 17, 24),
     ];
     _tooltip = TooltipBehavior(enable: true);
     super.initState();
@@ -47,7 +39,7 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Syncfusion Flutter chart'),
+        title: const Text('Apple'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -55,7 +47,7 @@ class _TestScreenState extends State<TestScreen> {
           child: SfCartesianChart(
             primaryXAxis: CategoryAxis(
               minimum: 0,
-              maximum: 10,
+              maximum: 15,
               interval: 3,
             ),
             primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 2),

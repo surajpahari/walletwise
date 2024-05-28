@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 //defining the color
 //for the main background
 //main color
+const Color wwBlack = Color(0xff111111);
+const Color wwPurple = Color(0xff1D1927);
+const Color wwWhite = Color(0xffF7F7F7);
+
 const darkGreen = Color(0xff244c14);
 const blueColor = Color(0xff004D40);
 //for the buttom navigationbar
@@ -22,9 +26,12 @@ const grey = Color(0x5c5b4a);
 const greenShade = Color(0xff3E2723);
 
 final ThemeData myTheme = ThemeData(
+  appBarTheme: AppBarTheme(
+    color: wwBlack,
+  ),
   colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: darkGreen,
+      primary: wwBlack,
       onPrimary: Colors.white,
       secondary: glassWhite,
       onSecondary: Colors.white,
@@ -34,15 +41,15 @@ final ThemeData myTheme = ThemeData(
       onSurface: Colors.white),
   primarySwatch: Colors.blue,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: glassWhite,
-      selectedItemColor: blueColor,
+      backgroundColor: wwPurple,
+      selectedItemColor: wwWhite,
       unselectedItemColor: Color(0xff000000)),
-  scaffoldBackgroundColor: blueColor,
+  scaffoldBackgroundColor: wwBlack,
 );
 final ThemeData wwTheme = ThemeData(
   colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: darkGreen,
+      primary: wwBlack,
       onPrimary: Colors.white,
       secondary: glassWhite,
       onSecondary: Colors.white,

@@ -9,7 +9,7 @@ class WalletWiseBar {
       automaticallyImplyLeading: true,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text(title)],
+        children: [Expanded(child: Text(overflow: TextOverflow.fade, title))],
       ),
     );
   }
@@ -49,7 +49,7 @@ class WalletWiseBar {
         children: [
           Text(
             "WalletWise",
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600),
           )
         ],
       ),
@@ -58,7 +58,8 @@ class WalletWiseBar {
           builder: (BuildContext context) {
             return IconButton(
               iconSize: 40,
-              icon: const Icon(Icons.account_circle),
+              icon: const Icon(Icons.person),
+              color: Colors.white,
               onPressed: () {
                 // Use the context obtained from the Builder widget
                 Get.to(ProfileScreen());
