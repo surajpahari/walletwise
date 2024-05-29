@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
+import 'package:walletwise/utils/charts/candle_chart.dart';
 
 class StockDetail extends StatelessWidget {
   const StockDetail({required this.stock, super.key});
@@ -13,6 +15,10 @@ class StockDetail extends StatelessWidget {
         data: myTheme,
         child: Scaffold(
           appBar: WalletWiseBar.normalPageBar(stock.name),
+          body: Container(
+            color: AppColors.black,
+            child: WwCandleChart(),
+          ),
         ));
   }
 }

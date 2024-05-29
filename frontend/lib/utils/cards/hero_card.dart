@@ -16,7 +16,7 @@ class BalanceCard extends StatelessWidget {
             child: Column(children: [
               Container(
                 constraints: const BoxConstraints(
-                    minWidth: 400, maxWidth: 500, maxHeight: 200),
+                    minWidth: 400, maxWidth: 500, maxHeight: 250),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                       colors: [Color(0xff2517DB), Color(0xff1180D1)]),
@@ -32,7 +32,7 @@ class BalanceCard extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.only(left: 24, top: 20),
                     child: Row(
                       children: [
                         Expanded(
@@ -40,8 +40,8 @@ class BalanceCard extends StatelessWidget {
                               child: Row(
                             children: [
                               Container(
-                                decoration: const BoxDecoration(
-                                    color: Colors.transparent),
+                                decoration:
+                                    BoxDecoration(color: Colors.transparent),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -49,11 +49,14 @@ class BalanceCard extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          //Balance
                                           Text("Balance",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20)),
                                           SizedBox(height: 2),
+
+                                          //Date
                                           Text(
                                             "May   01   2024",
                                             style: TextStyle(fontSize: 16),
@@ -65,23 +68,31 @@ class BalanceCard extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24),
                                               )),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
                                           Row(
                                             children: [
                                               Container(
                                                 decoration: BoxDecoration(
                                                   color: Color(0xff1f1a30),
+                                                  borderRadius:
+                                                      BorderRadius.circular(18),
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(10),
                                                   child: Row(children: [
                                                     Container(
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.red,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5)),
-                                                      child: Icon(
-                                                          Icons.arrow_upward),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.green,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Icon(
+                                                            Icons.north_east)),
+                                                    SizedBox(
+                                                      width: 10,
                                                     ),
                                                     Text("Rs 1001")
                                                   ]),
@@ -93,21 +104,23 @@ class BalanceCard extends StatelessWidget {
                                                       16), // Add space between the two Container widgets
                                               Container(
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xff1f1a30),
-                                                ),
+                                                    color: Color(0xff1f1a30),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            18)),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(10),
                                                   child: Row(children: [
                                                     Container(
                                                       decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color: Colors.red,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5)),
+                                                        shape: BoxShape.circle,
+                                                        color: Colors.red,
+                                                      ),
                                                       child: Icon(
-                                                          Icons.arrow_upward),
+                                                          Icons.south_west),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
                                                     ),
                                                     Text("Rs 1001")
                                                   ]),

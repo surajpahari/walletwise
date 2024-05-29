@@ -27,19 +27,19 @@ class MainScreen extends StatelessWidget {
                 height: 20,
               ),
 
-              Obx(() {
-                // Access the savinglist from SavingGoalData
-                List<Saving> savingList = SavingGoalData.savinglist.toList();
-                return Column(
-                  children: savingList.map((saving) {
-                    return SavingCard(
-                      // Assuming you have a widget called SavingGoalCard to display each saving goal
-                      saving: saving,
-                      // Add any other parameters you need to pass to SavingGoalCard constructor
-                    );
-                  }).toList(),
-                );
-              }),
+              //Obx(() {
+              //  // Access the savinglist from SavingGoalData
+              //  List<Saving> savingList = SavingGoalData.savinglist.toList();
+              //  return Column(
+              //    children: savingList.map((saving) {
+              //      return SavingCard(
+              //        // Assuming you have a widget called SavingGoalCard to display each saving goal
+              //        saving: saving,
+              //        // Add any other parameters you need to pass to SavingGoalCard constructor
+              //      );
+              //    }).toList(),
+              //  );
+              //}),
               //render saving goal
 
               SizedBox(
