@@ -3,6 +3,7 @@ import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
+import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/utils/charts/candle_chart.dart';
 
 class StockDetail extends StatelessWidget {
@@ -17,7 +18,11 @@ class StockDetail extends StatelessWidget {
           appBar: WalletWiseBar.normalPageBar(stock.name),
           body: Container(
             color: AppColors.black,
-            child: WwCandleChart(),
+            child: SingleChildScrollView(
+                child: Column(children: [
+              StockCard(),
+              WwCandleChart(),
+            ])),
           ),
         ));
   }

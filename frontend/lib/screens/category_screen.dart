@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
+import 'package:walletwise/data/graph_data.dart';
 import 'package:walletwise/models/item.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
-import 'package:walletwise/utils/charts/chart_data.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 
 class CategoryScreen extends StatefulWidget {

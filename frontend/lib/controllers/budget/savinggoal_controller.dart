@@ -3,8 +3,11 @@ import "dart:convert";
 import 'package:get/get.dart';
 import "package:walletwise/api/fetcher.dart";
 import "package:walletwise/api/urls/app_urls.dart";
+import "package:walletwise/data/asset_debt_data.dart";
 import "package:walletwise/data/balance_card.dart";
+import "package:walletwise/data/graph_data.dart";
 import "package:walletwise/data/saving_goals.dart";
+import "package:walletwise/models/assets.dart";
 import 'package:walletwise/models/saving.dart';
 import "package:walletwise/utils/forms/pages/saving_goal.dart";
 import "package:walletwise/utils/snackbar.dart";
@@ -54,6 +57,7 @@ class SavinggoalController {
       }
 
       BalanceCardData.balance += 20;
+      AssetDebtData.pieDataList.add(PieData(name: "valentina", value: 2000));
       //add to the server
       //update the saving
     }
@@ -78,6 +82,7 @@ class SavinggoalController {
 
   void updateSaving(saving) {
     SavingGoalData.savinglist.add(saving);
+    AssetDebtData.addAsset(Assets(Name: "real state", Amount: 1000.00));
   }
 
   void clearInputField() {

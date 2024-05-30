@@ -23,9 +23,11 @@ class BottomNavigation extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0), // Adjust padding as needed
                   child: Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10)),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[900], // Set background color here

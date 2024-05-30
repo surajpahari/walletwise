@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 const Color wwBlack = Color(0xff111111);
 const Color wwPurple = Color(0xff1D1927);
 const Color wwWhite = Color(0xffF7F7F7);
+const Color wwGrey = Color(0x5cF7F7F7);
 
 const darkGreen = Color(0xff244c14);
 const blueColor = Color(0xff004D40);
@@ -43,7 +44,7 @@ final ThemeData myTheme = ThemeData(
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: wwPurple,
       selectedItemColor: wwWhite,
-      unselectedItemColor: Color(0xff000000)),
+      unselectedItemColor: wwGrey),
   scaffoldBackgroundColor: wwBlack,
 );
 final ThemeData wwTheme = ThemeData(

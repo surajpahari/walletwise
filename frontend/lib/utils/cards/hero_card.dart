@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/data/balance_card.dart';
 
 class BalanceCard extends StatelessWidget {
@@ -68,9 +69,15 @@ class BalanceCard extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24),
                                               )),
+                                          Obx(() => Text(
+                                              'hey ${AssetDebtData.pieDataList[0].value}')),
                                           SizedBox(
                                             height: 20,
                                           ),
+                                          //Obx(
+                                          //  () => Text(
+                                          //      'ok ${AssetDebtData.pieDataList[0].name}'),
+                                          //),
                                           Row(
                                             children: [
                                               Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
-import 'package:walletwise/utils/charts/chart_data.dart';
+import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 
@@ -92,38 +93,49 @@ class _AssetDebtState extends State<AssetDebt> {
           Container(
             constraints: BoxConstraints(maxWidth: 200, maxHeight: 300),
             child: _selectedIndex == 0
-                ? MyPieChart([
-                    PieData(name: "Dikshyant", value: 100),
-                    PieData(name: "Shivaji", value: 1000),
-                    PieData(name: "Yakeen", value: 100),
-                  ])
-                : MyPieChart([
-                    PieData(name: "Macbook", value: 200),
-                    PieData(name: "RealState", value: 1000)
-                  ]),
+                ? MyPieChart(AssetDebtData.pieDataList)
+                : MyPieChart(AssetDebtData.debtPieChartData),
           ),
           SizedBox(
             width: 30,
           ),
-          Container(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Indicator(
-                  color: AppColors.pieChartColors[0],
-                  text: 'Shivaji',
-                  isSquare: false),
-              Indicator(
-                  color: AppColors.pieChartColors[1],
-                  text: 'Dikshyant',
-                  isSquare: false),
-              Indicator(
-                  color: AppColors.pieChartColors[2],
-                  text: 'Yakeen',
-                  isSquare: false),
-            ],
-          ))
+          _selectedIndex == 0
+              ? Container(
+                  child: Obx(() => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: AssetDebtData.pieDataList
+                            .asMap()
+                            .entries
+                            .map((entry) {
+                          int index = entry.key;
+                          var pieData = entry.value;
+                          return Indicator(
+                            color: AppColors.pieChartColors[index],
+                            text: pieData.name,
+                            isSquare: false,
+                          );
+                        }).toList(),
+                      )),
+                )
+              : Container(
+                  child: Obx(() => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: AssetDebtData.debtPieChartData
+                            .asMap()
+                            .entries
+                            .map((entry) {
+                          int index = entry.key;
+                          var pieData = entry.value;
+                          return Indicator(
+                            color: AppColors.pieChartColors[index],
+                            text: pieData.name,
+                            isSquare: false,
+                          );
+                        }).toList(),
+                      )),
+                )
         ])
       ],
     );
