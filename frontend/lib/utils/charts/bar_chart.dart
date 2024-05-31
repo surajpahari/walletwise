@@ -42,7 +42,7 @@ List<ChartData> getChartData() {
     300,
     1100,
     300,
-    00,
+    0,
     300
   ];
   return data.asMap().entries.map((entry) {
@@ -60,13 +60,35 @@ class MyLineChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
-      child: LineChart(LineChartData(lineBarsData: [
-        LineChartBarData(
-          barWidth: 3,
-          color: Colors.pink,
-          spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
+      child: LineChart(
+        LineChartData(
+          lineBarsData: [
+            LineChartBarData(
+              barWidth: 3,
+              color: Colors.pink,
+              spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
+            ),
+          ],
+          titlesData: FlTitlesData(
+            bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: (value, titlemeta) {
+                return Transform.rotate(
+                    angle: 30, child: Text("May ${value.toInt()}"));
+                // Assuming each index corresponds to a day in May.
+              },
+            )),
+          ),
+          borderData: FlBorderData(
+            show: true,
+            border: Border.all(
+              color: const Color(0xff37434d),
+            ),
+          ),
+          gridData: FlGridData(show: false),
         ),
-      ])),
+      ),
     );
   }
 }
