@@ -69,8 +69,6 @@ class BalanceCard extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24),
                                               )),
-                                          Obx(() => Text(
-                                              'hey ${AssetDebtData.pieDataList[0].value}')),
                                           SizedBox(
                                             height: 20,
                                           ),
