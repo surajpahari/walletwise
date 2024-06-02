@@ -45,6 +45,31 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              Center(child: Text("Saving Goals")),
+              Container(
+                child: Row(
+                  children: [
+                    SavingCard(
+                        saving: Saving(
+                            note: "for this,",
+                            amount: 1000,
+                            title: "Macbook",
+                            date: "May 10"))
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+              Center(child: Text("Balance")),
+              SizedBox(
+                height: 20,
+              ),
+
               Container(
                 constraints: BoxConstraints(maxWidth: 500),
                 child: MyLineChart(getChartData()), // Add the line chart here
