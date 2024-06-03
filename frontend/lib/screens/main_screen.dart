@@ -5,8 +5,10 @@ import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/utils/cards/hero_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
+import 'package:walletwise/utils/charts/line_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
+import 'package:walletwise/data/balance_data.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key});
@@ -69,11 +71,12 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              Container(child: WwLineChart(data: BalanceData.balanceHistory))
 
-              Container(
-                constraints: BoxConstraints(maxWidth: 500),
-                child: MyLineChart(getChartData()), // Add the line chart here
-              ),
+              //Container(
+              //  constraints: BoxConstraints(maxWidth: 500),
+              //  child: MyLineChart(getChartData()), // Add the line chart here
+              //),
             ],
           ),
         ),

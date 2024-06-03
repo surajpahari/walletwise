@@ -73,11 +73,13 @@ class MyLineChart extends StatelessWidget {
             bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
               showTitles: true,
-              getTitlesWidget: (value, titlemeta) {
-                return Transform.rotate(
-                    angle: 30, child: Text("May ${value.toInt()}"));
-                // Assuming each index corresponds to a day in May.
-              },
+              //getTitlesWidget: (value, titlemeta) {
+              //  return Text(
+              //    "May ${value.toInt()}",
+              //    style: TextStyle(fontSize: 8),
+              //  );
+              //  // Assuming each index corresponds to a day in May.
+              //},
             )),
           ),
           borderData: FlBorderData(
