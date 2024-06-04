@@ -47,19 +47,18 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Center(child: Text("Saving Goals")),
+              Center(
+                  child: Text("Saving Goals", style: TextStyle(fontSize: 30))),
+              SizedBox(height: 10),
               Container(
-                child: Row(
-                  children: [
-                    SavingCard(
-                        saving: Saving(
-                            note: "for this,",
-                            amount: 1000,
-                            title: "Macbook",
-                            date: "May 10"))
-                  ],
+                  child: Obx(
+                () => Row(
+                  children:
+                      SavingGoalData.savinglist.asMap().entries.map((entry) {
+                    return SavingCard(saving: entry.value);
+                  }).toList(),
                 ),
-              ),
+              )),
               SizedBox(
                 height: 20,
               ),
@@ -67,11 +66,14 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Center(child: Text("Balance")),
+              Center(child: Text("Balance", style: TextStyle(fontSize: 32))),
               SizedBox(
                 height: 20,
               ),
-              Container(child: WwLineChart(data: BalanceData.balanceHistory))
+              Container(child: WwLineChart(data: BalanceData.balanceHistory)),
+              SizedBox(
+                height: 60,
+              ),
 
               //Container(
               //  constraints: BoxConstraints(maxWidth: 500),

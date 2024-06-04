@@ -20,7 +20,7 @@ class StockDetail extends StatelessWidget {
             color: AppColors.black,
             child: SingleChildScrollView(
                 child: Column(children: [
-              StockCard(),
+              StockCard(stock: stock),
               WwCandleChart(),
             ])),
           ),

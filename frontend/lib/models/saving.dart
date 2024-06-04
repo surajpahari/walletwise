@@ -3,12 +3,14 @@ class Saving {
   String title;
   String date;
   String note;
+  String? startedDate;
 
   Saving(
       {required this.amount,
       required this.note,
       required this.title,
-      required this.date});
+      required this.date,
+      this.startedDate});
 
   Map<String, dynamic> toJson() {
     return {

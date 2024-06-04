@@ -3,11 +3,14 @@ class Stock {
   String symbol;
   String securityName;
   String name;
-  Stock(
-      {required this.id,
-      required this.symbol,
-      required this.securityName,
-      required this.name});
+  CurrentData? currentData;
+  Stock({
+    required this.id,
+    required this.symbol,
+    required this.securityName,
+    required this.name,
+    this.currentData,
+  });
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -34,4 +37,13 @@ class Stock {
       _ => throw const FormatException('Failed to the budget.'),
     };
   }
+}
+
+class CurrentData {
+  double? open;
+  double? close;
+  double? high;
+  double? low;
+  double? increasePercent;
+  double? increaseRate;
 }

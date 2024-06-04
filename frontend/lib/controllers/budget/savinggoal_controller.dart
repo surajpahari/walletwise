@@ -56,8 +56,6 @@ class SavinggoalController {
         throw Exception('Failed to load budgets');
       }
 
-      BalanceCardData.balance += 20;
-      AssetDebtData.pieDataList.add(PieData(name: "valentina", value: 2000));
       //add to the server
       //update the saving
     }
