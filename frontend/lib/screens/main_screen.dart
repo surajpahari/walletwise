@@ -1,10 +1,16 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/saving_goals.dart';
+import 'package:walletwise/models/bank_account.dart';
 import 'package:walletwise/models/saving.dart';
+import 'package:walletwise/utils/cards/bank_card.dart';
 import 'package:walletwise/utils/cards/hero_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
-import 'package:walletwise/utils/charts/bar_chart.dart';
+import 'package:walletwise/utils/cards/upcoming_payment_card.dart';
+import 'package:walletwise/utils/charts/saving_goal_bar.dart';
 import 'package:walletwise/utils/charts/line_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
@@ -47,6 +53,7 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              SizedBox(height: 20),
               Center(
                   child: Text("Saving Goals", style: TextStyle(fontSize: 30))),
               SizedBox(height: 10),
@@ -55,14 +62,32 @@ class MainScreen extends StatelessWidget {
                 () => Row(
                   children:
                       SavingGoalData.savinglist.asMap().entries.map((entry) {
-                    return SavingCard(saving: entry.value);
+                    return Column(children: [SavingCard(saving: entry.value)]);
                   }).toList(),
                 ),
               )),
               SizedBox(
                 height: 20,
               ),
-
+              Text(
+                "BankAccount",
+                style: TextStyle(fontSize: 32),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                child: Row(
+                    children:
+                        BankAccountData.bankAccountList.map((bankAccount) {
+                  return BankCard(bankAccount: bankAccount);
+                }).toList()),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("Upcoming payments",style:TextStyle(fontSize:23)),
+              UpcomingPaymentCard(),
               SizedBox(
                 height: 20,
               ),

@@ -127,10 +127,10 @@ class StockScreen extends StatelessWidget {
                             () {
                               return Expanded(
                                   child: ListView.builder(
-                                itemCount: StockSearchResult.searchList.length,
+                                itemCount: StockData.searchList.length,
                                 itemBuilder: (context, index) {
                                   final suggestion =
-                                      StockSearchResult.searchList[index];
+                                      StockData.searchList[index];
                                   return ListTile(
                                     title: Text(
                                       suggestion.name,

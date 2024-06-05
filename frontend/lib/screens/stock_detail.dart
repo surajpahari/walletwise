@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/data/stock_search_result.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
@@ -21,7 +22,27 @@ class StockDetail extends StatelessWidget {
             child: SingleChildScrollView(
                 child: Column(children: [
               StockCard(stock: stock),
-              WwCandleChart(),
+              WwCandleChart(
+                data: StockData.currentOHLCData,
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Apply model",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {}, child: Text("Add to watchlist")),
+                  ],
+                ),
+              )
             ])),
           ),
         ));

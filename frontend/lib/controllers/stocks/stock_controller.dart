@@ -23,11 +23,10 @@ class StockController {
   //add the response to the data
   void updateSuggestion(responseBody) {
     final List<dynamic> jsonResponse = jsonDecode(responseBody);
-    StockSearchResult.searchList
-        .clear(); // Clear the existing list before updating
+    StockData.searchList.clear(); // Clear the existing list before updating
     // Convert each item in jsonResponse to a Stock object and add it to the RxList
     for (var item in jsonResponse) {
-      StockSearchResult.searchList.add(Stock.fromJson(item));
+      StockData.searchList.add(Stock.fromJson(item));
     }
   }
 
@@ -38,7 +37,7 @@ class StockController {
       if (searchQuery.text.trim().isNotEmpty) {
         fetchSearchQuery(string);
       } else {
-        StockSearchResult.searchList.clear();
+        StockData.searchList.clear();
       }
     });
   }

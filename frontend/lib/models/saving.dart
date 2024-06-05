@@ -3,6 +3,7 @@ class Saving {
   String title;
   String date;
   String note;
+  double saved = 0.0;
   String? startedDate;
 
   Saving(
@@ -10,6 +11,7 @@ class Saving {
       required this.note,
       required this.title,
       required this.date,
+      this.saved = 0.0,
       this.startedDate});
 
   Map<String, dynamic> toJson() {
