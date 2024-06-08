@@ -1,16 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/data/bank_account.dart';
+import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
-import 'package:walletwise/models/bank_account.dart';
-import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/utils/cards/bank_card.dart';
 import 'package:walletwise/utils/cards/hero_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/cards/upcoming_payment_card.dart';
-import 'package:walletwise/utils/charts/saving_goal_bar.dart';
 import 'package:walletwise/utils/charts/line_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
@@ -59,7 +55,8 @@ class MainScreen extends StatelessWidget {
               SizedBox(height: 10),
               Container(
                   child: Obx(
-                () => Row(
+                () => Wrap(
+                  alignment: WrapAlignment.start,
                   children:
                       SavingGoalData.savinglist.asMap().entries.map((entry) {
                     return Column(children: [SavingCard(saving: entry.value)]);
@@ -77,17 +74,22 @@ class MainScreen extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: Row(
+                child: Wrap(
+                    alignment: WrapAlignment.end,
                     children:
                         BankAccountData.bankAccountList.map((bankAccount) {
-                  return BankCard(bankAccount: bankAccount);
-                }).toList()),
+                      return BankCard(bankAccount: bankAccount);
+                    }).toList()),
               ),
               SizedBox(
                 height: 20,
               ),
-              Text("Upcoming payments",style:TextStyle(fontSize:23)),
-              UpcomingPaymentCard(),
+              Text("Upcoming payments", style: TextStyle(fontSize: 23)),
+              Obx(() => Row(
+                      children: PaymentData.paymentlist.map((payment) {
+                    return UpcomingPaymentCard(payment: payment);
+                  }).toList())),
+
               SizedBox(
                 height: 20,
               ),

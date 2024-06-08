@@ -23,4 +23,11 @@ class ApiUrls {
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
+  static Url randomStocks = Url("/api/random_stock");
+
+  //urls realted to the saving goals
+  static Url fetchSavingGoal = Url("/api/saving/fetch");
+
+  //urls realted to the payments;
+  static Url fetchUpcomingPayment = Url("/api/payment/fetch");
 }

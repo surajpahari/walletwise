@@ -1,92 +1,115 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import "dart:convert";
 import 'package:get/get.dart';
-import "package:walletwise/api/fetcher.dart";
-import "package:walletwise/api/urls/app_urls.dart";
-import "package:walletwise/data/asset_debt_data.dart";
-import "package:walletwise/data/balance_card.dart";
-import "package:walletwise/data/graph_data.dart";
-import "package:walletwise/data/saving_goals.dart";
-import "package:walletwise/models/assets.dart";
+import 'package:walletwise/api/fetcher.dart';
+import 'package:walletwise/api/urls/app_urls.dart';
+import 'package:walletwise/data/saving_goals.dart';
 import 'package:walletwise/models/saving.dart';
-import "package:walletwise/utils/forms/pages/saving_goal.dart";
-import "package:walletwise/utils/snackbar.dart";
+import 'package:walletwise/utils/forms/wwForm.dart';
+import 'package:walletwise/utils/snackbar.dart';
 
-//user inputs the saving;
-//validate the saving
-//create saving model form the input
-//on sucess
-//display the sucess  snackbar
-// update the ui
-class SavinggoalController {
-  final amount = TextEditingController();
-  final endDate = TextEditingController();
-  final title = TextEditingController();
-  final note = TextEditingController();
-  GlobalKey<FormState> savingFormKey = GlobalKey<FormState>();
-  final RxInt formState = 0.obs;
+class SavinggoalController extends Wwform {
+  final TextEditingController amount = TextEditingController();
+  final TextEditingController endDate = TextEditingController();
+  final TextEditingController title = TextEditingController();
+  final TextEditingController note = TextEditingController();
 
-//Validate the input and create  saving
+  // Method to validate and create a Saving object
   Saving? createSaving() {
-    if (!savingFormKey.currentState!.validate()) {
+    if (!formKey.currentState!.validate()) {
       return null;
     }
     return Saving(
       amount: int.parse(amount.text),
-      date: endDate.text.toString(),
-      title: title.text.toString(),
-      note: note.text.toString(),
+      date: endDate.text,
+      title: title.text,
+      note: note.text,
     );
   }
 
-  Future<dynamic> addSaving(BuildContext context) async {
-    Saving? saving = createSaving();
-    if (saving == null) {
-      return;
-    } else {
-      formState.value = 1;
-      var response = await FetchAPI(ApiUrls.addSaving, HttpMethod.post,
-          body: {'saving': '1000'}).fetchUnauthorizedAPI();
-      if (response.statusCode == 200) {
-        formState.value = 2;
-        WwSackbar.builder(context, "New Saving Goal Added");
-        updateSaving(saving);
-        clearInputField();
-      } else {
-        throw Exception('Failed to load budgets');
-      }
-
-      //add to the server
-      //update the saving
-    }
-    return;
-
-    String incomeJson = jsonEncode(saving.toJson());
-    if (savingFormKey.currentState == null ||
-        !savingFormKey.currentState!.validate()) {
-      return;
-    }
-
-    var response = await FetchAPI(ApiUrls.addIncome, HttpMethod.post,
-        body: {'income': incomeJson}).fetchAuthorizedAPI();
-    if (response.statusCode == 200) {
-      print(response.body);
-      print("Adding Income");
-      formState.value = 2;
-    } else {
-      throw Exception('Failed to load budgets');
-    }
-  }
-
-  void updateSaving(saving) {
-    SavingGoalData.savinglist.add(saving);
-    AssetDebtData.addAsset(Assets(Name: "real state", Amount: 1000.00));
-  }
-
-  void clearInputField() {
+  // Method to clear form fields
+  @override
+  void clearFields() {
     amount.clear();
+    endDate.clear();
     title.clear();
     note.clear();
-    endDate.clear();
   }
+
+  //Upload the saving
+  Future<Response?> uploadSaving(Saving saving) async {
+    try {
+      return await FetchAPI(
+        ApiUrls.addSaving,
+        HttpMethod.post,
+        body: {
+          'amount': saving.amount.toString(),
+          'date': saving.date,
+          'title': saving.title,
+          'note': saving.note,
+        },
+      ).fetchUnauthorizedAPI();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Method to submit form data
+  @override
+  Future<void> submitForm(BuildContext context) async {
+    Saving? saving = createSaving();
+    updateSaving(saving);
+    try {
+      formState.value = 1;
+
+      //if saving cannot be created
+      if (saving == null) {
+        formState.value = 0;
+        return;
+      } else {}
+
+      //send the saving
+      var response = await uploadSaving(saving);
+      if (response?.statusCode == 200) {
+        handleSucess(context, "Sucessfully Added");
+      } else {
+        handleUploadError(context, "Internal Server Error");
+      }
+    } catch (e) {
+      formState.value = 0;
+      WwSnackbar.builder(
+          context, 'An error occurred: $e', WwSnackbartype.error);
+    }
+  }
+
+  void updateSaving(Saving? saving) {
+    if (saving != null) {
+      SavingGoalData.savinglist.add(saving);
+    }
+  }
+
+  static Future<void> fetchSaving() async {
+    try {
+      var response = await FetchAPI(ApiUrls.fetchSavingGoal,
+              HttpMethod.get) // Ensure the correct HTTP method is used.
+          .fetchAuthorizedAPI();
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonResponse =
+            jsonDecode(response.body); // Ensure response is a list
+
+        print(response.body);
+        var savings = jsonResponse
+            .map((item) => Saving.fromJson(item))
+            .toList(); // Map JSON to Saving objects
+        SavingGoalData.savinglist.assignAll(savings);
+        print("Success: Savings fetched and updated.");
+      } else {
+        throw Exception('Failed to fetch savings: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching savings: $e');
+      throw Exception('Failed to fetch savings: $e');
+    }
+  }
+  //fetch the data saving from the Server
 }

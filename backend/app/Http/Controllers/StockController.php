@@ -63,8 +63,8 @@ class StockController extends Controller
         //
     }
 
-public function search(Request $request)
-{
+    public function search(Request $request)
+    {
     $key = $request->key;
 
     $stocks = Stock::where('securityName', 'like', '%' . $key . '%')
@@ -73,6 +73,16 @@ public function search(Request $request)
                    ->get();
 
     return response()->json($stocks);
-}
+    }
+
+    public function random10()
+    {
+        $stocks = Stock::inRandomOrder()
+                   ->where('activeStatus', 'A')
+                   ->take(10)
+                   ->get();
+        return response()->json($stocks);
+    }
+
 
 }

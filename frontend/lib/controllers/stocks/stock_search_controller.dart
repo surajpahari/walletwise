@@ -1,3 +1,1 @@
-class StockSearchContoller{
-
-  }
+class StockSearchContoller {}

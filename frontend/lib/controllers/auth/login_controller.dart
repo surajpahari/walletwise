@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/constants/token.dart';
+import 'package:walletwise/controllers/budget/payment_controller.dart';
+import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/navigation_menu.dart';
 
 class LoginController extends ApiToken {
@@ -23,23 +25,38 @@ class LoginController extends ApiToken {
       return;
     }
 
-    await FetchAPI(ApiUrls.loginUrl, HttpMethod.post, body: body)
-        .fetchUnauthorizedAPI()
-        .then((response) => _handleSucessfullLogin(response));
+    try {
+      await FetchAPI(ApiUrls.loginUrl, HttpMethod.post, body: body)
+          .fetchUnauthorizedAPI()
+          .then((response) => _handleSucessfullLogin(response));
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _handleSucessfullLogin(response) {
-    Get.to(const BottomNavigation());
-    return;
+    //Get.to(const BottomNavigation());
+    //return;
+    print("yes");
     if (response.statusCode != null) {
+      print("No");
       if (response.statusCode == 200) {
+        print("3");
         var responseData = json.decode(response.body);
+
         if (responseData['status'] == true) {
+          print("yes");
           //filtering token from the token
           String token = responseData['token'];
           ApiToken.authToken = token;
-          // Get.to(const BottomNavigation());
+          Get.to(const BottomNavigation());
+          SavinggoalController.fetchSaving();
+          PaymentController.fetchPayment();
+        } else {
+          print("No");
         }
+      } else {
+        print(response.body);
       }
     }
   }

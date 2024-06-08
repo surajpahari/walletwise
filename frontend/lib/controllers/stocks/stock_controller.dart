@@ -30,6 +30,14 @@ class StockController {
     }
   }
 
+  //add the random stock to the data
+  static void randomStocks(responseBody) {
+    final List<dynamic> jsonResponse = jsonDecode(responseBody);
+    for (var item in jsonResponse) {
+      StockData.hotStock.add(Stock.fromJson(item));
+    }
+  }
+
 //handle the change of the input
   void onChange(string) {
     searchFetchTimer?.cancel();
@@ -40,5 +48,12 @@ class StockController {
         StockData.searchList.clear();
       }
     });
+  }
+
+  //fetching the random stocks
+  static Future<dynamic> fetchRandomStocks() async {
+    await FetchAPI(ApiUrls.randomStocks, HttpMethod.post)
+        .fetchUnauthorizedAPI()
+        .then((response) => {randomStocks(response.body)});
   }
 }

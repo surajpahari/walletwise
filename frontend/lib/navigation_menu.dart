@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/controllers/stocks/stock_controller.dart';
 import 'package:walletwise/screens/budget_screen.dart';
 import 'package:walletwise/screens/history_screen.dart';
 import 'package:walletwise/screens/main_screen.dart';
@@ -44,8 +45,14 @@ class BottomNavigation extends StatelessWidget {
                         child: BottomNavigationBar(
                           type: BottomNavigationBarType.fixed,
                           currentIndex: controller.selectedIndex.value,
-                          onTap: (index) =>
-                              controller.selectedIndex.value = index,
+                          onTap: (index) {
+                            if (index == 2) {
+                              StockController.fetchRandomStocks();
+
+                              // Add any additional log messages or operations you want to perform before navigating
+                            }
+                            controller.selectedIndex.value = index;
+                          },
                           selectedLabelStyle: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -98,6 +105,6 @@ class NavigationController extends GetxController {
     const MainScreen(),
     const BudgetScreen(),
     const StockScreen(),
-    HistoryScreen(),
+    HistoryScreen()
   ];
 }

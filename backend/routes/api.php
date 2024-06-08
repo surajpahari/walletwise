@@ -23,13 +23,10 @@ Route ::post('income/add',function(Request $request){
      return response()->json(['request_body' => $requestBody]);
 });
 
-Route::post('saving/add',function(Request $request){
-    return response()->json(["messagge"=>"hi"]);
-
-});
 
 Route::controller(StockController::class)->group(function(){
     Route::post('search_stock','search');
+    Route::post('random_stock','random10');
 });
 
 Route::post('test2', function(Request $request){
@@ -109,6 +106,46 @@ Route::post('test', function(){
     ];
 
     return response()->json($data);
+})->middleware('auth:sanctum');
+//savings
+Route::post('saving/add',function(Request $request){
+    return response()->json(["messagge"=>"hi"]);
+});
+
+Route::post('payment/fetch', function(Request $request) {
+    return response()->json([
+        [
+        "title" => "Internet Bill",
+        "totalPay" => 1580.00,
+        "totalSaved"=>1000.00,
+        "dueDuration" => "Due in 2 day"
+        ],
+        [
+        "title" => "College Fee",
+        "totalPay" => 80000,
+        "totalSaved"=>1000,
+        "dueDuration" => "Due in 60 day"
+        ]
+    ]);
+})->middleware('auth:sanctum');
+
+
+Route::post('saving/fetch', function(Request $request) {
+    return response()->json([
+        [
+        "title" => "Macbook",
+        "amount" => 14600,
+        "note" => "need to save",
+        "date" => "Oct-12"
+        ],
+        [
+        "title" => "Gym Fee",
+        "amount" => 2000,
+        "note" => "need to save",
+        "date" => "Oct-12"
+        ]
+
+    ]);
 })->middleware('auth:sanctum');
 Route::post('/auth/register',[UserController::class,'create']);
 Route::post('/auth/login',[UserController::class,'login']);

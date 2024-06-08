@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/date_picker.dart';
@@ -18,7 +17,7 @@ class SavingGoalForm extends StatelessWidget {
       child: Scaffold(
           appBar: WalletWiseBar.normalPageBar("Add Saving Goal"),
           body: Form(
-              key: controller.savingFormKey,
+              key: controller.formKey,
               child: Center(
                   child: Container(
                       constraints: BoxConstraints(maxWidth: 300),
@@ -89,7 +88,7 @@ class SavingGoalForm extends StatelessWidget {
                                               BorderRadius.circular(5))),
                                   onPressed: () {
                                     print(controller.formState.value);
-                                    controller.addSaving(context);
+                                    controller.submitForm(context);
                                     // ScaffoldMessenger.of(context).showSnackBar(
                                     //   SnackBar(
                                     //     content: Text('Yay! A SnackBar!'),
@@ -99,7 +98,7 @@ class SavingGoalForm extends StatelessWidget {
                                   },
                                   child: Obx(
                                     () => controller.formState.value == 1
-                                        ? Column(children: [
+                                        ? const Column(children: [
                                             Text(
                                               "Adding",
                                               style: TextStyle(
@@ -109,7 +108,7 @@ class SavingGoalForm extends StatelessWidget {
                                             LinearProgressIndicator(
                                                 color: Colors.white)
                                           ])
-                                        : Text(
+                                        : const Text(
                                             "Add",
                                             style: TextStyle(
                                                 color: Colors.white,

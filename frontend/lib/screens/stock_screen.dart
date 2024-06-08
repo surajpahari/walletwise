@@ -57,19 +57,14 @@ class StockScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    StockCard(
-                      stock: Stock(
-                          id: 235,
-                          symbol: "PFL",
-                          name: "Pokhara Finance Limited",
-                          securityName: "(Pfl)"),
-                    ),
-                  ],
-                ),
+              child: ListView.builder(
+                itemCount: StockData.hotStock.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: StockCard(stock: StockData.hotStock[index]),
+                  );
+                },
               ),
             ),
           ],

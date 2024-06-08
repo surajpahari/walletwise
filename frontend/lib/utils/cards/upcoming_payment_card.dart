@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/payment.dart';
 
 class UpcomingPaymentCard extends StatelessWidget {
-  const UpcomingPaymentCard({super.key});
-
+  final Payment payment;
+  UpcomingPaymentCard({required this.payment});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,11 +19,11 @@ class UpcomingPaymentCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.wifi, color: Colors.blueAccent),
-                SizedBox(width: 10),
+                const Icon(Icons.wifi, color: Colors.blueAccent),
+                const SizedBox(width: 10),
                 Text(
-                  "Internet Bill",
-                  style: TextStyle(
+                  payment.title,
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
@@ -48,7 +48,7 @@ class UpcomingPaymentCard extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Text(
-              "100 / 1580",
+              "Rs${payment.totalSaved} / ${payment.totalPay} ",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -61,4 +61,3 @@ class UpcomingPaymentCard extends StatelessWidget {
     );
   }
 }
-
