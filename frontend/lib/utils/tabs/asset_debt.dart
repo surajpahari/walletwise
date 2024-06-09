@@ -44,7 +44,15 @@ class _AssetDebtState extends State<AssetDebt> {
                       child: Center(
                         child: Text(
                           "Assets",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: _selectedIndex == 0
+                              ? const TextStyle(
+                                  letterSpacing: 2,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline,
+                                  decorationThickness: 2)
+                              : TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ),
                     ),
@@ -72,13 +80,15 @@ class _AssetDebtState extends State<AssetDebt> {
                       child: Column(children: [
                         Text(
                           "Debt",
-                          style: TextStyle(
-                              letterSpacing: 2,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
-                              decorationThickness: 2),
+                          style: _selectedIndex == 1
+                              ? TextStyle(
+                                  letterSpacing: 2,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline,
+                                  decorationThickness: 2)
+                              : TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ]),
                     ),

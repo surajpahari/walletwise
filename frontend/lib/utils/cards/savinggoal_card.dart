@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/models/saving.dart';
+import 'package:walletwise/screens/saving_screen.dart';
 import 'package:walletwise/utils/charts/saving_goal_bar.dart';
 
 class SavingCard extends StatefulWidget {
@@ -25,6 +27,9 @@ class _SavingCardState extends State<SavingCard> {
           child: InkWell(
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
+                Get.to(SavingScreen(
+                  saving: widget.saving,
+                ));
                 debugPrint("tap");
               },
               child: Padding(

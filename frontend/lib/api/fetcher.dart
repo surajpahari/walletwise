@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/constants/app_constant.dart';
@@ -16,12 +17,20 @@ class FetchAPI extends ApiToken {
   FetchAPI(this.url, this.method, {this.body = const {}, this.isAuth = false});
   Future<dynamic> fetchUnauthorizedAPI() async {
     try {
-      final response = await http.post(
-        Uri.parse('$baseUrl${url.value}'),
-        // Send authorization headers to the backend.
-        body: body,
-      );
-      return response;
+      if (method == HttpMethod.post) {
+        final response = await http.post(
+          Uri.parse('$baseUrl${url.value}'),
+          // Send authorization headers to the backend.
+          body: body,
+        );
+        return response;
+      } else if (method == HttpMethod.get) {
+        final response = await http.get(
+          Uri.parse('$baseUrl${url.value}'),
+          // Send authorization headers to the backend.
+        );
+        return response;
+      }
     } catch (e) {
       print(e);
     }
@@ -34,6 +43,7 @@ class FetchAPI extends ApiToken {
             // Send authorization headers to the backend.
             body: body,
             headers: {'Authorization': 'Bearer ${ApiToken.authToken}'});
+        print("The response is ");
         return response;
       } catch (e) {
         print(e);

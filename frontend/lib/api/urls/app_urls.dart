@@ -19,14 +19,15 @@ class ApiUrls {
   static Url addIncome = Url('/api/income/add');
 
   //urls realted to the saving
-  static Url addSaving = Url('/api/saving/add');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
   static Url randomStocks = Url("/api/random_stock");
 
   //urls realted to the saving goals
-  static Url fetchSavingGoal = Url("/api/saving/fetch");
+  static Url fetchSavingGoal = Url("/api/savings/fetch");
+  static Url addSaving = Url('/api/saving/add');
+  static Url editSaving = Url("/api/saving/edit");
 
   //urls realted to the payments;
   static Url fetchUpcomingPayment = Url("/api/payment/fetch");

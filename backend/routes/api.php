@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SavingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -27,6 +28,10 @@ Route ::post('income/add',function(Request $request){
 Route::controller(StockController::class)->group(function(){
     Route::post('search_stock','search');
     Route::post('random_stock','random10');
+});
+
+Route::controller(SavingController::class)->group(function(){
+    Route::post('savings/fetch','fetch');
 });
 
 Route::post('test2', function(Request $request){
@@ -104,13 +109,12 @@ Route::post('test', function(){
         ],
 
     ];
-
     return response()->json($data);
 })->middleware('auth:sanctum');
 //savings
 Route::post('saving/add',function(Request $request){
     return response()->json(["messagge"=>"hi"]);
-});
+})->middleware('auth:sanctum');
 
 Route::post('payment/fetch', function(Request $request) {
     return response()->json([
@@ -129,24 +133,12 @@ Route::post('payment/fetch', function(Request $request) {
     ]);
 })->middleware('auth:sanctum');
 
-
-Route::post('saving/fetch', function(Request $request) {
+Route::get('savings/test',function(Request $request){
     return response()->json([
-        [
-        "title" => "Macbook",
-        "amount" => 14600,
-        "note" => "need to save",
-        "date" => "Oct-12"
-        ],
-        [
-        "title" => "Gym Fee",
-        "amount" => 2000,
-        "note" => "need to save",
-        "date" => "Oct-12"
-        ]
-
+        "edited"=>true
     ]);
-})->middleware('auth:sanctum');
+
+});
 Route::post('/auth/register',[UserController::class,'create']);
 Route::post('/auth/login',[UserController::class,'login']);
 Route::post('/auth/logout',[UserController::class,'logout']);
