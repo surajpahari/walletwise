@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/budget_controller.dart';
+import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
 import 'package:walletwise/utils/forms/expense_form.dart';
+import 'package:walletwise/utils/charts/expense_bar.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -15,38 +17,28 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.grey[900],
-      body: Column(
+      body: SingleChildScrollView(
+          child: Column(
         children: [
-          Expanded(
-            child: FutureBuilder(
-              future: BudgetController.getBudgets(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text("Error loading budget"));
-                } else {
-                  return GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 350,
-                      mainAxisExtent: 300,
-                      mainAxisSpacing: 16.0,
-                      crossAxisSpacing: 16.0,
-                    ),
-                    itemCount: BudgetController.budgets.length,
-                    itemBuilder: (context, index) {
-                      return BudgetCard(
-                        budget: BudgetController.budgets[index],
-                      );
-                    },
-                  );
-                }
-              },
-            ),
+          ExpenseBarChart(
+            color: Colors.red,
+            expenses: [
+              Expense(5, 'Food'),
+              Expense(10, 'Transport'),
+              Expense(7, 'Entertainment'),
+              Expense(12, 'Utilities'),
+              Expense(9, 'Others'),
+              Expense(5, 'Food'),
+              Expense(11, 'Transport'),
+            ],
+          ),
+          Column(
+            children: ExpenseData.budgetsList.map((budget) {
+              return BudgetCard(budget: budget);
+            }).toList(),
           ),
         ],
-      ),
+      )),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FloatingActionButton(

@@ -1,51 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/models/income.dart';
+import 'package:walletwise/controllers/budget/budget_controller.dart';
+import 'package:walletwise/data/expense_data.dart';
+import 'package:walletwise/data/income_data.dart';
+import 'package:walletwise/utils/cards/budget_card.dart';
 import 'package:walletwise/utils/cards/income_card.dart';
-import 'package:walletwise/utils/forms/income_form.dart';
+import 'package:walletwise/utils/forms/expense_form.dart';
+import 'package:walletwise/utils/charts/expense_bar.dart';
 
 class IncomeScreen extends StatefulWidget {
-  IncomeScreen({Key? key});
-  void hello(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Theme(
-          data: ThemeData.dark(), // Use dark theme
-          child: AlertDialog(
-            backgroundColor: Colors.grey[900], // Dark background color
-            title: const Padding(
-              padding: EdgeInsets.only(bottom: 20),
-            ),
-            content: IncomeForm(),
-            // actions: [
-            //   TextButton(
-            //     onPressed: () {
-            //       Navigator.of(context).pop();
-            //     },
-            //     child: const Text(
-            //       'Close',
-            //       style: TextStyle(
-            //           color: Colors.white), // Action button text color
-            //     ),
-            //   ),
-            //   TextButton(
-            //     onPressed: () {
-            //       // Validate input fields and handle form submission
-            //       form.submit();
-            //       Navigator.of(context).pop();
-            //     },
-            //     child: const Text(
-            //       'Save',
-            //       style: TextStyle(
-            //           color: Colors.white), // Action button text color
-            //     ),
-            //   ),
-            // ],
-          ),
-        );
-      },
-    );
-  }
+  const IncomeScreen({Key? key}) : super(key: key);
 
   @override
   State<IncomeScreen> createState() => _IncomeScreenState();
@@ -55,51 +18,42 @@ class _IncomeScreenState extends State<IncomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      // backgroundColor: Colors.grey[900],
+      body: SingleChildScrollView(
+          child: Column(
         children: [
-          Expanded(
-            child: GridView(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 350, // Maximum width of each item
-                mainAxisExtent: 300,
-                mainAxisSpacing: 16.0,
-                crossAxisSpacing: 16.0,
-              ),
-              children: [
-                IncomeCard(
-                    "Interval",
-                    Income(
-                        date: '01/02/03',
-                        amount: 2000,
-                        category: 'Freelancing')),
-                IncomeCard(
-                    "Interval",
-                    Income(
-                        date: '01/02/03',
-                        amount: 2000,
-                        category: 'Freelancing')),
-                IncomeCard(
-                    "Interval",
-                    Income(
-                        date: '01/02/03',
-                        amount: 2000,
-                        category: 'Freelancing')),
-                IncomeCard(
-                    "Interval",
-                    Income(
-                        date: '01/02/03',
-                        amount: 2000,
-                        category: 'Freelancing')),
-              ],
-            ),
+          ExpenseBarChart(
+            color: Colors.green,
+            expenses: [
+              Expense(5, 'Food'),
+              Expense(10, 'Transport'),
+              Expense(30000, 'Entertainment'),
+              Expense(12, 'Utilities'),
+              Expense(9, 'Others'),
+              Expense(5, 'Food'),
+              Expense(11, 'Transport'),
+            ],
+          ),
+          Column(
+            children: IncomeData.budgetsList.map((budget) {
+              return IncomeCard(budget: budget);
+            }).toList(),
           ),
         ],
-      ),
+      )),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FloatingActionButton(
           backgroundColor: Colors.green,
-          onPressed: () => widget.hello(context),
+          onPressed: () => {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return (Theme(
+                      data: ThemeData.dark(),
+                      child: AlertDialog(content: ExpenseForm())));
+                })
+          },
           child: const Icon(Icons.add),
         ),
       ),

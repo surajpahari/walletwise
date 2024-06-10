@@ -30,10 +30,11 @@ class BudgetCard extends StatelessWidget {
         child: Card(
           elevation: 4,
           color: Colors.grey[800], // Adjusted card color to match background
+          margin: const EdgeInsets.all(16),
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.blue,
@@ -44,42 +45,33 @@ class BudgetCard extends StatelessWidget {
                     size: 30,
                   ),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        budget.category.category,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors
-                              .white, // Text color adjusted for visibility
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Rs ${budget.amount.toString()}",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Duration: Oct01 to Oct10",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors
-                              .white, // Adjusted text color for visibility
-                        ),
-                      ),
-                    ],
+                const SizedBox(height: 16),
+                Text(
+                  budget.category.category,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Text color adjusted for visibility
                   ),
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  "Rs ${budget.amount.toString()}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  "Duration: Oct01 to Oct10",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color:
+                          Colors.white), // Adjusted text color for visibility
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ),
