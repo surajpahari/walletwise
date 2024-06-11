@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/routes/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -35,20 +36,29 @@ class WelcomeScreen extends StatelessWidget {
                     child: const Text(
                       "WalletWise",
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 40.0),
+                          fontSize: 45.0),
                     )),
+
+                Container(
+                    margin: const EdgeInsets.only(bottom: 25),
+                    child: const Text(
+                      "Money Management without \n the migraines.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    )),
+                SizedBox(height: 30),
 
                 GestureDetector(
                   onTap: visitLogin,
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                     decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [Color(0xff2517DB), Color(0xff1180D1)]),
                       borderRadius: BorderRadius.circular(25.0),
-                      border: Border.all(
-                          color: Colors
-                              .grey), // Add border similar to YouTube's style
+                      // Add border similar to YouTube's style
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -70,11 +80,15 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // const Text(
-                //   'A complete financial wisdom.',
-                //   style: TextStyle(fontStyle: FontStyle.italic, fontSize: 15.0),
-                // ),
+                SizedBox(
+                    height: 30), // Add space between the button and the image
+                Container(
+                  constraints: BoxConstraints(maxHeight: 800),
+                  child: Image.asset(
+                    'assets/mainbanner.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ],
             ),
           ),
