@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/constants/app_constant.dart';

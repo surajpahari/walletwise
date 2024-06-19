@@ -44,29 +44,18 @@ class WalletWiseBar {
       BuildContext context, String title) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "WalletWise",
-            style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600),
-          )
-        ],
+      title: const Text(
+        "WalletWise",
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
       ),
+      centerTitle: true, // Ensures the title is centered horizontally
       actions: [
-        Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              iconSize: 40,
-              icon: const Icon(Icons.person),
-              color: Colors.white,
-              onPressed: () {
-                // Use the context obtained from the Builder widget
-                Get.to(ProfileScreen());
-                // Navigate to profile view here
-                // Example: Navigator.pushNamed(context, '/profile');
-              },
-            );
+        IconButton(
+          iconSize: 30,
+          icon: const Icon(Icons.person),
+          color: Colors.white,
+          onPressed: () {
+            Get.to(ProfileScreen());
           },
         ),
       ],

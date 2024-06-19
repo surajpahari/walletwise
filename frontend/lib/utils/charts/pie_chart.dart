@@ -21,7 +21,7 @@ class MyPieChart extends StatelessWidget {
                 PieChartData(
                   sectionsSpace: 4,
                   borderData: FlBorderData(show: false),
-                  centerSpaceRadius: 60,
+                  centerSpaceRadius: 50,
                   sections: data
                       .map((item) => PieChartSectionData(
                             showTitle: false,
@@ -29,7 +29,7 @@ class MyPieChart extends StatelessWidget {
                             value: item.value,
                             title: item.name,
                             color: getColor(++index),
-                            radius: 30,
+                            radius: 20,
                           ))
                       .toList(),
                 ),

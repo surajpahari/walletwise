@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/screens/saving_screen.dart';
 import 'package:walletwise/utils/charts/saving_goal_bar.dart';
@@ -18,8 +19,7 @@ class _SavingCardState extends State<SavingCard> {
     return Container(
         constraints: BoxConstraints(maxWidth: 200),
         child: Card(
-          color:
-              Colors.white, // Card background color (light color for contrast)
+          color: AppColors.lowDarkBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -42,7 +42,7 @@ class _SavingCardState extends State<SavingCard> {
                       style: TextStyle(
                         fontSize: 24, // Title font size
                         fontWeight: FontWeight.bold,
-                        color: Colors.black, // Dark text color for contrast
+                        color: Colors.white, // Dark text color for contrast
                       ),
                     ),
                     SizedBox(height: 15),
@@ -56,8 +56,7 @@ class _SavingCardState extends State<SavingCard> {
                           style: TextStyle(
                             fontSize: 18, // Saved/Total amount font size
                             fontWeight: FontWeight.w500,
-                            color:
-                                Colors.black87, // Dark text color for contrast
+                            color: Colors.white, // Dark text color for contrast
                           ),
                         ),
                       ],

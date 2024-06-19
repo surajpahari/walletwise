@@ -22,6 +22,9 @@ class AppColors {
   static Color black = Color(0xff111111);
   static Color purple = Color(0xff1D1927);
   static Color white = Color(0xffF7F7F7);
+//for the cards
+  static Color lowDarkBlue = Color(0xff201A32);
+  static Color blue = Color(0xff2517DB);
   //for the pieChart
   static List<Color> pieChartColors = [
     Color(0xff3C4FB5),

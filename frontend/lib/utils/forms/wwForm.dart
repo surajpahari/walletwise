@@ -26,6 +26,4 @@ abstract class Wwform {
   }
 
   // Clear all fields
-
-  Future<void> submitForm(BuildContext context);
 }

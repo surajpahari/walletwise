@@ -106,11 +106,11 @@ class _AssetDebtState extends State<AssetDebt> {
                 ? MyPieChart(AssetDebtData.pieDataList)
                 : MyPieChart(AssetDebtData.debtPieChartData),
           ),
-          SizedBox(
-            width: 30,
-          ),
           _selectedIndex == 0
               ? Container(
+                  constraints: BoxConstraints(
+                    maxWidth: 200,
+                  ),
                   child: Obx(() => Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,

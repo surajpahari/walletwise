@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/bank_account.dart';
 
 class BankCard extends StatelessWidget {
@@ -10,35 +11,26 @@ class BankCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.white,
+        color: AppColors.lowDarkBlue,
         child: InkWell(
             splashColor: Colors.blue.withAlpha(30),
             onTap: () {},
             child: Padding(
                 padding: EdgeInsets.all(6),
                 child: Container(
-                  constraints: BoxConstraints(maxWidth: 300),
+                  constraints: BoxConstraints(maxWidth: 330),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
                   ),
                   padding: EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.account_balance, color: Colors.blue),
                           Text(
-                            bankAccount.name,
+                            "  ${bankAccount.name} ",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -50,7 +42,7 @@ class BankCard extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         //'**** ${bankAccount.accountNumber?.substring(bankAccount.accountNumber?.length ?? -4)}',
-                        '****123123123***',
+                        '12312*******',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[600],
@@ -62,7 +54,7 @@ class BankCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.white,
                         ),
                       ),
                     ],

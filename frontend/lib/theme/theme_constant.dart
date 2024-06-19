@@ -58,6 +58,8 @@ final ThemeData wwTheme = ThemeData(
       onError: Colors.white,
       surface: darkReed,
       onSurface: Colors.white),
+  dialogBackgroundColor: Colors.white,
+  dialogTheme: DialogTheme(contentTextStyle: TextStyle(color: Colors.black)),
   primarySwatch: Colors.blue,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: glassWhite,

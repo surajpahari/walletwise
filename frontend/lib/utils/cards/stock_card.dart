@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/screens/stock_detail.dart';
 
@@ -17,15 +18,7 @@ class StockCard extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            color: Colors.grey[850],
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey[800]!,
-                spreadRadius: 2,
-                blurRadius: 10,
-                offset: Offset(0, 3),
-              ),
-            ],
+            color: AppColors.lowDarkBlue,
             border: Border.all(
               color: Colors.grey[800]!,
               width: 1,

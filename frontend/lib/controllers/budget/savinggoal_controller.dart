@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:walletwise/utils/snackbar.dart';
+import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/data/saving_goals.dart';
 import 'package:walletwise/models/saving.dart';
 import 'package:walletwise/utils/forms/wwForm.dart';
 import 'package:http/http.dart' as http;
+import 'package:walletwise/utils/snackbar.dart';
 
 class SavinggoalController extends Wwform {
   final TextEditingController amount = TextEditingController();
@@ -35,95 +34,40 @@ class SavinggoalController extends Wwform {
     endDate.clear();
     title.clear();
     note.clear();
+    formState.value = 0;
+  }
+
+  void onSucessfullAdd(String responseBody) {
+    print("Hey Mama");
   }
 
   //Upload the saving
-  Future<http.Response?> add() async {
-    Saving? saving = createSaving();
-    if (saving != null) {
-      try {
-        http.Response? response = await FetchAPI(
-          ApiUrls.addSaving,
-          HttpMethod.post,
-          body: {
-            'amount': saving.amount.toString(),
-            'date': saving.date,
-            'title': saving.title,
-            'note': saving.note,
-          },
-        ).fetchAuthorizedAPI();
-        if (response?.statusCode == 200) {
-          updateSaving(saving);
-          clearFields();
-          return response;
-        }
-      } catch (e) {
-        debugPrint(e.toString());
-        return null;
-      }
-    }
-  }
 
   // Method to submit form data
-  @override
-  Future<void> submitForm(BuildContext context) async {
-    http.Response? response = await add();
-    if (response?.statusCode == 200) {
-      WwSnackbar.builder(
-          context, 'Sucessfull submission', WwSnackbartype.success);
-    }
-  }
-  //try {
-  //formState.value = 1;
-  //if saving cannot be created
-  //if (saving == null) {
-  //formState.value = 0;
-  //return;
-  //} else {}
-
-  //send the saving
-  //
-  //var response = await uploadSaving(saving);
-  //  print("hey");
-  //  print(response?.body);
-  //  if (response?.statusCode == 200) {
-  //    print("teacher");
-  //    handleSucess(context, "Sucessfully Added");
-  //  } else {
-  //    handleUploadError(context, "Internal Server Error");
-  //  }
-  //} catch (e) {
-  //  formState.value = 0;
-  //  WwSnackbar.builder(
-  //      context, 'An error occurred: $e', WwSnackbartype.error);
-  //}
-
-  void updateSaving(Saving? saving) {
-    if (saving != null) {
-      SavingGoalData.savinglist.add(saving);
-    }
+  Future<void> addSaving(BuildContext context) async {
+    WwSnackbar.builder(context, "Waiting", WwSnackbartype.success);
+    validateForm();
+    formState.value = 1;
+    ModelOperation().add(
+      body: {"amount": "400", "fire": "fire"},
+      url: ApiUrls.addSaving,
+      successAction: (response) {
+        WwSnackbar.builder(
+            context, "SuccessFullyAddec", WwSnackbartype.success);
+        clearFields();
+      },
+    );
   }
 
   static Future<void> fetchSaving() async {
     try {
-      var response = await FetchAPI(ApiUrls.fetchSavingGoal,
-              HttpMethod.get) // Ensure the correct HTTP method is used.
-          .fetchAuthorizedAPI();
-      if (response.statusCode == 200) {
-        final List<dynamic> jsonResponse =
-            jsonDecode(response.body); // Ensure response is a list
-        print(response.body);
-        var savings = jsonResponse
-            .map((item) => Saving.fromJson(item))
-            .toList(); // Map JSON to Saving objects
-        SavingGoalData.savinglist.assignAll(savings);
-        print("Success: Savings fetched and updated.");
-      } else {
-        throw Exception('Failed to fetch savings: ${response.statusCode}');
-      }
+      await ModelOperation.fetchFunction(
+        ApiUrls.fetchSavingGoal,
+        (json) => Saving.fromJson(json),
+        targetList: SavingGoalData.savinglist,
+      );
     } catch (e) {
-      print('Error fetching savings: $e');
-      throw Exception('Failed to fetch savings: $e');
+      print('Error: $e');
     }
   }
 

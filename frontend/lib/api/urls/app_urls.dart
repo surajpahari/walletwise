@@ -18,7 +18,14 @@ class ApiUrls {
   //urls related to the income
   static Url addIncome = Url('/api/income/add');
 
-  //urls realted to the saving
+  //urls realted to the assets
+  static Url addAssets = Url('/api/saving/add');
+
+  //urls related to the debts
+  static Url addDebt = Url('/api/saving/add');
+
+  //urls related to the bank
+  static Url addBankAcc = Url('/api/saving/add');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");

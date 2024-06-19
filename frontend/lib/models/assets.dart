@@ -1,5 +1,5 @@
 class Assets {
-  double Amount;
-  String Name;
-  Assets({required this.Name, required this.Amount});
+  double amount;
+  String name;
+  Assets({required this.name, required this.amount});
 }

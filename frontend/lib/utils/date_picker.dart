@@ -16,6 +16,10 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
+  final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20), // Make the border rounded
+      borderSide: const BorderSide(color: Colors.white));
+
   late TextEditingController _controller;
   late DateTime pickedDate;
 
@@ -57,10 +61,11 @@ class _DatePickerState extends State<DatePicker> {
   Widget build(BuildContext context) {
     return TextFormField(
       readOnly: true,
-      decoration: const InputDecoration(
-        labelText: "Date",
-        border: OutlineInputBorder(),
-      ),
+      decoration: InputDecoration(
+          labelText: "Date",
+          border: border,
+          enabledBorder: border,
+          focusedBorder: border),
       onTap: () {
         handleTap(context);
       },

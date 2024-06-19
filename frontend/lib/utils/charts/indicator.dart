@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:get/get.dart";
 
 class Indicator extends StatelessWidget {
   const Indicator({
@@ -34,10 +33,10 @@ class Indicator extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: textColor,
-          ),
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: textColor,
+              overflow: TextOverflow.fade),
         )
       ],
     );

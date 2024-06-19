@@ -6,7 +6,7 @@ class AssetDebtData {
   static RxString hell = "hell".obs;
   static void addAsset(Assets asset) {
     assetsData.add(asset);
-    pieDataList.add(PieData(name: asset.Name, value: asset.Amount));
+    pieDataList.add(PieData(name: asset.name, value: asset.amount));
   }
 
   static RxList<Assets> assetsData = <Assets>[].obs;

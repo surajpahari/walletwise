@@ -14,6 +14,9 @@ import 'package:walletwise/data/balance_data.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key});
+  Widget gap(int height) {
+    return (SizedBox(height: height.toDouble()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,38 +24,38 @@ class MainScreen extends StatelessWidget {
       children: [
         SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //balnaceCard section
               BalanceCard(),
-              SizedBox(
-                height: 20,
-              ),
-              AssetDebt(),
-              SizedBox(
-                height: 20,
-              ),
+              gap(20),
 
-              //Obx(() {
-              //  // Access the savinglist from SavingGoalData
-              //  List<Saving> savingList = SavingGoalData.savinglist.toList();
-              //  return Column(
-              //    children: savingList.map((saving) {
-              //      return SavingCard(
-              //        // Assuming you have a widget called SavingGoalCard to display each saving goal
-              //        saving: saving,
-              //        // Add any other parameters you need to pass to SavingGoalCard constructor
-              //      );
-              //    }).toList(),
-              //  );
-              //}),
-              //render saving goal
+              //ASSETDEBT SECTION
+              const AssetDebt(),
 
-              SizedBox(
-                height: 20,
+              gap(20),
+
+              //BANKACCOUNT SECTION
+              const Text(
+                "BankAccount",
+                style: TextStyle(
+                  fontSize: 32,
+                ),
+                textAlign: TextAlign.start,
               ),
-              SizedBox(height: 20),
-              Center(
+              gap(10),
+              Wrap(
+                  alignment: WrapAlignment.end,
+                  children: BankAccountData.bankAccountList.map((bankAccount) {
+                    return BankCard(bankAccount: bankAccount);
+                  }).toList()),
+
+              gap(40),
+
+              //SAVING GOALS SECTION
+              const Center(
                   child: Text("Saving Goals", style: TextStyle(fontSize: 30))),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Container(
                   child: Obx(
                 () => Wrap(
@@ -63,30 +66,13 @@ class MainScreen extends StatelessWidget {
                   }).toList(),
                 ),
               )),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "BankAccount",
-                style: TextStyle(fontSize: 32),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                child: Wrap(
-                    alignment: WrapAlignment.end,
-                    children:
-                        BankAccountData.bankAccountList.map((bankAccount) {
-                      return BankCard(bankAccount: bankAccount);
-                    }).toList()),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text("Upcoming payments", style: TextStyle(fontSize: 23)),
-              Obx(() => Row(
-                      children: PaymentData.paymentlist.map((payment) {
+
+              gap(20),
+              //UPCOMING PAYMENTS SECTION
+              const Text("Upcoming payments", style: TextStyle(fontSize: 23)),
+              Obx(() => Wrap(
+                  alignment: WrapAlignment.center,
+                  children: PaymentData.paymentlist.map((payment) {
                     return UpcomingPaymentCard(payment: payment);
                   }).toList())),
 

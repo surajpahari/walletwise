@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/payment.dart';
 
 class UpcomingPaymentCard extends StatelessWidget {
@@ -7,7 +8,7 @@ class UpcomingPaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: AppColors.lowDarkBlue,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -19,14 +20,13 @@ class UpcomingPaymentCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.wifi, color: Colors.blueAccent),
                 const SizedBox(width: 10),
                 Text(
                   payment.title,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -41,7 +41,7 @@ class UpcomingPaymentCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black54,
+                    color: Colors.grey[700],
                   ),
                 ),
               ],
@@ -52,7 +52,7 @@ class UpcomingPaymentCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
           ],
