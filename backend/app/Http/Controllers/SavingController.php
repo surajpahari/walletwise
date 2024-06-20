@@ -45,14 +45,20 @@ class SavingController extends Controller
     // Fetch the response for the authenticated user
         $data = [
             [
-                "title" => "Macbook",
-                "amount" => 14600,
-                "note" => "need to save",
-                "date" => "Oct-12"
+            "title" => "Macbook",
+            "amount" => 14600,
+            "note" => "need to save",
+            "date" => "Oct-12"
             ],
             [
             "title" => "Gym Fee",
             "amount" => 2000,
+            "note" => "need to save",
+            "date" => "Oct-12"
+            ],
+            [
+            "title" => "Swimming Fee",
+            "amount" => 5000,
             "note" => "need to save",
             "date" => "Oct-12"
             ]

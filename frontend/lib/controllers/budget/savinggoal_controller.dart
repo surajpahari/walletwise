@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
@@ -49,14 +50,26 @@ class SavinggoalController extends Wwform {
     validateForm();
     formState.value = 1;
     ModelOperation().add(
-      body: {"amount": "400", "fire": "fire"},
-      url: ApiUrls.addSaving,
-      successAction: (response) {
-        WwSnackbar.builder(
-            context, "SuccessFullyAddec", WwSnackbartype.success);
-        clearFields();
-      },
-    );
+        body: {
+          "amount": "50000",
+          "category_id": "1",
+          "date": '2024/06/20',
+          "bank_balance_id": '1',
+          "period": '20',
+          "type": 'routine',
+          "name": "chocofun",
+        },
+        url: ApiUrls.addExpense,
+        //body: {"amount": "400", "fire": "fire"},
+        //url: ApiUrls.addSaving,
+        successAction: (response) {
+          WwSnackbar.builder(
+              context, "SuccessFullyAddec", WwSnackbartype.success);
+          clearFields();
+        },
+        errorAction: () {
+          formState.value = 0;
+        });
   }
 
   static Future<void> fetchSaving() async {

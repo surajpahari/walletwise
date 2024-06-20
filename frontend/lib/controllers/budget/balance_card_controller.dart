@@ -1,1 +1,3 @@
-
+class BalanceCardController {
+  void fetchBalance() {}
+}

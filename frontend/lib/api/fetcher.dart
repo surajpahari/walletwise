@@ -41,7 +41,11 @@ class FetchAPI extends ApiToken {
         final response = await http.post(Uri.parse('$baseUrl${url.value}'),
             // Send authorization headers to the backend.
             body: body,
-            headers: {'Authorization': 'Bearer ${ApiToken.authToken}'});
+            headers: {
+              'Authorization': 'Bearer ${ApiToken.authToken}',
+              'Accept': 'application/json'
+            });
+
         print("The response is ");
         return response;
       } catch (e) {

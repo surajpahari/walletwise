@@ -10,10 +10,10 @@ class Payment {
       required this.totalPay});
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      title: json['title'] as String,
-      dueDuration: json['dueDuration'] as String,
-      totalPay: json['totalPay'] as int,
-      totalSaved: json['totalSaved'] as int,
+      title: json['name'] as String,
+      dueDuration: json['due'] as String,
+      totalPay: json['amount'] as int,
+      totalSaved: json['savings'] as int,
     );
   }
 }

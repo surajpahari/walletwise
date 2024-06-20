@@ -34,7 +34,7 @@ class DebtController extends Wwform {
               WwSnackbar.builder(
                   context, "Sucesssfully Added", WwSnackbartype.success);
             },
-            errorrAction: () {
+            errorAction: () {
               formState.value = 0;
             });
       } catch (e) {

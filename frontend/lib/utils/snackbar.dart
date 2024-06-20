@@ -8,7 +8,7 @@ class WwSnackbar {
     if (type == WwSnackbartype.success) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 4000),
           backgroundColor: Colors.green,
           content: Center(
               child: Text(

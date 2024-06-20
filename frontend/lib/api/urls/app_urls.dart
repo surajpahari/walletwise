@@ -6,7 +6,7 @@ class Url {
 
 class ApiUrls {
   ApiUrls._();
-  static String baseUrl = "http://192.168.1.75:8000";
+  static String baseUrl = "http://192.168.1.68:8000";
   static Url testUrl = Url('/api/test');
   static Url test2Url = Url('/api/test2');
   //urls related to atuthentication authentication
@@ -19,13 +19,13 @@ class ApiUrls {
   static Url addIncome = Url('/api/income/add');
 
   //urls realted to the assets
-  static Url addAssets = Url('/api/saving/add');
+  static Url addAssets = Url('/api/assets');
 
   //urls related to the debts
   static Url addDebt = Url('/api/saving/add');
 
   //urls related to the bank
-  static Url addBankAcc = Url('/api/saving/add');
+  static Url addBankAcc = Url('/api/bank-balances');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
@@ -37,5 +37,9 @@ class ApiUrls {
   static Url editSaving = Url("/api/saving/edit");
 
   //urls realted to the payments;
-  static Url fetchUpcomingPayment = Url("/api/payment/fetch");
+  static Url fetchUpcomingPayment = Url("/api/expenses/upcoming");
+  //urls for the balanceCard
+  static Url fetchBalance = Url("/api/total-balance"); //get
+  //urls for the expenses
+  static Url addExpense = Url("/api/expenses");
 }

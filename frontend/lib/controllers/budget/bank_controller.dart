@@ -32,8 +32,9 @@ class BankAccController extends Wwform {
       try {
         await ModelOperation().add(
             body: {
-              "amount": int.parse(amount.text).toString(),
-              "title": name.text
+              "name": "nic",
+              "account_number": "1000",
+              "amount": "1000.00",
             },
             url: ApiUrls.addBankAcc,
             successAction: (response) {
@@ -41,7 +42,7 @@ class BankAccController extends Wwform {
               WwSnackbar.builder(
                   context, "Sucesssfully Added", WwSnackbartype.success);
             },
-            errorrAction: () {
+            errorAction: () {
               formState.value = 0;
             });
       } catch (e) {

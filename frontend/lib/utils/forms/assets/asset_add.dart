@@ -44,7 +44,6 @@ class AddAssetForm extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.blue),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
                   TextFormField(

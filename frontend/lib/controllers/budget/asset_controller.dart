@@ -35,7 +35,7 @@ class AssetController extends Wwform {
       await ModelOperation().add(
           body: {
             "amount": int.parse(amount.text).toString(),
-            "title": title.text
+            "name": title.text
           },
           url: ApiUrls.addAssets,
           successAction: (response) {
@@ -43,7 +43,7 @@ class AssetController extends Wwform {
             WwSnackbar.builder(
                 context, "Sucesssfully Added", WwSnackbartype.success);
           },
-          errorrAction: () {
+          errorAction: () {
             formState.value = 0;
           });
     } catch (e) {

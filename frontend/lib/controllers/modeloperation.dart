@@ -8,22 +8,29 @@ class ModelOperation {
       {required body,
       required Url url,
       Function? successAction,
-      Function? errorrAction}) async {
+      Function? errorAction}) async {
     if (body != null) {
       try {
         http.Response? response =
-            await FetchAPI(ApiUrls.addSaving, HttpMethod.post, body: body)
+            await FetchAPI(url, HttpMethod.post, body: body)
                 .fetchAuthorizedAPI();
+        print(response?.statusCode);
         if (response?.statusCode == 200) {
+          print(response?.body);
           if (successAction != null) {
             successAction(response?.body);
           }
         } else {
-          if (errorrAction != null) {
-            errorrAction();
+          print(response?.body);
+          if (errorAction != null) {
+            errorAction();
           }
         }
       } catch (e) {
+        if (errorAction != null) {
+          errorAction();
+        }
+
         return null;
       }
     }

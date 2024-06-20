@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
+import 'package:walletwise/controllers/budget/bank_controller.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 import 'package:walletwise/utils/validators/validation.dart';
@@ -10,7 +10,7 @@ class AddBankAccForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = SavinggoalController();
+    final controller = BankAccController();
     return Theme(
       data: myTheme,
       child: Scaffold(
@@ -24,8 +24,8 @@ class AddBankAccForm extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   TextFormField(
-                    validator: (value) => WwValidator.isInputEmpty(value),
-                    controller: controller.title,
+                    //validator: (value) => WwValidator.isInputEmpty(value),
+                    controller: controller.name,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.title),
                       labelText: "Name of the Bank",
@@ -44,17 +44,16 @@ class AddBankAccForm extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
                   TextFormField(
                     controller: controller.amount,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter the amount";
-                      }
-                      return null;
-                    },
+                    //validator: (value) {
+                    //  if (value == null || value.isEmpty) {
+                    //    return "Please enter the amount";
+                    //  }
+                    //  return null;
+                    //},
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.attach_money),
                       labelText: "Current Amount in Bank",
@@ -73,11 +72,10 @@ class AddBankAccForm extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    controller: controller.note,
+                    controller: controller.accountNumber,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.note),
                       labelText: "Current Loan in Bank",
@@ -96,7 +94,6 @@ class AddBankAccForm extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.blue),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
                   SizedBox(height: 20),
@@ -111,7 +108,7 @@ class AddBankAccForm extends StatelessWidget {
                       ),
                       onPressed: () {
                         print(controller.formState.value);
-                        controller.addSaving(context);
+                        controller.addBankAcc(context);
                       },
                       child: Padding(
                         padding: EdgeInsets.all(4),
