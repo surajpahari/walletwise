@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
 import 'package:walletwise/utils/cards/bank_card.dart';
-import 'package:walletwise/utils/cards/hero_card.dart';
+import 'package:walletwise/utils/cards/balance_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/cards/upcoming_payment_card.dart';
 import 'package:walletwise/utils/charts/line_chart.dart';
@@ -29,12 +30,17 @@ class MainScreen extends StatelessWidget {
               //balnaceCard section
               BalanceCard(),
               gap(20),
+              ElevatedButton(
+                  onPressed: () {
+                    BalanceCardController.fetch();
+                  },
+                  child: Text("fetch")),
 
+              gap(20),
               //ASSETDEBT SECTION
               const AssetDebt(),
 
               gap(20),
-
               //BANKACCOUNT SECTION
               const Text(
                 "BankAccount",
@@ -44,12 +50,16 @@ class MainScreen extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
               gap(10),
-              Wrap(
-                  alignment: WrapAlignment.end,
-                  children: BankAccountData.bankAccountList.map((bankAccount) {
-                    return BankCard(bankAccount: bankAccount);
-                  }).toList()),
-
+              Obx(() => Wrap(
+                    alignment: WrapAlignment.end,
+                    children: BankAccountData.bankAccountList
+                        .asMap()
+                        .entries
+                        .map((entry) => Column(
+                              children: [BankCard(bankAccount: entry.value)],
+                            ))
+                        .toList(),
+                  )),
               gap(40),
 
               //SAVING GOALS SECTION

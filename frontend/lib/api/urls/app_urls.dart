@@ -26,6 +26,7 @@ class ApiUrls {
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');
+  static Url fetchBankAcc = Url('/api/savings/fetch');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
@@ -38,8 +39,10 @@ class ApiUrls {
 
   //urls realted to the payments;
   static Url fetchUpcomingPayment = Url("/api/expenses/upcoming");
+
   //urls for the balanceCard
   static Url fetchBalance = Url("/api/total-balance"); //get
+
   //urls for the expenses
   static Url addExpense = Url("/api/expenses");
 }

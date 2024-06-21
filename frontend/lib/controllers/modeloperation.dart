@@ -7,12 +7,13 @@ class ModelOperation {
   Future<http.Response?> add(
       {required body,
       required Url url,
+      HttpMethod? method,
       Function? successAction,
       Function? errorAction}) async {
     if (body != null) {
       try {
         http.Response? response =
-            await FetchAPI(url, HttpMethod.post, body: body)
+            await FetchAPI(url, method ?? HttpMethod.post, body: body)
                 .fetchAuthorizedAPI();
         print(response?.statusCode);
         if (response?.statusCode == 200) {

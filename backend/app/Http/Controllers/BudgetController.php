@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stock;
 use Illuminate\Http\Request;
 
-class StockController extends Controller
+class BudgetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +33,7 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stock $stock)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class StockController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stock $stock)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class StockController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,30 +57,8 @@ class StockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stock $stock)
+    public function destroy(string $id)
     {
         //
-    }
-
-    public function search(Request $request)
-    {
-        $key = $request->key;
-
-        $stocks = Stock::where('securityName', 'like', '%'.$key.'%')
-            ->where('activeStatus', 'A')
-            ->take(5)
-            ->get();
-
-        return response()->json($stocks);
-    }
-
-    public function random10()
-    {
-        $stocks = Stock::inRandomOrder()
-            ->where('activeStatus', 'A')
-            ->take(10)
-            ->get();
-
-        return response()->json($stocks);
     }
 }

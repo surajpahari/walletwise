@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -43,9 +45,31 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getPlainApiToken(){
-     $plainTextToken =  $this->createToken("API TOKEN")->plainTextToken;
-     /* list(id,token)= explode('|',$plainTextToken); */
-    return  explode('|',$plainTextToken)[1];
+    public function getPlainApiToken()
+    {
+        $plainTextToken = $this->createToken('API TOKEN')->plainTextToken;
+
+        /* list(id,token)= explode('|',$plainTextToken); */
+        return explode('|', $plainTextToken)[1];
+    }
+
+    public function bankBalances(): HasMany
+    {
+        return $this->hasMany(BankBalance::class);
+    }
+
+    public function cashInHand(): HasOne
+    {
+        return $this->hasOne(CashInHand::class);
+    }
+
+    public function assets(): HasMany
+    {
+        return $this->hasMany(Asset::class);
+    }
+
+    public function expenses(): HasMany
+    {
+        return $this->hasMany(Expense::class);
     }
 }

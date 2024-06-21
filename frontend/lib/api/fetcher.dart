@@ -38,16 +38,25 @@ class FetchAPI extends ApiToken {
   Future<dynamic> fetchAuthorizedAPI() async {
     if (ApiToken.authToken != null) {
       try {
-        final response = await http.post(Uri.parse('$baseUrl${url.value}'),
-            // Send authorization headers to the backend.
-            body: body,
-            headers: {
-              'Authorization': 'Bearer ${ApiToken.authToken}',
-              'Accept': 'application/json'
-            });
+        if (method == HttpMethod.post) {
+          final response = await http.post(Uri.parse('$baseUrl${url.value}'),
+              // Send authorization headers to the backend.
+              body: body,
+              headers: {
+                'Authorization': 'Bearer ${ApiToken.authToken}',
+                'Accept': 'application/json'
+              });
 
-        print("The response is ");
-        return response;
+          return response;
+        } else if (method == HttpMethod.get) {
+          final response = await http.get(Uri.parse('$baseUrl${url.value}'),
+              // Send authorization headers to the backend.
+              headers: {
+                'Authorization': 'Bearer ${ApiToken.authToken}',
+                'Accept': 'application/json'
+              });
+          return response;
+        }
       } catch (e) {
         print(e);
       }

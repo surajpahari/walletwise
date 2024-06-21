@@ -16,22 +16,22 @@ class BankCard extends StatelessWidget {
             splashColor: Colors.blue.withAlpha(30),
             onTap: () {},
             child: Padding(
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 child: Container(
-                  constraints: BoxConstraints(maxWidth: 330),
+                  constraints: const BoxConstraints(maxWidth: 330),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.account_balance, color: Colors.blue),
+                          const Icon(Icons.account_balance, color: Colors.blue),
                           Text(
                             "  ${bankAccount.name} ",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.blue,
@@ -51,7 +51,7 @@ class BankCard extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         'Rs ${bankAccount.amount}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

@@ -1,20 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
+import 'package:walletwise/data/bank_account.dart';
+import 'package:walletwise/models/bank_account.dart';
 import 'package:walletwise/utils/forms/wwForm.dart';
 import 'package:walletwise/utils/snackbar.dart';
 
 class BankAccController extends Wwform {
-  //String name;
-  //String? type;
-  //String? accountNumber;
-  //double amount;
-  //
   final TextEditingController name = TextEditingController();
   final TextEditingController accountNumber = TextEditingController();
   final TextEditingController amount = TextEditingController();
-
-  // Method to validate and create a Saving object
 
   // Method to clear form fields
   @override
@@ -25,6 +22,27 @@ class BankAccController extends Wwform {
     formState.value = 0;
   }
 
+  //function update the bank form response
+
+  void update(response) async {
+    try {
+      print('Response: $response');
+      final data = jsonDecode(response);
+      print('Data: $data');
+      print('Data type: ${data.runtimeType}');
+
+      if (data.containsKey('bank_balance')) {
+        BankAccount bankAccount = BankAccount.fromJson(data['bank_balance']);
+        BankAccountData.bankAccountList.add(bankAccount);
+        print('Bank Account Name: ${bankAccount.name}');
+      } else {
+        print('Error: bank_balance not found in the response');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+  }
+
   //Upload the saving
   Future<void> addBankAcc(BuildContext context) async {
     formState.value = 1;
@@ -32,15 +50,16 @@ class BankAccController extends Wwform {
       try {
         await ModelOperation().add(
             body: {
-              "name": "nic",
-              "account_number": "1000",
-              "amount": "1000.00",
+              "name": name.text,
+              "account_number": accountNumber.text,
+              "amount": amount.text
             },
             url: ApiUrls.addBankAcc,
             successAction: (response) {
+              update(response);
               clearFields();
-              WwSnackbar.builder(
-                  context, "Sucesssfully Added", WwSnackbartype.success);
+              //  WwSnackbar.builder(
+              //      context, "Sucesssfully Added", WwSnackbartype.success);
             },
             errorAction: () {
               formState.value = 0;
@@ -50,6 +69,19 @@ class BankAccController extends Wwform {
       }
     } else {
       WwSnackbar.builder(context, "Invalid Inputs", WwSnackbartype.error);
+    }
+  }
+
+  //for fetching the bank Accounts
+  static Future<void> fetchBankAccount() async {
+    try {
+      await ModelOperation.fetchFunction(
+        ApiUrls.fetchSavingGoal,
+        (json) => BankAccount.fromJson(json),
+        targetList: BankAccountData.bankAccountList,
+      );
+    } catch (e) {
+      print('Error: $e');
     }
   }
 }

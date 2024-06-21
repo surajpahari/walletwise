@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/constants/app_colors.dart';
-import 'package:walletwise/data/asset_debt_data.dart';
+import 'package:intl/intl.dart';
 import 'package:walletwise/data/balance_card.dart';
 
 class BalanceCard extends StatelessWidget {
-  BalanceCard({super.key});
-  final Color main = Color.fromRGBO(37, 150, 190, 1.0);
+  const BalanceCard({super.key});
+  final Color main = const Color.fromRGBO(37, 150, 190, 1.0);
+  String currentDate() {
+    DateTime today = DateTime.now();
+    String formattedDate = DateFormat('MMMM d yyyy').format(today);
+    return formattedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +22,10 @@ class BalanceCard extends StatelessWidget {
                 constraints: const BoxConstraints(
                     minWidth: 400, maxWidth: 500, maxHeight: 250),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       colors: [Color(0xff2517DB), Color(0xff1180D1)]),
                   borderRadius: BorderRadius.circular(
                       16.0), // Optional: Adds rounded corners
-                  boxShadow: [
-                    //BoxShadow(
-                    //  color: Colors.grey.withOpacity(0.5), // Shadow color
-                    //  spreadRadius: 2, // Spread radius
-                    //  blurRadius: 3, // Blur radius
-                    //  offset: const Offset(0, 3), // Changes position of shadow
-                    //),
-                  ],
                 ),
                 child: Padding(
                     padding: const EdgeInsets.only(left: 24, top: 20),
@@ -41,8 +36,8 @@ class BalanceCard extends StatelessWidget {
                               child: Row(
                             children: [
                               Container(
-                                decoration:
-                                    BoxDecoration(color: Colors.transparent),
+                                decoration: const BoxDecoration(
+                                    color: Colors.transparent),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -51,27 +46,26 @@ class BalanceCard extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           //Balance
-                                          Text("Balance",
+                                          const Text("Balance",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20)),
-                                          SizedBox(height: 2),
+                                          const SizedBox(height: 2),
 
                                           //Date
                                           Text(
-                                            "May   01   2024",
-                                            style: TextStyle(fontSize: 16),
+                                            currentDate(),
+                                            style:
+                                                const TextStyle(fontSize: 16),
                                           ),
-                                          SizedBox(height: 20),
+                                          const SizedBox(height: 20),
                                           Obx(() => Text(
                                                 "Rs ${BalanceCardData.balance.toString()}.00",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24),
                                               )),
-                                          Obx(() => Text(
-                                              'hey ${AssetDebtData.pieDataList.value[0].value}')),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 20,
                                           ),
                                           //Obx(
