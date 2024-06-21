@@ -1,19 +1,33 @@
 class Payment {
-  String title;
-  String dueDuration;
-  int totalPay;
-  int totalSaved;
-  Payment(
-      {required this.title,
-      required this.dueDuration,
-      required this.totalSaved,
-      required this.totalPay});
+  int id;
+  String name;
+  double amount;
+  double savings;
+  int due;
+
+  Payment({
+    required this.id,
+    required this.name,
+    required this.amount,
+    required this.savings,
+    required this.due,
+  });
+
   factory Payment.fromJson(Map<String, dynamic> json) {
     return Payment(
-      title: json['name'] as String,
-      dueDuration: json['due'] as String,
-      totalPay: json['amount'] as int,
-      totalSaved: json['savings'] as int,
+      id: json['id'] is int
+          ? json['id']
+          : int.tryParse(json['id'].toString()) ?? 0,
+      name: json['name'] as String,
+      amount: json['amount'] is double
+          ? json['amount']
+          : double.tryParse(json['amount'].toString()) ?? 0.0,
+      savings: json['savings'] is double
+          ? json['savings']
+          : double.tryParse(json['savings'].toString()) ?? 0.0,
+      due: json['due'] is int
+          ? json['due']
+          : int.tryParse(json['due'].toString()) ?? 0,
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
+import 'package:walletwise/controllers/budget/bank_controller.dart';
+import 'package:walletwise/controllers/budget/expense_controller.dart';
+import 'package:walletwise/controllers/budget/payment_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
@@ -19,6 +22,16 @@ class MainScreen extends StatelessWidget {
     return (SizedBox(height: height.toDouble()));
   }
 
+  Text title(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 32,
+      ),
+      textAlign: TextAlign.start,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -32,9 +45,11 @@ class MainScreen extends StatelessWidget {
               gap(20),
               ElevatedButton(
                   onPressed: () {
+                    PaymentController.fetchPayment();
+                    BankAccController.fetchBankAccount();
                     BalanceCardController.fetch();
                   },
-                  child: Text("fetch")),
+                  child: const Text("fetch")),
 
               gap(20),
               //ASSETDEBT SECTION
@@ -42,13 +57,7 @@ class MainScreen extends StatelessWidget {
 
               gap(20),
               //BANKACCOUNT SECTION
-              const Text(
-                "BankAccount",
-                style: TextStyle(
-                  fontSize: 32,
-                ),
-                textAlign: TextAlign.start,
-              ),
+              title("BankAccount"),
               gap(10),
               Obx(() => Wrap(
                     alignment: WrapAlignment.end,
@@ -79,7 +88,7 @@ class MainScreen extends StatelessWidget {
 
               gap(20),
               //UPCOMING PAYMENTS SECTION
-              const Text("Upcoming payments", style: TextStyle(fontSize: 23)),
+              title("Upcoming Payment"),
               Obx(() => Wrap(
                   alignment: WrapAlignment.center,
                   children: PaymentData.paymentlist.map((payment) {
@@ -89,7 +98,7 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Center(child: Text("Balance", style: TextStyle(fontSize: 32))),
+              title("Balance"),
               SizedBox(
                 height: 20,
               ),
@@ -109,7 +118,7 @@ class MainScreen extends StatelessWidget {
           bottom: 0.0,
           right: 10.0,
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Container(
               width: 56.0,
               height: 56.0,

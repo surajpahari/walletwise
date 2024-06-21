@@ -150,13 +150,25 @@ Route::post('/auth/register', [UserController::class, 'create']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/auth/logout', [UserController::class, 'logout']);
 
+/*Route::middleware(['auth:sanctum'])->group(function () {*/
+/*    Route::resource('bank-balances', BankBalanceController::class);*/
+/*    Route::resource('cash-in-hand', CashInHandController::class);*/
+/*    Route::resource('assets', AssetController::class);*/
+/*    Route::resource('expenses', ExpenseController::class);*/
+/*    Route::post('/expenses/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);*/
+/*    Route::get('/bank-balances/all-accounts',[BankBalanceController::class,'getBankAccounts']);*/
+/*    Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);*/
+/**/
+/*});*/
+/**/
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('bank-balances', BankBalanceController::class);
     Route::resource('cash-in-hand', CashInHandController::class);
     Route::resource('assets', AssetController::class);
     Route::resource('expenses', ExpenseController::class);
     Route::post('/expenses/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);
-
+    Route::resource('bank-balances', BankBalanceController::class);
+    Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
     Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);
-
 });
+

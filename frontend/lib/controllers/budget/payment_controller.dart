@@ -1,11 +1,20 @@
-import "dart:convert";
-import "package:get/get.dart";
 import "package:walletwise/api/fetcher.dart";
 import "package:walletwise/api/urls/app_urls.dart";
+import "package:walletwise/controllers/modeloperation.dart";
 import "package:walletwise/data/payment_data.dart";
 import "package:walletwise/models/payment.dart";
 
 class PaymentController {
+  static Future<void> fetchBankAccount() async {
+    try {
+      ModelOperation.fetchFunction(
+          ApiUrls.fetchBankAcc, (json) => Payment.fromJson(json),
+          targetList: PaymentData.paymentlist, listKey: "bank_balances");
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   static Future<void> fetchPayment() async {
     try {
       var response = await FetchAPI(ApiUrls.fetchUpcomingPayment,

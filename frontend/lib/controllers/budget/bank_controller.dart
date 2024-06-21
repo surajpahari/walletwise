@@ -75,11 +75,10 @@ class BankAccController extends Wwform {
   //for fetching the bank Accounts
   static Future<void> fetchBankAccount() async {
     try {
-      await ModelOperation.fetchFunction(
-        ApiUrls.fetchSavingGoal,
-        (json) => BankAccount.fromJson(json),
-        targetList: BankAccountData.bankAccountList,
-      );
+      ModelOperation.fetchFunction(
+          ApiUrls.fetchBankAcc, (json) => BankAccount.fromJson(json),
+          targetList: BankAccountData.bankAccountList,
+          listKey: "bank_balances");
     } catch (e) {
       print('Error: $e');
     }

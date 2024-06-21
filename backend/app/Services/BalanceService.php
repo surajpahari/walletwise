@@ -12,8 +12,8 @@ class BalanceService
 {
     public function getTotalBalance()
     {
-        // $user = Auth::user();
-        $user = User::find(1);
+        $user = Auth::user();
+        /*$user = User::find(1);*/
 
         $totalAmount = 0;
         $bankBalances = $user->bankBalances;

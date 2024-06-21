@@ -38,27 +38,42 @@ class ModelOperation {
   }
 
   static Future<List<T>> fetchFunction<T>(
-    Url apiUrl,
-    T Function(Map<String, dynamic>) fromJson, {
-    List<T>? targetList, // Optional RxList parameter to store fetched data
-  }) async {
+      Url apiUrl, T Function(Map<String, dynamic>) fromJson,
+      {List<T>? targetList, String? listKey}) async {
     try {
+      print(apiUrl.value);
       var response = await FetchAPI(
               apiUrl, HttpMethod.get) // Ensure the correct HTTP method is used.
           .fetchAuthorizedAPI();
+      print("hey");
 
       if (response.statusCode == 200) {
-        final List<dynamic> jsonResponse = jsonDecode(response.body);
-        List<T> modelList = jsonResponse.map((item) => fromJson(item)).toList();
+        //try to convert it into the list
+        try {
+          List<dynamic> jsonResponse = [];
+          print(jsonResponse);
+          if (listKey != null) {
+            jsonResponse = jsonDecode(response.body)[listKey];
+            print(jsonDecode(response.body)[listKey]);
+          } else {
+            jsonResponse = jsonDecode(response.body);
+          }
+          List<T> modelList =
+              jsonResponse.map((item) => fromJson(item)).toList();
 
-        // If targetList is provided, update it with the fetched data
-        if (targetList != null) {
-          targetList.clear();
-          targetList.addAll(modelList);
+          // If targetList is provided, update it with the fetched data
+          if (targetList != null) {
+            targetList.clear();
+            targetList.addAll(modelList);
+          }
+        } catch (e) {
+          print(e);
+          throw Exception(e);
         }
 
         print('Success: Data fetched and updated.');
-        return modelList; // Return the fetched list
+        //return modelList; // Return the fetched list
+        return [];
       } else {
         throw Exception('Failed to fetch data: ${response.statusCode}');
       }

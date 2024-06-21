@@ -26,7 +26,8 @@ class ApiUrls {
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');
-  static Url fetchBankAcc = Url('/api/savings/fetch');
+
+  static Url fetchBankAcc = Url('/api/all-accounts');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");

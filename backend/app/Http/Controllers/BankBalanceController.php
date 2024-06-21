@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBankBalanceRequest;
 use App\Http\Requests\UpdateBankBalanceRequest;
 use App\Http\Resources\BankBalanceResource;
 use App\Models\BankBalance;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class BankBalanceController extends Controller
@@ -74,5 +75,17 @@ class BankBalanceController extends Controller
     public function destroy(BankBalance $bankBalance)
     {
         //
+    }
+
+
+    public function getBankAccounts()
+    {
+        $user = Auth::user();
+        /*$user = User::find(1);*/
+
+        $bankBalances = $user->bankBalances;
+
+        /*$user = Auth::user();*/
+        return response()->json(["bank_balances" => $bankBalances]);
     }
 }

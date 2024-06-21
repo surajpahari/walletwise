@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BankBalanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/expenses/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);
+/*Route::get('/bank-balances/all-accounts', [BankBalanceController::class, 'getBankAccounts']);*/
+
