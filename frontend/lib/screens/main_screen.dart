@@ -4,6 +4,7 @@ import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/bank_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/budget/payment_controller.dart';
+import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
@@ -48,6 +49,7 @@ class MainScreen extends StatelessWidget {
                     PaymentController.fetchPayment();
                     BankAccController.fetchBankAccount();
                     BalanceCardController.fetch();
+                    SavinggoalController.fetchSaving();
                   },
                   child: const Text("fetch")),
 

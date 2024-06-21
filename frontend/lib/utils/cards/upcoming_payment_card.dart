@@ -14,7 +14,7 @@ class UpcomingPaymentCard extends StatelessWidget {
       ),
       elevation: 5,
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,7 +22,7 @@ class UpcomingPaymentCard extends StatelessWidget {
               children: [
                 const SizedBox(width: 10),
                 Text(
-                  payment.title,
+                  payment.name,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -31,13 +31,13 @@ class UpcomingPaymentCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
-                Icon(Icons.access_time, color: Colors.orangeAccent),
-                SizedBox(width: 5),
+                const Icon(Icons.access_time, color: Colors.orangeAccent),
+                const SizedBox(width: 5),
                 Text(
-                  "Due in 2 days",
+                  "Due in ${payment.due} day",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -46,15 +46,19 @@ class UpcomingPaymentCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 15),
-            Text(
-              "Rs${payment.totalSaved} / ${payment.totalPay} ",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
+            const SizedBox(height: 15),
+            Row(children: [
+              const Icon(color: Colors.green, Icons.money),
+              const SizedBox(width: 10),
+              Text(
+                "${payment.savings} / ${payment.amount} ",
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              )
+            ]),
           ],
         ),
       ),

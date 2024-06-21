@@ -37,7 +37,7 @@ Route::controller(StockController::class)->group(function () {
 });
 
 Route::controller(SavingController::class)->group(function () {
-    Route::post('savings/fetch', 'fetch');
+    Route::get('savings/fetch', 'fetch');
 });
 
 Route::post('test2', function (Request $request) {
@@ -123,23 +123,6 @@ Route::post('saving/add', function (Request $request) {
     return response()->json(['messagge' => 'hi']);
 })->middleware('auth:sanctum');
 
-Route::post('payment/fetch', function (Request $request) {
-    return response()->json([
-        [
-            'title' => 'Internet Bill',
-            'totalPay' => 1580.00,
-            'totalSaved' => 1000.00,
-            'dueDuration' => 'Due in 2 day',
-        ],
-        [
-            'title' => 'College Fee',
-            'totalPay' => 80000,
-            'totalSaved' => 1000,
-            'dueDuration' => 'Due in 60 day',
-        ],
-    ]);
-})->middleware('auth:sanctum');
-
 Route::get('savings/test', function (Request $request) {
     return response()->json([
         'edited' => true,
@@ -166,7 +149,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('cash-in-hand', CashInHandController::class);
     Route::resource('assets', AssetController::class);
     Route::resource('expenses', ExpenseController::class);
-    Route::post('/expenses/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);
+    Route::get('/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);
     Route::resource('bank-balances', BankBalanceController::class);
     Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
     Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);

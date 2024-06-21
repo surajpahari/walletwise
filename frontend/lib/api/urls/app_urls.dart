@@ -39,7 +39,7 @@ class ApiUrls {
   static Url editSaving = Url("/api/saving/edit");
 
   //urls realted to the payments;
-  static Url fetchUpcomingPayment = Url("/api/expenses/upcoming");
+  static Url fetchUpcomingPayment = Url("/api/upcoming");
 
   //urls for the balanceCard
   static Url fetchBalance = Url("/api/total-balance"); //get

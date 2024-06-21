@@ -5,17 +5,17 @@ import "package:walletwise/data/payment_data.dart";
 import "package:walletwise/models/payment.dart";
 
 class PaymentController {
-  static Future<void> fetchBankAccount() async {
+  static Future<void> fetchPayment() async {
     try {
       ModelOperation.fetchFunction(
-          ApiUrls.fetchBankAcc, (json) => Payment.fromJson(json),
-          targetList: PaymentData.paymentlist, listKey: "bank_balances");
+          ApiUrls.fetchUpcomingPayment, (json) => Payment.fromJson(json),
+          targetList: PaymentData.paymentlist, listKey: "expenses");
     } catch (e) {
       print('Error: $e');
     }
   }
 
-  static Future<void> fetchPayment() async {
+  static Future<void> fetchPaymentt() async {
     try {
       var response = await FetchAPI(ApiUrls.fetchUpcomingPayment,
               HttpMethod.post) // Ensure the correct HTTP method is used.

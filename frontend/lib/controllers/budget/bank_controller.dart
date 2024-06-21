@@ -58,8 +58,8 @@ class BankAccController extends Wwform {
             successAction: (response) {
               update(response);
               clearFields();
-              //  WwSnackbar.builder(
-              //      context, "Sucesssfully Added", WwSnackbartype.success);
+              WwSnackbar.builder(
+                  context, "Sucesssfully Added", WwSnackbartype.success);
             },
             errorAction: () {
               formState.value = 0;
