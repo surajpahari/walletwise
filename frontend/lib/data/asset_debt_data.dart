@@ -10,11 +10,7 @@ class AssetDebtData {
   }
 
   static RxList<Assets> assetsData = <Assets>[].obs;
-  static RxList<PieData> pieDataList = [
-    PieData(value: 5000000, name: "Realstate"),
-    PieData(value: 80000, name: "Developer setup"),
-    PieData(value: 30000, name: "Wego")
-  ].obs;
+  static RxList<PieData> pieDataList = <PieData>[].obs;
 
   static RxList<Assets> debtData = <Assets>[].obs;
   static RxList<PieData> debtPieChartData = [

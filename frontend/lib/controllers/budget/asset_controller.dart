@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
+import 'package:walletwise/data/asset_debt_data.dart';
+import 'package:walletwise/data/graph_data.dart';
 import 'package:walletwise/models/assets.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/utils/forms/wwForm.dart';
@@ -28,6 +31,22 @@ class AssetController extends Wwform {
     formState.value = 0;
   }
 
+  void update(response) async {
+    try {
+      final data = jsonDecode(response);
+      if (data.containsKey('asset')) {
+        Assets assets = Assets.fromJson(data['asset']);
+        AssetDebtData.assetsData.add(assets);
+        AssetDebtData.pieDataList
+            .add(PieData(name: assets.name, value: assets.amount));
+      } else {
+        return;
+      }
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
+
   //Upload the saving
   Future<void> addAssets(BuildContext context) async {
     formState.value = 1;
@@ -39,6 +58,11 @@ class AssetController extends Wwform {
           },
           url: ApiUrls.addAssets,
           successAction: (response) {
+            try {
+              update(response);
+            } catch (e) {
+              throw Exception("Failed to update assets:$e");
+            }
             clearFields();
             WwSnackbar.builder(
                 context, "Sucesssfully Added", WwSnackbartype.success);

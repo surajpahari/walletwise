@@ -1,4 +1,5 @@
 import "dart:convert";
+import "package:flutter/material.dart";
 import "package:walletwise/api/fetcher.dart";
 import 'package:http/http.dart' as http;
 import "package:walletwise/api/urls/app_urls.dart";
@@ -15,14 +16,12 @@ class ModelOperation {
         http.Response? response =
             await FetchAPI(url, method ?? HttpMethod.post, body: body)
                 .fetchAuthorizedAPI();
-        print(response?.statusCode);
         if (response?.statusCode == 200) {
-          print(response?.body);
           if (successAction != null) {
             successAction(response?.body);
           }
         } else {
-          print(response?.body);
+          debugPrint(response?.body);
           if (errorAction != null) {
             errorAction();
           }
@@ -41,20 +40,18 @@ class ModelOperation {
       Url apiUrl, T Function(Map<String, dynamic>) fromJson,
       {List<T>? targetList, String? listKey}) async {
     try {
-      print(apiUrl.value);
+      debugPrint(apiUrl.value);
       var response = await FetchAPI(
               apiUrl, HttpMethod.get) // Ensure the correct HTTP method is used.
           .fetchAuthorizedAPI();
-      print("hey");
 
       if (response.statusCode == 200) {
         //try to convert it into the list
         try {
           List<dynamic> jsonResponse = [];
-          print(jsonResponse);
           if (listKey != null) {
             jsonResponse = jsonDecode(response.body)[listKey];
-            print(jsonDecode(response.body)[listKey]);
+            debugPrint(jsonDecode(response.body)[listKey]);
           } else {
             jsonResponse = jsonDecode(response.body);
           }
@@ -67,18 +64,16 @@ class ModelOperation {
             targetList.addAll(modelList);
           }
         } catch (e) {
-          print(e);
           throw Exception(e);
         }
 
-        print('Success: Data fetched and updated.');
+        debugPrint('Success: Data fetched and updated.');
         //return modelList; // Return the fetched list
         return [];
       } else {
         throw Exception('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error fetching data: $e');
       throw Exception('Failed to fetch data: $e');
     }
   }

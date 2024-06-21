@@ -40,7 +40,7 @@ class AssetController extends Controller
 
         return response()->json([
             'message' => 'Asset created',
-            'bank_balance' => $assetResource,
+            'asset' => $assetResource,
         ]);
     }
 
