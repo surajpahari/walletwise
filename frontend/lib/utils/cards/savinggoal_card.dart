@@ -38,7 +38,7 @@ class _SavingCardState extends State<SavingCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.saving.title,
+                      widget.saving.name,
                       style: TextStyle(
                         fontSize: 24, // Title font size
                         fontWeight: FontWeight.bold,

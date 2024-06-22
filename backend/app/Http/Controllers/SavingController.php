@@ -56,12 +56,6 @@ class SavingController extends Controller
             "note" => "need to save",
             "date" => "Oct-12"
             ],
-            [
-            "title" => "Swimming Fee",
-            "amount" => 5000,
-            "note" => "need to save",
-            "date" => "Oct-12"
-            ]
         ];
         return response()->json($data, 200);
     }

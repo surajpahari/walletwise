@@ -22,7 +22,7 @@ class _SavingScreenState extends State<SavingScreen> {
     // Initialize the form fields with the current saving data
     savingController.amount.text = widget.saving.amount.toString();
     savingController.endDate.text = widget.saving.date;
-    savingController.title.text = widget.saving.title;
+    savingController.name.text = widget.saving.name;
     savingController.note.text = widget.saving.note;
   }
 
@@ -44,7 +44,7 @@ class _SavingScreenState extends State<SavingScreen> {
       // Revert the form fields to the original saving data
       savingController.amount.text = widget.saving.amount.toString();
       savingController.endDate.text = widget.saving.date;
-      savingController.title.text = widget.saving.title;
+      savingController.name.text = widget.saving.name;
       savingController.note.text = widget.saving.note;
       _toggleEditMode();
     });
@@ -73,13 +73,13 @@ class _SavingScreenState extends State<SavingScreen> {
           children: [
             if (isEditing)
               TextField(
-                controller: savingController.title,
+                controller: savingController.name,
                 decoration: InputDecoration(labelText: 'Title'),
               )
             else
               ListTile(
                 title: Text('Title'),
-                subtitle: Text(widget.saving.title),
+                subtitle: Text(widget.saving.name),
               ),
             if (isEditing)
               TextField(

@@ -1,5 +1,5 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
@@ -10,9 +10,9 @@ import 'package:http/http.dart' as http;
 import 'package:walletwise/utils/snackbar.dart';
 
 class SavinggoalController extends Wwform {
+  final TextEditingController name = TextEditingController();
   final TextEditingController amount = TextEditingController();
   final TextEditingController endDate = TextEditingController();
-  final TextEditingController title = TextEditingController();
   final TextEditingController note = TextEditingController();
 
   // Method to validate and create a Saving object
@@ -23,7 +23,7 @@ class SavinggoalController extends Wwform {
     return Saving(
       amount: int.parse(amount.text),
       date: endDate.text,
-      title: title.text,
+      name: name.text,
       note: note.text,
     );
   }
@@ -33,16 +33,22 @@ class SavinggoalController extends Wwform {
   void clearFields() {
     amount.clear();
     endDate.clear();
-    title.clear();
+    name.clear();
     note.clear();
     formState.value = 0;
   }
 
-  void onSucessfullAdd(String responseBody) {
-    print("Hey Mama");
+  void updateSaving(response) async {
+    try {
+      final data = jsonDecode(response);
+      if (data.containsKey('saving')) {
+        Saving saving = Saving.fromJson(data['saving']);
+        SavingGoalData.savinglist.add(saving);
+      } else {}
+    } catch (e) {
+      throw Exception(e);
+    }
   }
-
-  //Upload the saving
 
   // Method to submit form data
   Future<void> addSaving(BuildContext context) async {
@@ -80,12 +86,8 @@ class SavinggoalController extends Wwform {
         targetList: SavingGoalData.savinglist,
       );
     } catch (e) {
-      print('Error: $e');
+      throw Exception(e);
     }
-  }
-
-  void delete() {
-    print("Deleting");
   }
 
   Future<http.Response?> edit() async {

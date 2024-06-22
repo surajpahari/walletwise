@@ -23,14 +23,16 @@ class MainScreen extends StatelessWidget {
     return (SizedBox(height: height.toDouble()));
   }
 
-  Text title(String title) {
-    return Text(
-      title,
-      style: const TextStyle(
-        fontSize: 32,
-      ),
-      textAlign: TextAlign.start,
-    );
+  Padding title(String title) {
+    return Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 32,
+          ),
+          textAlign: TextAlign.start,
+        ));
   }
 
   @override
@@ -74,9 +76,8 @@ class MainScreen extends StatelessWidget {
               gap(40),
 
               //SAVING GOALS SECTION
-              const Center(
-                  child: Text("Saving Goals", style: TextStyle(fontSize: 30))),
-              const SizedBox(height: 10),
+              title("Saving Goals"),
+              gap(10),
               Container(
                   child: Obx(
                 () => Wrap(

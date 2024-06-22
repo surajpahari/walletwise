@@ -1,6 +1,6 @@
 class Saving {
   int amount;
-  String title;
+  String name;
   String date;
   String note;
   double saved;
@@ -9,7 +9,7 @@ class Saving {
   Saving({
     required this.amount,
     required this.note,
-    required this.title,
+    required this.name,
     required this.date,
     this.saved = 0.0,
     this.startedDate,
@@ -19,19 +19,22 @@ class Saving {
     return {
       'amount': amount,
       'note': note,
-      'title': title,
+      'title': name,
       'date': date,
     };
   }
 
   factory Saving.fromJson(Map<String, dynamic> json) {
     return Saving(
-      amount: json['amount'] as int,
-      note: json['note'] as String,
-      title: json['title'] as String,
-      date: json['date'] as String,
-      saved: json['saved'] != null ? json['saved'].toDouble() : 0.0,
-      startedDate: json['startedDate'] as String?,
+      amount: json['amount'] as int? ?? 0, // Provide default value 0 if null
+      note: json['note'] as String? ?? '', // Provide default value '' if null
+      name: json['title'] as String? ?? '', // Provide default value '' if null
+      date: json['date'] as String? ?? '', // Provide default value '' if null
+      saved: json['saved'] != null
+          ? json['saved'].toDouble()
+          : 0.0, // Provide default value 0.0 if null
+      startedDate:
+          json['startedDate'] as String?, // If you want to keep this nullable
     );
   }
 }

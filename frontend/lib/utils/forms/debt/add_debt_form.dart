@@ -28,7 +28,7 @@ class AddDebtForm extends StatelessWidget {
                   SizedBox(height: 20),
                   TextFormField(
                     validator: (value) => WwValidator.isInputEmpty(value),
-                    controller: controller.title,
+                    controller: controller.name,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.title),
                       labelText: "Name",

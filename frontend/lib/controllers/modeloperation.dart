@@ -40,7 +40,7 @@ class ModelOperation {
       Url apiUrl, T Function(Map<String, dynamic>) fromJson,
       {List<T>? targetList, String? listKey}) async {
     try {
-      debugPrint(apiUrl.value);
+      print(apiUrl.value);
       var response = await FetchAPI(
               apiUrl, HttpMethod.get) // Ensure the correct HTTP method is used.
           .fetchAuthorizedAPI();
@@ -49,9 +49,10 @@ class ModelOperation {
         //try to convert it into the list
         try {
           List<dynamic> jsonResponse = [];
+          print(jsonResponse);
           if (listKey != null) {
             jsonResponse = jsonDecode(response.body)[listKey];
-            debugPrint(jsonDecode(response.body)[listKey]);
+            print(jsonDecode(response.body)[listKey]);
           } else {
             jsonResponse = jsonDecode(response.body);
           }
@@ -64,16 +65,18 @@ class ModelOperation {
             targetList.addAll(modelList);
           }
         } catch (e) {
+          print(e);
           throw Exception(e);
         }
 
-        debugPrint('Success: Data fetched and updated.');
+        print('Success: Data fetched and updated.');
         //return modelList; // Return the fetched list
         return [];
       } else {
         throw Exception('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
+      print('Error fetching data: $e');
       throw Exception('Failed to fetch data: $e');
     }
   }

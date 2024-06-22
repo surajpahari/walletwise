@@ -4,8 +4,11 @@ import 'dart:convert';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/constants/token.dart';
+import 'package:walletwise/controllers/budget/balance_card_controller.dart';
+import 'package:walletwise/controllers/budget/bank_controller.dart';
 import 'package:walletwise/controllers/budget/payment_controller.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
+import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/navigation_menu.dart';
 
 class LoginController extends ApiToken {
@@ -50,6 +53,8 @@ class LoginController extends ApiToken {
           String token = responseData['token'];
           ApiToken.authToken = token;
           Get.to(const BottomNavigation());
+          BalanceCardController.fetch();
+          BankAccController.fetchBankAccount();
           SavinggoalController.fetchSaving();
           PaymentController.fetchPayment();
         } else {
