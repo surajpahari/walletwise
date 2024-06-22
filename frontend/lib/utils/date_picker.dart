@@ -5,8 +5,10 @@ class DatePicker extends StatefulWidget {
       {required this.controller,
       required this.lastDate,
       required this.firstDate,
+      this.label,
       Key? key})
       : super(key: key);
+  final String? label;
   final TextEditingController controller;
   final DateTime firstDate;
   final DateTime lastDate;
@@ -62,7 +64,7 @@ class _DatePickerState extends State<DatePicker> {
     return TextFormField(
       readOnly: true,
       decoration: InputDecoration(
-          labelText: "Date",
+          labelText: widget.label != null ? widget.label : 'date',
           border: border,
           enabledBorder: border,
           focusedBorder: border),

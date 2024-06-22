@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/controllers/budget/budget_controller.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
-import 'package:walletwise/utils/forms/expense_form.dart';
 import 'package:walletwise/utils/charts/expense_bar.dart';
+import 'package:walletwise/utils/forms/expense/routine_expense.dart';
+import 'package:walletwise/utils/tabs/tab.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -44,13 +46,35 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         child: FloatingActionButton(
           backgroundColor: Colors.red,
           onPressed: () => {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return (Theme(
-                      data: ThemeData.dark(),
-                      child: AlertDialog(content: ExpenseForm())));
-                })
+            showModalBottomSheet(
+              backgroundColor: AppColors.black,
+              context: context,
+              isScrollControlled:
+                  true, // Ensures the bottom sheet can adjust height
+              builder: (context) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context)
+                        .viewInsets
+                        .bottom, // Adjusts for keyboard
+                  ),
+                  child: WwTab(
+                    tab1: 'daily',
+                    tab2: 'routine',
+                    tab1Screen: Text("DailyExpenseForm"),
+                    tab2Screen: RoutineExpenseForm(),
+                  ),
+                );
+              },
+            ),
+
+            //showDialog(
+            //    context: context,
+            //    builder: (context) {
+            //      return (Theme(
+            //          data: ThemeData.dark(),
+            //          child: AlertDialog(content: ExpenseForm())));
+            //    })
           },
           child: const Icon(Icons.add),
         ),

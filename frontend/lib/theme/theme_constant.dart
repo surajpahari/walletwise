@@ -30,7 +30,9 @@ final ThemeData myTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: wwBlack,
   ),
-  colorScheme: const ColorScheme(
+  colorScheme: ColorScheme(
+      background: Colors.red,
+      onBackground: Colors.white,
       brightness: Brightness.dark,
       primary: wwBlack,
       onPrimary: Colors.white,
