@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/utils/cards/hero_card.dart';
 import 'package:walletwise/utils/cards/profit_card.dart';
 import 'package:walletwise/utils/charts/bar_chart.dart';
 import 'package:walletwise/utils/date_range_picker.dart';

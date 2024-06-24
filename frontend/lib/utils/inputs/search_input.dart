@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
+typedef SearchKeyExtractor = String Function(dynamic item);
+typedef OnSelectionCallback = void Function(dynamic selectedItem);
+
 class SearchInput extends StatefulWidget {
   final String? label;
+  final List<dynamic> searchList;
+  final SearchKeyExtractor searchKeyExtractor;
+  final OnSelectionCallback onSelection;
 
-  const SearchInput({Key? key, this.label}) : super(key: key);
+  const SearchInput({
+    Key? key,
+    this.label,
+    required this.searchList,
+    required this.onSelection,
+    required this.searchKeyExtractor,
+  }) : super(key: key);
 
   @override
   _SearchInputState createState() => _SearchInputState();
@@ -17,12 +29,12 @@ class _SearchInputState extends State<SearchInput> {
     showDialog(
       context: context,
       builder: (context) {
-        List<String> options = [
-          'Option 1',
-          'Option 2',
-          'Option 3'
-        ]; // Replace with your actual options
+        // Create a list of options using the callback function
+        List<String> options = widget.searchList
+            .map((item) => widget.searchKeyExtractor(item))
+            .toList();
 
+        // Filter the options based on the search input
         List<String> filteredOptions = options.where((option) {
           return option
               .toLowerCase()
@@ -90,10 +102,17 @@ class _SearchInputState extends State<SearchInput> {
                                 style: TextStyle(color: Colors.white),
                               ),
                               onTap: () {
+                                final selectedItem =
+                                    widget.searchList.firstWhere(
+                                  (item) =>
+                                      widget.searchKeyExtractor(item) == option,
+                                );
                                 setState(() {
                                   selectedOption = option;
                                   _searchController.text = option;
                                 });
+                                widget.onSelection(
+                                    selectedItem); // Pass selected item to callback
                                 Navigator.pop(context); // Close the dialog
                               },
                             ))

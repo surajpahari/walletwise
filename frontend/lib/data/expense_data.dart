@@ -28,4 +28,9 @@ class ExpenseData {
       duration: 'june-10',
     )
   ];
+  static List<Category> categoryList = [
+    Category(category: "food", id: 3),
+    Category(category: "furniture", id: 3),
+    Category(category: "entertainment", id: 3),
+  ];
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
-import 'package:walletwise/utils/inputs/test_input.dart';
+import 'package:walletwise/data/bank_account.dart';
+import 'package:walletwise/data/expense_data.dart';
+import 'package:walletwise/models/bank_account.dart';
+import 'package:walletwise/models/category.dart';
 import 'package:walletwise/utils/date_picker.dart';
 import 'package:walletwise/utils/gaps/Xgap.dart';
 import 'package:walletwise/utils/inputs/search_input.dart';
@@ -18,6 +21,7 @@ class RoutineExpenseForm extends StatelessWidget {
     return Form(
         key: controller.expenseFormKey,
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               WwTextfield(
@@ -29,14 +33,33 @@ class RoutineExpenseForm extends StatelessWidget {
                 label: 'Item',
               ),
               gapY("md"),
-              SearchInput(
-                label: "Category",
-                //context: context,
+              WwTextfield(
+                label: "peroid",
+                controller: controller.peroid,
+                icon: const Icon(Icons.title),
+                validator: (value) {
+                  return null;
+                },
               ),
               gapY("md"),
               SearchInput(
-                label: "Source",
-                //context: context,
+                  searchList: ExpenseData.categoryList,
+                  searchKeyExtractor: (items) => (items as Category).category,
+                  label: "Source",
+                  onSelection: (category) {
+                    controller.selectedCategory =
+                        category is Category ? category : null;
+                    print(category.id);
+                  }),
+              gapY("md"),
+              SearchInput(
+                searchList: BankAccountData.bankAccountList,
+                searchKeyExtractor: (items) => (items as BankAccount).name,
+                onSelection: (bank) {
+                  controller.selectedBankAccount =
+                      bank is BankAccount ? bank : null;
+                  print(bank.amount);
+                },
               ),
               gapY("md"),
               WwTextfield(
