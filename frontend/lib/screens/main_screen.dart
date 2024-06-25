@@ -48,6 +48,7 @@ class MainScreen extends StatelessWidget {
               gap(20),
               ElevatedButton(
                   onPressed: () {
+                    ExpenseController.fetchExpenseCategories();
                     PaymentController.fetchPayment();
                     BankAccController.fetchBankAccount();
                     BalanceCardController.fetch();

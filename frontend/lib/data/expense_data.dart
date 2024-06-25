@@ -1,6 +1,7 @@
 import "package:walletwise/models/budgets.dart";
 import "package:walletwise/models/category.dart";
 import "package:walletwise/models/expense.dart";
+import "package:walletwise/models/expense_category.dart";
 
 class ExpenseData {
   static List<Expense> expenseList = [
@@ -28,9 +29,8 @@ class ExpenseData {
       duration: 'june-10',
     )
   ];
-  static List<Category> categoryList = [
-    Category(category: "food", id: 3),
-    Category(category: "furniture", id: 3),
-    Category(category: "entertainment", id: 3),
+  static List<ExpenseCategory> categoryList = [
+    ExpenseCategory(name: "food", id: 3),
+    ExpenseCategory(name: "food", id: 3),
   ];
 }

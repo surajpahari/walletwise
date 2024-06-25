@@ -6,6 +6,7 @@ use App\Http\Controllers\BankBalanceController;
 use App\Http\Controllers\CashInHandController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\SavingController;
+use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -153,5 +154,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('bank-balances', BankBalanceController::class);
     Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
     Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);
+    Route::get ('/all-expense-categories',[ExpenseCategoryController::class,'getAllCategory']);
 });
 
