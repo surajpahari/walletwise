@@ -1,12 +1,10 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-import "package:get_storage/get_storage.dart";
 import "package:walletwise/api/urls/app_urls.dart";
 import "package:walletwise/models/expense_category.dart";
 import "package:walletwise/data/expense_data.dart";
 import "package:walletwise/models/bank_account.dart";
 import 'package:walletwise/controllers/modeloperation.dart';
-import "package:walletwise/models/category.dart";
 import "package:walletwise/utils/forms/wwForm.dart";
 import "package:walletwise/utils/snackbar.dart";
 
@@ -46,6 +44,36 @@ class ExpenseController extends Wwform {
           'name': item.text,
           'type': 'period',
           'period': '2',
+          'amount': amount.text,
+          'date': date.text,
+          'category_id': selectedCategory?.id.toString(),
+        },
+        url: ApiUrls.addExpense,
+        successAction: (response) {
+          print("hey");
+          formState.value = 0;
+          WwSnackbar.builder(
+              context, "Sucessfully Added", WwSnackbartype.success);
+        },
+        errorAction: () {
+          formState.value = 0;
+          WwSnackbar.builder(
+              context, "Error Occured while Adding", WwSnackbartype.success);
+        },
+      );
+    } catch (e) {
+      print('Error:$e');
+    }
+  }
+
+  Future<void> addDailyExpense(BuildContext context) async {
+    formState.value = 1;
+    try {
+      await ModelOperation().add(
+        body: {
+          'bank_balance_id': selectedBankAccount?.id.toString(),
+          'name': item.text,
+          'type': 'daily',
           'amount': amount.text,
           'date': date.text,
           'category_id': selectedCategory?.id.toString(),

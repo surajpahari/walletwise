@@ -3,6 +3,7 @@ import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
 import 'package:walletwise/utils/charts/expense_bar.dart';
+import 'package:walletwise/utils/forms/expense/daily_expense.dart';
 import 'package:walletwise/utils/forms/expense/routine_expense.dart';
 import 'package:walletwise/utils/tabs/tab.dart';
 
@@ -63,10 +64,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                     tab1: 'daily',
                     tab2: 'routine',
                     tab1Screen: Builder(
-                      builder: (context) => Text("DailyExpenseForm"),
+                      builder: (context) => const DailyExpenseForm(),
                     ),
                     tab2Screen: Builder(
-                      builder: (context) => RoutineExpenseForm(),
+                      builder: (context) => const RoutineExpenseForm(),
                     ),
                   ),
                 );
