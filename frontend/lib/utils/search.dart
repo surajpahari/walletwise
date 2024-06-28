@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/controllers/stocks/stock_controller.dart';
+import 'package:walletwise/controllers/stocks/stock_search_controller.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});

@@ -14,15 +14,11 @@ class StockCard extends StatelessWidget {
           Get.to(StockDetail(stock: stock));
         },
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-          padding: EdgeInsets.all(20.0),
+          margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
             color: AppColors.lowDarkBlue,
-            border: Border.all(
-              color: Colors.grey[800]!,
-              width: 1,
-            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +28,7 @@ class StockCard extends StatelessWidget {
                 children: [
                   Text(
                     stock.symbol,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white, // Text color
@@ -40,7 +36,7 @@ class StockCard extends StatelessWidget {
                   ),
                   Text(
                     'Rs${stock.currentData?.low ?? ' ---'}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white, // Text color

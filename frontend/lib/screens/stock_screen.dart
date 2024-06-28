@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/controllers/stocks/stock_controller.dart';
+import 'package:walletwise/controllers/stocks/stock_search_controller.dart';
 import 'package:walletwise/data/stock_search_result.dart';
 import 'package:walletwise/screens/stock_detail.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
