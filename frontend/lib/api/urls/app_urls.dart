@@ -9,6 +9,7 @@ class ApiUrls {
   static String baseUrl = "http://192.168.1.68:8000";
   static Url testUrl = Url('/api/test');
   static Url test2Url = Url('/api/test2');
+
   //urls related to atuthentication authentication
   static Url loginUrl = Url('/api/auth/login');
   static Url signupUrl = Url('/api/auth/register');
@@ -26,13 +27,13 @@ class ApiUrls {
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');
-
   static Url fetchBankAcc = Url('/api/all-accounts');
 
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
   static Url randomStocks = Url("/api/random_stock");
   static Url addStocks = Url("/api/stocks/add_stocks");
+  static Url fetchBoughtStocks = Url("/api/stocks/bought_stocks");
 
   //urls realted to the saving goals
   static Url fetchSavingGoal = Url("/api/savings/fetch");

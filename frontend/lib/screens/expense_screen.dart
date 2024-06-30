@@ -47,29 +47,38 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           backgroundColor: Colors.red,
           onPressed: () {
             showModalBottomSheet(
-              //if isclosed is true i want to close this sheet
+              sheetAnimationStyle:
+                  AnimationStyle(duration: const Duration(seconds: 1)),
               useSafeArea: true,
               backgroundColor: AppColors.black,
               context: context,
-              isScrollControlled:
-                  true, // Ensures the bottom sheet can adjust height
+              isScrollControlled: true,
               builder: (context) {
-                return Padding(
-                  padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context)
-                        .viewInsets
-                        .bottom, // Adjusts for keyboard
-                  ),
-                  child: WwTab(
-                    tab1: 'daily',
-                    tab2: 'routine',
-                    tab1Screen: Builder(
-                      builder: (context) => const DailyExpenseForm(),
-                    ),
-                    tab2Screen: Builder(
-                      builder: (context) => const RoutineExpenseForm(),
-                    ),
-                  ),
+                return DraggableScrollableSheet(
+                  expand: false,
+                  initialChildSize: 0.8, // Adjust this value as needed
+                  maxChildSize: 0.8, // Adjust this value as needed
+                  minChildSize: 0.5, // Adjust this value as needed
+                  builder: (context, scrollController) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom,
+                      ),
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        child: WwTab(
+                          tab1: 'daily',
+                          tab2: 'routine',
+                          tab1Screen: Builder(
+                            builder: (context) => const DailyExpenseForm(),
+                          ),
+                          tab2Screen: Builder(
+                            builder: (context) => const RoutineExpenseForm(),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             );
