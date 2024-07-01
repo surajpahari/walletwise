@@ -10,22 +10,22 @@ class IncomeData {
   static List<Budget> budgetsList = [
     Budget(
       amount: 2000,
-      category: Category(id: 2, category: 'Stocks'),
+      category: Category.withAmount(id: 2, category: 'Stocks'),
       duration: 'Oct-2',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'Freelancing'),
+      category: Category.withAmount(id: 2, category: 'Freelancing'),
       duration: 'june-10',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'Home rent'),
+      category: Category.withAmount(id: 2, category: 'Home rent'),
       duration: 'june-10',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'Job'),
+      category: Category.withAmount(id: 2, category: 'Job'),
       duration: 'june-10',
     )
   ];

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/models/category.dart';
+import 'package:walletwise/models/item.dart';
 import 'package:walletwise/utils/forms/income/daily_income.dart';
 import 'package:walletwise/utils/tabs/tab.dart';
 import 'package:walletwise/data/income_data.dart';
@@ -24,14 +26,23 @@ class _IncomeScreenState extends State<IncomeScreen> {
         children: [
           ExpenseBarChart(
             color: Colors.green,
-            expenses: [
-              Expense(5, 'Food'),
-              Expense(10, 'Transport'),
-              Expense(30000, 'Entertainment'),
-              Expense(12, 'Utilities'),
-              Expense(9, 'Others'),
-              Expense(5, 'Food'),
-              Expense(11, 'Transport'),
+            categories: [
+              Category.withItems(
+                  category: 'Food',
+                  items: [Item(amount: 200, name: 'whatever')],
+                  id: 20),
+              Category.withItems(
+                  category: 'Transport',
+                  items: [Item(amount: 400, name: 'whatever')],
+                  id: 20),
+              Category.withItems(
+                  category: 'Bills',
+                  items: [Item(name: 'internet', amount: 1500)],
+                  id: 13),
+              Category.withItems(
+                  category: 'Entertainment',
+                  items: [Item(name: 'internet', amount: 700)],
+                  id: 13),
             ],
           ),
           Column(

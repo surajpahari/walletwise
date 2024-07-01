@@ -16,7 +16,7 @@ class Budget {
         'id': int id,
       } =>
         Budget(
-            category: Category(id: id, category: category),
+            category: Category.withAmount(id: id, category: category),
             amount: amount,
             duration: duration),
       _ => throw const FormatException('Failed to the budget.'),

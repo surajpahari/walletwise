@@ -21,17 +21,14 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            //Container(
+            //  padding: const EdgeInsets.all(10),
+            //  color: AppColors.lowDarkBlue,
+            //  child: const Text("Last 7 days"),
+            //),
             ExpenseBarChart(
               color: Colors.red,
-              expenses: [
-                Expense(5, 'Food'),
-                Expense(10, 'Transport'),
-                Expense(7, 'Entertainment'),
-                Expense(12, 'Utilities'),
-                Expense(9, 'Others'),
-                Expense(5, 'Food'),
-                Expense(11, 'Transport'),
-              ],
+              categories: ExpenseData.categoryList,
             ),
             Column(
               children: ExpenseData.budgetsList.map((budget) {

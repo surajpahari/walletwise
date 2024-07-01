@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:walletwise/constants/app_colors.dart';
-import 'package:walletwise/models/category.dart';
 
-class ExpenseBarChart extends StatelessWidget {
-  final List<Category> categories;
+class CategoryGraphData {
+  final double amount;
+  final String category;
+
+  CategoryGraphData(this.amount, this.category);
+}
+
+class CategoryGraphChart extends StatelessWidget {
+  final List<Expense> expenses;
   final Color color;
 
-  ExpenseBarChart({required this.categories, required this.color});
+  CategoryGraphChart({required this.expenses, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +28,10 @@ class ExpenseBarChart extends StatelessWidget {
             child: BarChart(
               BarChartData(
                 alignment: BarChartAlignment.spaceAround,
-                maxY: categories
+                maxY: expenses
                         .map((e) => e.amount)
                         .reduce((a, b) => a > b ? a : b) +
-                    10.0,
+                    10,
                 barTouchData: BarTouchData(
                   touchTooltipData: BarTouchTooltipData(
                     tooltipBgColor: Colors.blueGrey,
@@ -47,38 +53,35 @@ class ExpenseBarChart extends StatelessWidget {
                       sideTitles: SideTitles(
                         showTitles: true,
                         getTitlesWidget: (double value, title) {
-                          return Text(categories[value.toInt()].category);
+                          switch (value.toInt()) {
+                            case 0:
+                              return Text('Sun');
+                            case 1:
+                              return Text('Mon');
+                            case 2:
+                              return Text('Tue');
+                            case 3:
+                              return Text('Wes');
+                            case 4:
+                              return Text('Thu');
+                            case 5:
+                              return Text('Fir');
+                            case 6:
+                              return Text('Sat');
+                            default:
+                              return Text('');
+                          }
                         },
-                        //getTitlesWidget: (double value, title) {
-                        //  switch (value.toInt()) {
-                        //    case 0:
-                        //      return Text('Sun');
-                        //    case 1:
-                        //      return Text('Mon');
-                        //    case 2:
-                        //      return Text('Tue');
-                        //    case 3:
-                        //      return Text('Wes');
-                        //    case 4:
-                        //      return Text('Thu');
-                        //    case 5:
-                        //      return Text('Fir');
-                        //    case 6:
-                        //      return Text('Sat');
-                        //    default:
-                        //      return Text('');
-                        //  }
-                        //},
                       ),
                     )),
-                barGroups: categories.asMap().entries.map((entry) {
+                barGroups: expenses.asMap().entries.map((entry) {
                   final index = entry.key;
-                  final category = entry.value;
+                  final expense = entry.value;
                   return BarChartGroupData(
                     x: index,
                     barRods: [
                       BarChartRodData(
-                        toY: category.amount.toDouble(),
+                        toY: expense.amount,
                         color: color,
                         width: 22,
                         borderRadius: BorderRadius.circular(6),

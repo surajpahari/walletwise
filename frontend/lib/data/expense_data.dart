@@ -10,27 +10,33 @@ class ExpenseData {
   static List<Budget> budgetsList = [
     Budget(
       amount: 2000,
-      category: Category(id: 2, category: 'food'),
+      category: Category.withAmount(id: 2, category: 'food'),
       duration: 'Oct-2',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'petrol'),
+      category: Category.withAmount(id: 2, category: 'petrol'),
       duration: 'june-10',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'petrol'),
+      category: Category.withAmount(id: 2, category: 'petrol'),
       duration: 'june-10',
     ),
     Budget(
       amount: 500,
-      category: Category(id: 2, category: 'petrol'),
+      category: Category.withAmount(id: 2, category: 'petrol'),
       duration: 'june-10',
     )
   ];
-  static List<ExpenseCategory> categoryList = [
-    ExpenseCategory(name: "food", id: 3),
-    ExpenseCategory(name: "food", id: 3),
+  //static List<ExpenseCategory> categoryList = [
+  //  ExpenseCategory(name: "food", id: 3),
+  //  ExpenseCategory(name: "food", id: 3),
+  //];
+  static List<Category> categoryList = [
+    Category.withAmount(category: "food", id: 10, amount: 100),
+    Category.withAmount(category: "transportation", id: 10, amount: 1000),
+    Category.withAmount(category: "home rent", id: 10, amount: 2000),
+    Category.withAmount(category: "free lancing", id: 10, amount: 20)
   ];
 }
