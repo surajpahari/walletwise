@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:walletwise/constants/app_icons.dart';
-import 'package:walletwise/models/budgets.dart';
+import 'package:walletwise/models/category.dart';
 import 'package:walletwise/screens/category_screen.dart';
 
 class IncomeCard extends StatelessWidget {
-  final Budget budget;
+  final Category category;
 
-  const IncomeCard({Key? key, required this.budget}) : super(key: key);
+  const IncomeCard({Key? key, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,9 @@ class IncomeCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => CategoryScreen(
-                id: budget.category.id,
-                category: budget.category.category,
-                total: budget.amount,
+                id: category.id,
+                category: category.category,
+                total: category.amount.toInt(),
               ),
             ),
           );
@@ -51,7 +50,7 @@ class IncomeCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(
-                        budget.category.category,
+                        category.category,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -61,7 +60,7 @@ class IncomeCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        "Rs ${budget.amount.toString()}",
+                        "Rs ${category.amount.toString()}",
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,

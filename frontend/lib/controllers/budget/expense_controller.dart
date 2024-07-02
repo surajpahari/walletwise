@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:walletwise/api/urls/app_urls.dart";
+import "package:walletwise/models/category.dart";
 import "package:walletwise/models/expense_category.dart";
 import "package:walletwise/data/expense_data.dart";
 import "package:walletwise/models/bank_account.dart";
@@ -19,9 +20,9 @@ class ExpenseController extends Wwform {
   final TextEditingController peroid = TextEditingController(text: "peroid");
   GlobalKey<FormState> expenseFormKey = GlobalKey<FormState>();
   void add() {
-    print(date.text.toString());
-    print(item.text);
-    print(amount.text);
+    //print(date.text.toString());
+    //print(item.text);
+    //print(amount.text);
   }
 
 //for fetching fetchExpenseCategories
@@ -35,6 +36,18 @@ class ExpenseController extends Wwform {
     }
   }
 
+//for fetching the user category
+  static Future<void> fetchUserCategories() async {
+    try {
+      ModelOperation.fetchFunction(
+          ApiUrls.fetchUserCategories, (json) => Category.fromAmountJson(json),
+          targetList: ExpenseData.userCategoryList);
+    } catch (e) {
+      print("Error:$e");
+    }
+  }
+
+//to add the routine Expenses
   Future<void> addRoutineExpense(BuildContext context) async {
     formState.value = 1;
     try {
@@ -66,6 +79,7 @@ class ExpenseController extends Wwform {
     }
   }
 
+// to add the daily expenses
   Future<void> addDailyExpense(BuildContext context) async {
     formState.value = 1;
     try {

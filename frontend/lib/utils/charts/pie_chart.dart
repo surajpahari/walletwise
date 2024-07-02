@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
-import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/data/graph_data.dart';
 
 class MyPieChart extends StatelessWidget {

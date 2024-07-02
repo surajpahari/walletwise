@@ -6,8 +6,10 @@ import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/budget/payment_controller.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
+import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
+import 'package:walletwise/models/expense_category.dart';
 import 'package:walletwise/utils/cards/bank_card.dart';
 import 'package:walletwise/utils/cards/balance_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
@@ -44,15 +46,11 @@ class MainScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //balnaceCard section
-              BalanceCard(),
+              const BalanceCard(),
               gap(20),
               ElevatedButton(
                   onPressed: () {
-                    ExpenseController.fetchExpenseCategories();
-                    PaymentController.fetchPayment();
-                    BankAccController.fetchBankAccount();
-                    BalanceCardController.fetch();
-                    SavinggoalController.fetchSaving();
+                    ExpenseController.fetchUserCategories();
                   },
                   child: const Text("fetch")),
 

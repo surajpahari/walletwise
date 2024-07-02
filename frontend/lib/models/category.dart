@@ -23,15 +23,21 @@ class Category {
     return items.fold(0, (total, item) => total + item.amount);
   }
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    // if (json['amount'] == null || json['items'] == null) {
-    //   throw const FormatException('Failed to parse the Category from JSON.');
-    // }
+  factory Category.fromItemsJson(Map<String, dynamic> json) {
     String category = json['category'];
     int id = json['id'].toInt();
     List<Item> items = (json['items'] as List<dynamic>)
         .map((itemJson) => Item.fromJson(itemJson as Map<String, dynamic>))
         .toList();
     return Category.withItems(id: id, category: category, items: items);
+  }
+
+  factory Category.fromAmountJson(Map<String, dynamic> json) {
+    String category = json['category'] as String? ?? "";
+    int id = json['id'] as int? ?? 1;
+    int amount = json['amount'] as int? ?? 0;
+
+    return Category.withAmount(
+        id: id, category: category, amount: amount.toDouble());
   }
 }

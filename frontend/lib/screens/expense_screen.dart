@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/budget_card.dart';
 import 'package:walletwise/utils/charts/expense_bar.dart';
@@ -20,21 +21,35 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            //Container(
-            //  padding: const EdgeInsets.all(10),
-            //  color: AppColors.lowDarkBlue,
-            //  child: const Text("Last 7 days"),
-            //),
+            Padding(
+                padding: const EdgeInsets.all(8),
+                child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: AppColors.lowDarkBlue,
+                    child: const Text(
+                      "Last 30 days",
+                      textAlign: TextAlign.start,
+                    ))),
+            const Text(
+              "Total:25000",
+              textAlign: TextAlign.center,
+            ),
             ExpenseBarChart(
               color: Colors.red,
-              categories: ExpenseData.categoryList,
+              categories: ExpenseData.spentCategoryList,
             ),
-            Column(
-              children: ExpenseData.budgetsList.map((budget) {
-                return BudgetCard(budget: budget);
-              }).toList(),
-            ),
+            Obx(() => Wrap(
+                  alignment: WrapAlignment.end,
+                  children: ExpenseData.userCategoryList
+                      .asMap()
+                      .entries
+                      .map((entry) => Column(
+                            children: [BudgetCard(category: entry.value)],
+                          ))
+                      .toList(),
+                )),
           ],
         ),
       ),

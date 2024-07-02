@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/data/expense_data.dart';
 import 'dart:convert';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
@@ -53,6 +54,7 @@ class LoginController extends ApiToken {
           String token = responseData['token'];
           ApiToken.authToken = token;
           Get.to(const BottomNavigation());
+          ExpenseData.pieFromItem(ExpenseData.fetchedItems[0]);
           BalanceCardController.fetch();
           BankAccController.fetchBankAccount();
           SavinggoalController.fetchSaving();

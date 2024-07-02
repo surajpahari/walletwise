@@ -47,6 +47,14 @@ class ItemCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
+                const Text(
+                  "2023-01-34",
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 const SizedBox(height: 16),
               ],
             ),

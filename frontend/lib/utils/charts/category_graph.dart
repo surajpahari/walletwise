@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/models/category.dart';
 
 class CategoryGraphData {
   final double amount;
@@ -10,7 +11,7 @@ class CategoryGraphData {
 }
 
 class CategoryGraphChart extends StatelessWidget {
-  final List<Expense> expenses;
+  final List<Category> expenses;
   final Color color;
 
   CategoryGraphChart({required this.expenses, required this.color});

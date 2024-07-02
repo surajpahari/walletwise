@@ -30,12 +30,12 @@ class ModelOperation {
         if (errorAction != null) {
           errorAction();
         }
-
         return null;
       }
     }
   }
 
+//for fetching the model and storing it the targetList
   static Future<List<T>> fetchFunction<T>(
       Url apiUrl, T Function(Map<String, dynamic>) fromJson,
       {List<T>? targetList, String? listKey}) async {
@@ -46,10 +46,10 @@ class ModelOperation {
           .fetchAuthorizedAPI();
 
       if (response.statusCode == 200) {
+        print(response.body);
         //try to convert it into the list
         try {
           List<dynamic> jsonResponse = [];
-          print(jsonResponse);
           if (listKey != null) {
             jsonResponse = jsonDecode(response.body)[listKey];
             print(jsonDecode(response.body)[listKey]);
@@ -63,6 +63,7 @@ class ModelOperation {
           if (targetList != null) {
             targetList.clear();
             targetList.addAll(modelList);
+            print(targetList);
           }
         } catch (e) {
           print(e);
@@ -76,7 +77,7 @@ class ModelOperation {
         throw Exception('Failed to fetch data: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error fetching data: $e');
+      print('Error fetching data');
       throw Exception('Failed to fetch data: $e');
     }
   }

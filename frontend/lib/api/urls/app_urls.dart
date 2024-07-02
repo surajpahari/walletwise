@@ -49,4 +49,5 @@ class ApiUrls {
   //urls for the expenses
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
+  static Url fetchUserCategories = Url("/api/expenses-category");
 }

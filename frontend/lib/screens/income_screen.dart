@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
-import 'package:walletwise/models/category.dart';
-import 'package:walletwise/models/item.dart';
 import 'package:walletwise/utils/forms/income/daily_income.dart';
 import 'package:walletwise/utils/tabs/tab.dart';
 import 'package:walletwise/data/income_data.dart';
@@ -23,31 +21,23 @@ class _IncomeScreenState extends State<IncomeScreen> {
       // backgroundColor: Colors.grey[900],
       body: SingleChildScrollView(
           child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          Padding(
+              padding: const EdgeInsets.all(8),
+              child: Container(
+                  padding: const EdgeInsets.all(10),
+                  color: AppColors.lowDarkBlue,
+                  child: const Text(
+                    "Last 7 days",
+                    textAlign: TextAlign.start,
+                  ))),
           ExpenseBarChart(
-            color: Colors.green,
-            categories: [
-              Category.withItems(
-                  category: 'Food',
-                  items: [Item(amount: 200, name: 'whatever')],
-                  id: 20),
-              Category.withItems(
-                  category: 'Transport',
-                  items: [Item(amount: 400, name: 'whatever')],
-                  id: 20),
-              Category.withItems(
-                  category: 'Bills',
-                  items: [Item(name: 'internet', amount: 1500)],
-                  id: 13),
-              Category.withItems(
-                  category: 'Entertainment',
-                  items: [Item(name: 'internet', amount: 700)],
-                  id: 13),
-            ],
-          ),
+              color: Colors.green, categories: IncomeData.incomeCategories),
           Column(
-            children: IncomeData.budgetsList.map((budget) {
-              return IncomeCard(budget: budget);
+            children: IncomeData.incomeCategories.map((category) {
+              return IncomeCard(category: category);
             }).toList(),
           ),
         ],

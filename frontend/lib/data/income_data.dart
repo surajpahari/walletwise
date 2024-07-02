@@ -29,4 +29,8 @@ class IncomeData {
       duration: 'june-10',
     )
   ];
+  static List<Category> incomeCategories = [
+    Category.withAmount(id: 1, category: "Job", amount: 2000),
+    Category.withAmount(id: 2, category: "Upwork", amount: 20000)
+  ];
 }
