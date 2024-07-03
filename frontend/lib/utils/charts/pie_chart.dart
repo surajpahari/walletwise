@@ -16,25 +16,29 @@ class MyPieChart extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Obx(() => PieChart(
-                PieChartData(
-                  sectionsSpace: 4,
-                  borderData: FlBorderData(show: false),
-                  centerSpaceRadius: 50,
-                  sections: data
-                      .map((item) => PieChartSectionData(
-                            showTitle: false,
-                            titleStyle: const TextStyle(color: Colors.white),
-                            value: item.value,
-                            title: item.name,
-                            color: getColor(++index),
-                            radius: 20,
-                          ))
-                      .toList(),
-                ),
-                swapAnimationDuration: Duration(milliseconds: 150), // Optional
-                swapAnimationCurve: Curves.linear,
-              )),
+          data.isNotEmpty
+              ? Obx(() => PieChart(
+                    PieChartData(
+                      sectionsSpace: 4,
+                      borderData: FlBorderData(show: false),
+                      centerSpaceRadius: 50,
+                      sections: data
+                          .map((item) => PieChartSectionData(
+                                showTitle: false,
+                                titleStyle:
+                                    const TextStyle(color: Colors.white),
+                                value: item.value,
+                                title: item.name,
+                                color: getColor(++index),
+                                radius: 20,
+                              ))
+                          .toList(),
+                    ),
+                    swapAnimationDuration:
+                        Duration(milliseconds: 150), // Optional
+                    swapAnimationCurve: Curves.linear,
+                  ))
+              : Text("Data not found"),
           Text(
             data.fold(0.0, (sum, item) => sum + item.value).toString(),
             style: TextStyle(

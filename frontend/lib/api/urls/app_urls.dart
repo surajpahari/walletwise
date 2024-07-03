@@ -50,4 +50,10 @@ class ApiUrls {
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
   static Url fetchUserCategories = Url("/api/expenses-category");
+
+  static Url Function(dynamic) fetchItems =
+      (id) => Url("/api/get-expense-items?id=$id");
+  static getQueryUrl(Url url, String queryName, String query) {
+    return Url("${url.value}?$queryName=$query");
+  }
 }

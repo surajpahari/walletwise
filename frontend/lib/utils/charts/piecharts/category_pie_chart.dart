@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:walletwise/models/category.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/graph_data.dart';
 
+typedef PieDataExtractor = PieData Function(dynamic item);
+
 class CategoryPieChart extends StatelessWidget {
-  final List<PieData> data;
+  final Category data;
+  final List<PieData> pieDataList;
+
   int index = -1;
-  CategoryPieChart(this.data, {Key? key}) : super(key: key);
+  CategoryPieChart(this.data, {Key? key}) : pieDataList = data.getPieData();
 
   @override
   Widget build(BuildContext context) {
@@ -15,27 +21,32 @@ class CategoryPieChart extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          PieChart(
-            PieChartData(
-              sectionsSpace: 4,
-              borderData: FlBorderData(show: false),
-              centerSpaceRadius: 50,
-              sections: data
-                  .map((item) => PieChartSectionData(
-                        showTitle: false,
-                        titleStyle: const TextStyle(color: Colors.white),
-                        value: item.value,
-                        title: item.name,
-                        color: getColor(++index),
-                        radius: 20,
-                      ))
-                  .toList(),
-            ),
-            swapAnimationDuration: Duration(milliseconds: 150), // Optional
-            swapAnimationCurve: Curves.linear,
-          ),
+          pieDataList.isNotEmpty
+              ? PieChart(
+                  PieChartData(
+                    sectionsSpace: 4,
+                    borderData: FlBorderData(show: false),
+                    centerSpaceRadius: 50,
+                    sections: pieDataList
+                        .map((item) => PieChartSectionData(
+                              showTitle: false,
+                              titleStyle: const TextStyle(color: Colors.white),
+                              value: item.value,
+                              title: item.name,
+                              color: getColor(++index),
+                              radius: 20,
+                            ))
+                        .toList(),
+                  ),
+                  swapAnimationDuration:
+                      Duration(milliseconds: 150), // Optional
+                  swapAnimationCurve: Curves.linear,
+                )
+              : Text("no data found"),
           Text(
-            data.fold(0.0, (sum, item) => sum + item.value).toString(),
+            data.amount.toString(),
+            //"1000",
+            //data.pieData.fold(0.0, (sum, item) => sum + item.value).toString(),
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,

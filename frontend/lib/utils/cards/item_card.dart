@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/item.dart';
 
 class ItemCard extends StatelessWidget {
   final String title;
   final int amount;
   final int total;
+  final Item item;
 
   const ItemCard({
     Key? key,
     required this.title,
     required this.amount,
+    required this.item,
     required this.total,
   }) : super(key: key);
 

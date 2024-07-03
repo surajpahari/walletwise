@@ -47,7 +47,7 @@ class ModelOperation {
 
       if (response.statusCode == 200) {
         print(response.body);
-        //try to convert it into the list
+        //tryL to convert it into the list
         try {
           List<dynamic> jsonResponse = [];
           if (listKey != null) {
@@ -79,6 +79,41 @@ class ModelOperation {
     } catch (e) {
       print('Error fetching data');
       throw Exception('Failed to fetch data: $e');
+    }
+  }
+
+  //for fetching the items with id
+
+  static Future<bool> fetchWithId(Url apiUrl,
+      {String? id, Function? successAction, Function? errorAction}) async {
+    if (id == null) {
+      return false;
+    }
+
+    try {
+      final response =
+          await FetchAPI(apiUrl, HttpMethod.get, body: {'id': id.toString()})
+              .fetchAuthorizedAPI();
+      print(response?.statusCode);
+      print(response?.body);
+      if (response?.statusCode == 200) {
+        if (successAction != null) {
+          successAction(response?.body);
+        }
+        return true;
+      } else {
+        debugPrint(response?.body);
+        if (errorAction != null) {
+          errorAction();
+        }
+        return false;
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+      if (errorAction != null) {
+        errorAction();
+      }
+      return false;
     }
   }
 }

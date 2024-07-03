@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
+import 'package:walletwise/utils/charts/pie_chart.dart';
 import 'package:walletwise/utils/charts/piecharts/category_pie_chart.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -20,6 +23,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void initState() {
     super.initState();
+    ExpenseController.fetchUserCategories();
+    ExpenseController.fetchItemForCategory(widget.id);
     // Call getChartData function to get chart data
   }
 
@@ -42,43 +47,37 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   "Total: Rs ${widget.total}",
                   style: const TextStyle(color: Colors.white, fontSize: 30.0),
                 ),
-                CategoryPieChart(ExpenseData.categoryPieData),
-                //FutureBuilder(
-                //    future: BudgetController.getFullBudgets(widget.id),
-                //    builder: (context, snapshot) {
-                //      List<PieData> pieDatas = [];
-                //      if (BudgetController.categories.isNotEmpty) {
-                //        for (Item item
-                //            in BudgetController.categories[0].items) {
-                //          PieData data = PieData(
-                //              name: item.name, value: item.amount.toDouble());
-                //          pieDatas.add(data);
-                //        }
-                //      }
-                //      return Padding(
-                //        padding: const EdgeInsets.all(20),
-                //        child: MyPieChart(pieDatas),
-                //      );
-                //    }),
+                Obx(() => CategoryPieChart(ExpenseData.detailedCategory[0])),
                 const SizedBox(height: 20, width: 20),
                 const Text(
-                  "Last 30 days",
+                  "Last 32days",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
-                Column(
-                  children: ExpenseData.fetchedItems[0]
-                      .map((item) => Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: ItemCard(
-                              title: item
-                                  .name, // Change to appropriate property name
-                              amount: item.amount,
-                              total: widget
-                                  .total, // Pass the total from the widget
-                            ),
-                          ))
-                      .toList(),
-                )
+                Obx(() => Column(
+                      children: ExpenseData.detailedCategory.isNotEmpty
+                          ? ExpenseData.detailedCategory[0].items
+                              .map((item) => ItemCard(
+                                  title: item.name,
+                                  amount: item.amount,
+                                  total: item.amount,
+                                  item: item))
+                              .toList()
+                          : [],
+                    )),
+                //Column(
+                //  children: ExpenseData.fetchedItems[0]
+                //      .map((item) => Padding(
+                //            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                //            child: ItemCard(
+                //              title: item
+                //                  .name, // Change to appropriate property name
+                //              amount: item.amount,
+                //              total: widget
+                //                  .total, // Pass the total from the widget
+                //            ),
+                //          ))
+                //      .toList(),
+                //)
               ],
             ),
 

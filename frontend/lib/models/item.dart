@@ -2,16 +2,16 @@ class Item {
   int id;
   String name;
   int amount;
-  Item({this.id = 0, required this.amount, required this.name});
+  String? date;
+
+  Item({this.id = 0, required this.amount, required this.name, this.date});
 
   factory Item.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        'name': String name,
-        'amount': int amount,
-      } =>
-        Item(name: name, amount: amount),
-      _ => throw const FormatException('Failed to the budget.'),
-    };
+    return Item(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? '',
+      amount: json['amount'] ?? 0,
+      date: json['date'],
+    );
   }
 }

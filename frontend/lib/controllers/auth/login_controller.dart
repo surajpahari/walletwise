@@ -54,7 +54,6 @@ class LoginController extends ApiToken {
           String token = responseData['token'];
           ApiToken.authToken = token;
           Get.to(const BottomNavigation());
-          ExpenseData.pieFromItem(ExpenseData.fetchedItems[0]);
           BalanceCardController.fetch();
           BankAccController.fetchBankAccount();
           SavinggoalController.fetchSaving();

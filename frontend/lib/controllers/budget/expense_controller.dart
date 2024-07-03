@@ -1,3 +1,5 @@
+import "dart:convert";
+
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:walletwise/api/urls/app_urls.dart";
@@ -30,7 +32,7 @@ class ExpenseController extends Wwform {
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchExpenseCategories,
           (json) => ExpenseCategory.fromJson(json),
-          targetList: ExpenseData.categoryList, listKey: "expenses");
+          targetList: ExpenseData.categoryList, listKey: "categories");
     } catch (e) {
       print('Error: $e');
     }
@@ -108,6 +110,27 @@ class ExpenseController extends Wwform {
     } catch (e) {
       print('Error:$e');
     }
+  }
+
+//fetch the item form the category
+  static Future<void> fetchItemForCategory(int categoryId) async {
+    ModelOperation.fetchWithId(ApiUrls.fetchItems(categoryId.toString()),
+        id: '1', successAction: (response) {
+      //print(jsonResponse[0]);
+
+      var jsonResponse = jsonDecode(response) as List<dynamic>;
+      print("decode is $jsonResponse");
+      ExpenseData.detailedCategory.value = jsonResponse
+          .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
+          .toList();
+      //ExpenseData.detailedCategory.value = (jsonResponse as List<dynamic>)
+      //    .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
+      //    .toList();
+      //ExpenseData.detailedCategory = jsonResponse.map((item) {
+      //  Category.fromItemsJson(jsonResponse);
+      //}).toList();
+      print("mapped ExpenseData.detailedCategory");
+    });
   }
 
   @override

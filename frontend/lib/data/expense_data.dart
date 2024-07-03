@@ -32,6 +32,7 @@ class ExpenseData {
       duration: 'june-10',
     )
   ];
+  //all the available Category
   static List<ExpenseCategory> categoryList = [
     ExpenseCategory(name: "food", id: 3),
     ExpenseCategory(name: "food", id: 3),
@@ -40,20 +41,8 @@ class ExpenseData {
   static RxList<Category> userCategoryList = <Category>[
     Category.withAmount(category: "food", id: 3, amount: 400),
   ].obs;
-  static List<Category> spentCategoryList = [
-    Category.withAmount(category: "food", id: 10, amount: 100),
-    Category.withAmount(category: "transportation", id: 10, amount: 1000),
-    Category.withAmount(id: 12, category: "Entertainment", amount: 1200)
-  ];
-  static List<PieData> pieFromItem(List<Item> itemList) {
-    List<PieData> list = <PieData>[];
-    itemList.map((item) {
-      list.add(PieData(value: item.amount.toDouble(), name: item.name));
-    });
-    categoryPieData = list;
-    return list;
-  }
 
+  static RxList<Category> detailedCategory = <Category>[].obs;
   static List<List<Item>> fetchedItems = [
     [
       Item(id: 1, amount: 200, name: 'Eggs'),
@@ -61,10 +50,10 @@ class ExpenseData {
       Item(id: 3, amount: 100, name: 'Banana'),
     ],
   ];
-  static List<PieData> categoryPieData = [
+  static RxList<PieData> categoryPieData = [
     PieData(name: "Eggs", value: 200),
     PieData(name: "Eggs", value: 200),
     PieData(name: "Bread", value: 60),
     PieData(name: "Banana", value: 300)
-  ];
+  ].obs;
 }

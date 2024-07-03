@@ -48,7 +48,7 @@ class RoutineExpenseForm extends StatelessWidget {
                   searchList: ExpenseData.categoryList,
                   searchKeyExtractor: (items) =>
                       (items as ExpenseCategory).name,
-                  label: "Source",
+                  label: "Category",
                   onSelection: (category) {
                     controller.selectedCategory =
                         category is ExpenseCategory ? category : null;
@@ -59,6 +59,7 @@ class RoutineExpenseForm extends StatelessWidget {
                 SearchInput(
                   searchList: BankAccountData.bankAccountList,
                   searchKeyExtractor: (items) => (items as BankAccount).name,
+                  label: "Source of expense",
                   onSelection: (bank) {
                     controller.selectedBankAccount =
                         bank is BankAccount ? bank : null;

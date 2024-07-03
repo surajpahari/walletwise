@@ -1,3 +1,4 @@
+import "package:walletwise/data/graph_data.dart";
 import "package:walletwise/models/item.dart";
 
 class Category {
@@ -5,12 +6,15 @@ class Category {
   final String category;
   final List<Item> items;
   final double amount;
+  final List<PieData> pieData = [];
 
   // Private constructor
   // Named constructor for items
-  Category.withItems(
-      {required this.id, required this.category, required this.items})
-      : amount = _calculateTotal(items);
+  Category.withItems({
+    required this.id,
+    required this.category,
+    required this.items,
+  }) : amount = _calculateTotal(items);
 
   // Named constructor for amount
   Category.withAmount(
@@ -25,7 +29,7 @@ class Category {
 
   factory Category.fromItemsJson(Map<String, dynamic> json) {
     String category = json['category'];
-    int id = json['id'].toInt();
+    int id = json['id'] as int? ?? 0;
     List<Item> items = (json['items'] as List<dynamic>)
         .map((itemJson) => Item.fromJson(itemJson as Map<String, dynamic>))
         .toList();
@@ -34,10 +38,23 @@ class Category {
 
   factory Category.fromAmountJson(Map<String, dynamic> json) {
     String category = json['category'] as String? ?? "";
-    int id = json['id'] as int? ?? 1;
+    int id = json['id'] as int? ?? 0;
     int amount = json['amount'] as int? ?? 0;
 
     return Category.withAmount(
         id: id, category: category, amount: amount.toDouble());
+  }
+  List<PieData> getPieData() {
+    // Replace with your actual calculation logic
+    if (items.isNotEmpty) {
+      //return <PieData>[PieData(name: "hell", value: 200)];
+      return items.map((item) {
+        return PieData(value: item.amount.toDouble(), name: item.name);
+      }).toList();
+    } else {
+      print("hell");
+
+      return <PieData>[PieData(name: "hell", value: 200)];
+    }
   }
 }

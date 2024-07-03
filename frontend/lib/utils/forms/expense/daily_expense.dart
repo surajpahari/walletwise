@@ -39,7 +39,7 @@ class DailyExpenseForm extends StatelessWidget {
                   searchList: ExpenseData.categoryList,
                   searchKeyExtractor: (items) =>
                       (items as ExpenseCategory).name,
-                  label: "Source",
+                  label: "Category",
                   onSelection: (category) {
                     controller.selectedCategory =
                         category is ExpenseCategory ? category : null;
@@ -49,6 +49,7 @@ class DailyExpenseForm extends StatelessWidget {
                 gapY("md"),
                 SearchInput(
                   searchList: BankAccountData.bankAccountList,
+                  label: "Source of expense",
                   searchKeyExtractor: (items) => (items as BankAccount).name,
                   onSelection: (bank) {
                     controller.selectedBankAccount =

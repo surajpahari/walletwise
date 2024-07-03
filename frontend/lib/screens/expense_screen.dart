@@ -38,7 +38,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             ),
             ExpenseBarChart(
               color: Colors.red,
-              categories: ExpenseData.spentCategoryList,
+              categories: ExpenseData.userCategoryList,
             ),
             Obx(() => Wrap(
                   alignment: WrapAlignment.end,
