@@ -3,6 +3,7 @@ import "dart:convert";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:walletwise/api/urls/app_urls.dart";
+import "package:walletwise/controllers/budget/payment_controller.dart";
 import "package:walletwise/models/category.dart";
 import "package:walletwise/models/expense_category.dart";
 import "package:walletwise/data/expense_data.dart";
@@ -19,7 +20,7 @@ class ExpenseController extends Wwform {
   ExpenseCategory? selectedCategory;
   BankAccount? selectedBankAccount;
   final TextEditingController date = TextEditingController();
-  final TextEditingController peroid = TextEditingController(text: "peroid");
+  final TextEditingController period = TextEditingController();
   GlobalKey<FormState> expenseFormKey = GlobalKey<FormState>();
   void add() {
     //print(date.text.toString());
@@ -58,7 +59,7 @@ class ExpenseController extends Wwform {
           'bank_balance_id': selectedBankAccount?.id.toString(),
           'name': item.text,
           'type': 'period',
-          'period': '2',
+          'period': period.text,
           'amount': amount.text,
           'date': date.text,
           'category_id': selectedCategory?.id.toString(),
@@ -69,6 +70,7 @@ class ExpenseController extends Wwform {
           formState.value = 0;
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);
+          PaymentController.fetchPayment();
         },
         errorAction: () {
           formState.value = 0;

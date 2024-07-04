@@ -47,7 +47,7 @@ class ExpenseController extends Controller
         $sourceName = $fields['bank_balance_id'] ? 'bank_balance' : 'cash_in_hand';
         $sourceId = $fields['bank_balance_id'] ?? $fields['cash_in_hand_id'];
 
-        if (! $fields['period']) {
+        if (!isset($fields['period'])) {
             try {
                 $deductExpenseAmount = $this->balanceService->deductExpenseAmount(
                     $sourceName,

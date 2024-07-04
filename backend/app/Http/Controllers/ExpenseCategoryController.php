@@ -65,6 +65,6 @@ class ExpenseCategoryController extends Controller
     }
     public function getAllCategory(){
         $categories = ExpenseCategory::select('id', 'name')->get();
-        return response()->json(['message' => 'Upcoming Expenses', 'expenses' => $categories]);
+        return response()->json(['message' => 'All cateogries', 'categories' => $categories]);
     }
 }

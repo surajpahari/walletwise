@@ -56,4 +56,8 @@ class ApiUrls {
   static getQueryUrl(Url url, String queryName, String query) {
     return Url("${url.value}?$queryName=$query");
   }
+
+  //get the last 30 days data from python
+  static Url getlast30 = Url("");
+  static Url getStockDetail = Url("");
 }

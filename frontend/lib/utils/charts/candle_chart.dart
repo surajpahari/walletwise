@@ -11,12 +11,12 @@ class WwCandleChart extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxHeight: 350),
       child: SfCartesianChart(
-          primaryXAxis: CategoryAxis(
+          primaryXAxis: const CategoryAxis(
               minimum: 0,
               maximum: 15,
               interval: 1,
               majorGridLines: MajorGridLines(width: 0)),
-          primaryYAxis: NumericAxis(
+          primaryYAxis: const NumericAxis(
             minimum: 0,
             maximum: 40,
             interval: 2,

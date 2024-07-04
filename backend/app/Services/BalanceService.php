@@ -37,23 +37,28 @@ class BalanceService
 
                 if ($amount > $bankBalance->amount) {
                     throw new Exception('Expense amount is greater than your bank balance');
+                    return false;
                 }
 
                 $bankBalance->amount = $bankBalance->amount - $amount;
                 $bankBalance->save();
+                return true;
                 break;
             case 'cash_in_hand':
                 $cashInHand = CashInHand::findOrFail($sourceId);
 
                 if ($amount > $cashInHand->amount) {
                     throw new Exception('Expense amount is greater than the amount you have');
+                    return false;
                 }
 
                 $cashInHand->amount = $cashInHand->amount - $amount;
                 $cashInHand->save();
+                return true;
                 break;
             default:
                 break;
+                return false;
         }
     }
 }

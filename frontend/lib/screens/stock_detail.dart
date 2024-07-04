@@ -6,6 +6,7 @@ import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/utils/charts/candle_chart.dart';
+import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
 
 class StockDetail extends StatelessWidget {
   const StockDetail({required this.stock, super.key});
@@ -31,15 +32,21 @@ class StockDetail extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "Apply model",
                           style: TextStyle(color: Colors.white),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(
-                        onPressed: () {}, child: Text("Add to watchlist")),
+                        onPressed: () {
+                          Dialogbuilder.stockForm(context, stock.id);
+                        },
+                        child: const Text(
+                          "Add",
+                          style: TextStyle(color: Colors.white),
+                        )),
                   ],
                 ),
               )

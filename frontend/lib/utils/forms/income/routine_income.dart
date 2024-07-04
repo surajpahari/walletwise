@@ -37,7 +37,7 @@ class RoutineIncomeForm extends StatelessWidget {
                 gapY("md"),
                 WwTextfield(
                   label: "period",
-                  controller: controller.peroid,
+                  controller: controller.period,
                   icon: const Icon(Icons.title),
                   validator: (value) {
                     return null;

@@ -17,5 +17,10 @@ class StockData {
     OHLCdata('may-10', 34, 9, 10, 27),
     OHLCdata('may-11', 38, 10, 41, 29),
     OHLCdata('may-23', 38, 10, 21, 29),
+    OHLCdata('may-24', 34, 9, 10, 27),
+    OHLCdata('may-25', 38, 10, 41, 29),
+    OHLCdata('may-26', 38, 10, 21, 29),
+    OHLCdata('may-27', 6, 7, 6, 24),
+    OHLCdata('may-28', 34, 9, 10, 27),
   ];
 }

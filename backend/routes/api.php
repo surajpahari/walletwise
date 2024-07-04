@@ -41,26 +41,26 @@ Route::controller(SavingController::class)->group(function () {
     Route::get('savings/fetch', 'fetch');
 });
 
-Route::post('test2', function (Request $request) {
+Route::get('get-expense-items', function (Request $request) {
 
-    $id = $request->input('id'); // Assuming the user sends the 'id' in the request body
+    $id = $request->query('id');// Assuming the user sends the 'id' in the request body
 
     switch ($id) {
-        case 1:
+        case '1':
             $data = [
                 [
                     'category' => 'Education',
                     'id' => 1,
-                    'items' => [['name' => 'college fee', 'amount' => 2000], ['name' => 'stationary', 'amount' => 20], ['name' => 'Other', 'amount' => 20]],
+                    'items' => [['name' => 'college fee', 'amount' => 2000], ['name' => 'stationary', 'amount' => 2000], ['name' => 'Other', 'amount' => 2000]],
                 ],
             ];
             break;
         case 4:
             $data = [
                 [
-                    'category' => 'Transportation',
-                    'id' => 4,
-                    'items' => [['name' => 'Petrol', 'amount' => 2000], ['name' => 'Servicing', 'amount' => 20], ['name' => 'other', 'amount' => 20]],
+                    'category' => 'Food',
+                    'id' => 2,
+                    'items' => [['name' => 'Eggs', 'amount' => 2000,'date'=>'2023/05/01'], ['name' => 'Oats', 'amount' => 20], ['name' => 'other', 'amount' => 20]],
                 ],
             ];
             break;
@@ -74,9 +74,14 @@ Route::post('test2', function (Request $request) {
             ];
             break;
         default:
-            $data = []; // Empty response for unknown id
+            $data = [
+                [
+                    'id' => 7,
+                    'category' => 'Government and bills',
+                    'items' => [['name' => 'Electricity', 'amount' => 2000], ['name' => 'Home Tax', 'amount' => 20], ['name' => 'Internet', 'amount' => 20]],
+                ],
+            ]; // Empty response for unknown id
     }
-
     return response()->json($data);
 })->middleware('auth:sanctum');
 
@@ -156,4 +161,31 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);
     Route::get ('/all-expense-categories',[ExpenseCategoryController::class,'getAllCategory']);
 });
+
+//Route for the test
+Route::middleware(['auth:sanctum'])->group(function () {
+    //fetching category and its expense for last 7 days
+    Route::get('/expenses-category',function(){
+    $data = [
+        [
+            'category' => 'Education',
+            'amount' => 7300,
+            'id' => 1,
+        ],
+        [
+            'category' => 'Food',
+            'amount' => 1500,
+            'id' => 2,
+        ],
+        [
+            'category' => 'Others',
+            'amount' => 1500,
+            'id' => 5,
+        ],
+
+    ];
+    return response()->json($data);
+    });
+}
+);
 

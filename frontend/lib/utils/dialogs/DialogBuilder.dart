@@ -1,12 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/forms/bank/add_bank_acc.dart';
-import 'package:walletwise/utils/forms/saving_goals/add_saving_goal.dart'; 
+import 'package:walletwise/utils/forms/saving_goals/add_saving_goal.dart';
 import 'package:walletwise/utils/forms/assets/asset_add.dart';
 import 'package:walletwise/utils/forms/debt/add_debt_form.dart';
+import 'package:walletwise/utils/forms/stock/add_stock_form.dart';
 
 class Dialogbuilder {
+  static void stockForm(BuildContext context, int stockId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Theme(
+          data: wwTheme, // Use dark theme
+          child: SimpleDialog(
+            contentPadding: const EdgeInsets.all(20),
+            backgroundColor: AppColors.black,
+            children: [
+              AddStockForm(
+                stockId: stockId,
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   static void hello(BuildContext context) {
     showDialog(
       context: context,
@@ -17,8 +39,7 @@ class Dialogbuilder {
             backgroundColor: Colors.white, // Set background color to white
             children: [
               SimpleDialogOption(
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: const Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text("New Buy",

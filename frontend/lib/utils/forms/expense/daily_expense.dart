@@ -77,7 +77,7 @@ class DailyExpenseForm extends StatelessWidget {
                 gapY("md"),
                 WwSubmit(
                   onPressed: () {
-                    controller.addRoutineExpense(context);
+                    controller.addDailyExpense(context);
                   },
                   child: Obx(
                     () => controller.formState.value == 1

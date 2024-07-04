@@ -10,23 +10,22 @@ class StockAddController extends Wwform {
   static StockAddController get instance => Get.find();
   final TextEditingController boughtDate = TextEditingController();
   final TextEditingController unit = TextEditingController();
-  final TextEditingController cost = TextEditingController(text: "peroid");
-  final int? stockId = null;
+  final TextEditingController cost = TextEditingController();
+  final int stockId;
   GlobalKey<FormState> addStockForm = GlobalKey<FormState>();
+  StockAddController({required this.stockId});
 
 //for fetching fetchExpenseCategories
   Future<void> addStock(context) async {
     try {
-      if (stockId != null) {
-        ModelOperation().add(
-            body: {"id": stockId, "buy_at": cost, "date": boughtDate},
-            successAction: (response) {
-              WwSnackbar.builder(
-                  context, "SuccessFullyAddec", WwSnackbartype.success);
-              clearFields();
-            },
-            url: ApiUrls.addStocks);
-      }
+      ModelOperation().add(
+          body: {"id": stockId, "boughtAt_at": cost, "date": boughtDate},
+          successAction: (response) {
+            WwSnackbar.builder(
+                context, "SuccessFullyAddec", WwSnackbartype.success);
+            clearFields();
+          },
+          url: ApiUrls.addStocks);
     } catch (e) {
       print('Error: $e');
     }
@@ -38,6 +37,32 @@ class StockAddController extends Wwform {
           ApiUrls.fetchBoughtStocks, (json) => BoughtStock.fromJson(json));
     } catch (e) {
       print('Error: $e');
+    }
+  }
+
+//addStock to the  userProfile
+  Future<void> addBoughtStock(context) async {
+    formState.value = 1;
+    try {
+      ModelOperation().add(
+          body: {
+            "id": stockId,
+            "unit": unit.text,
+            "amount": cost.text,
+            "boughtDate": boughtDate.text
+          },
+          url: ApiUrls.addStocks,
+          successAction: (response) {
+            formState.value = 0;
+            WwSnackbar.builder(
+                context, "SuccessFully Added", WwSnackbartype.success);
+          },
+          errorAction: () {
+            formState.value = 0;
+          });
+    } catch (e) {
+      formState.value = 0;
+      rethrow;
     }
   }
 
