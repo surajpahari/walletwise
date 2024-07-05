@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
+import 'package:walletwise/data/stock_data.dart';
 import 'package:walletwise/utils/cards/stock_protfolio_card.dart';
 
 class StockRecord extends StatelessWidget {
@@ -7,13 +9,11 @@ class StockRecord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      StockPortfolioCard(
-          stockName: "Shanti Cafe",
-          currentPrice: 122.0,
-          quantity: 20,
-          buyingPrice: 120),
-      StockPortfolioCard(
-          stockName: "PFL", currentPrice: 12.0, quantity: 20, buyingPrice: 120),
+      Obx(() => Wrap(
+          alignment: WrapAlignment.center,
+          children: UserStockData.boughtStockList.map((boughtStock) {
+            return StockPortfolioCard(boughtStock: boughtStock);
+          }).toList())),
     ]);
   }
 }

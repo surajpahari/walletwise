@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
+import 'package:walletwise/controllers/stocks/stock_add_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/data/payment_data.dart';
@@ -50,6 +51,7 @@ class MainScreen extends StatelessWidget {
                     //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
                     BalanceCardController.fetchBalanceCardData();
+                    StockAddController.fetchBoughtStock();
                   },
                   child: const Text("fetch")),
 

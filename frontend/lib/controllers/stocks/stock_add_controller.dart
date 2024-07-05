@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:walletwise/api/urls/app_urls.dart";
 import 'package:walletwise/controllers/modeloperation.dart';
+import "package:walletwise/data/stock_data.dart";
 import "package:walletwise/models/bought_stock.dart";
 import "package:walletwise/utils/forms/wwForm.dart";
 import "package:walletwise/utils/snackbar.dart";
@@ -19,7 +20,11 @@ class StockAddController extends Wwform {
   Future<void> addStock(context) async {
     try {
       ModelOperation().add(
-          body: {"id": stockId, "boughtAt_at": cost, "date": boughtDate},
+          body: {
+            "id": stockId,
+            "boughtAt_at": cost.text,
+            "date": boughtDate.text
+          },
           successAction: (response) {
             WwSnackbar.builder(
                 context, "SuccessFullyAddec", WwSnackbartype.success);
@@ -31,10 +36,13 @@ class StockAddController extends Wwform {
     }
   }
 
-  Future<void> fetchBoughtStock() async {
+  static Future<void> fetchBoughtStock() async {
     try {
       ModelOperation.fetchFunction(
-          ApiUrls.fetchBoughtStocks, (json) => BoughtStock.fromJson(json));
+        ApiUrls.fetchBoughtStocks,
+        (json) => BoughtStock.fromJson(json),
+        targetList: UserStockData.boughtStockList,
+      );
     } catch (e) {
       print('Error: $e');
     }
@@ -46,7 +54,7 @@ class StockAddController extends Wwform {
     try {
       ModelOperation().add(
           body: {
-            "id": stockId,
+            "id": stockId.toString(),
             "unit": unit.text,
             "amount": cost.text,
             "boughtDate": boughtDate.text
@@ -65,6 +73,8 @@ class StockAddController extends Wwform {
       rethrow;
     }
   }
+
+  //Future void
 
   static Future<void> deleteStock() async {}
   @override

@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/bought_stock.dart';
+import 'package:walletwise/utils/gaps/Xgap.dart';
 
 class StockPortfolioCard extends StatelessWidget {
-  final String stockName;
-  final double currentPrice;
-  final int quantity;
-  final double buyingPrice;
+  final BoughtStock? boughtStock;
 
-  const StockPortfolioCard({
-    Key? key,
-    required this.stockName,
-    required this.currentPrice,
-    required this.quantity,
-    required this.buyingPrice,
-  }) : super(key: key);
+  const StockPortfolioCard({Key? key, this.boughtStock}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double totalInvestment = quantity * buyingPrice;
-    final double currentValue = quantity * currentPrice;
-    final double profitLoss = currentValue - totalInvestment;
+    // Calculate the total investment.
+    final double totalInvestment = boughtStock != null
+        ? boughtStock!.unit * boughtStock!.boughtAmount
+        : 0.0;
+
+    const double profitLoss = 10;
 
     return Card(
       elevation: 8,
@@ -33,39 +29,40 @@ class StockPortfolioCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              stockName,
-              style: TextStyle(
+              boughtStock?.stock.name ?? "--",
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildInfoText('Quantity', quantity.toString()),
                 _buildInfoText(
-                    'Current Price', '\$${currentPrice.toStringAsFixed(2)}'),
+                    'Quantity', boughtStock?.unit.toString() ?? "--"),
+                _buildInfoText('Current Price',
+                    '\$${boughtStock?.currentAmount.toString() ?? "--"}'),
               ],
             ),
-            SizedBox(height: 12),
+            gapY("sm"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildInfoText('Total Investment',
-                    '\$${totalInvestment.toStringAsFixed(2)}'),
                 _buildInfoText(
-                    'Current Value', '\$${currentValue.toStringAsFixed(2)}'),
+                    'Total Investment', '\$${totalInvestment.toString()}'),
+                _buildInfoText('Current Value',
+                    '\$${boughtStock?.currentAmount?.toStringAsFixed(2) ?? "--"}'),
               ],
             ),
-            SizedBox(height: 16),
+            gapY("md"),
             Text(
-              'Profit/Loss: ${profitLoss >= 0 ? '+' : ''}\$${profitLoss.toStringAsFixed(2)}',
-              style: TextStyle(
+              'Profit/Loss: \$${profitLoss.toString()}',
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: profitLoss >= 0 ? Colors.green : Colors.red,
+                color: Colors.green,
               ),
             ),
           ],
@@ -85,10 +82,10 @@ class StockPortfolioCard extends StatelessWidget {
             color: Colors.grey[400],
           ),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.white,

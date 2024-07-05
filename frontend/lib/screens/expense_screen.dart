@@ -6,6 +6,8 @@ import 'package:walletwise/utils/cards/budget_card.dart';
 import 'package:walletwise/utils/charts/expense_bar.dart';
 import 'package:walletwise/utils/forms/expense/daily_expense.dart';
 import 'package:walletwise/utils/forms/expense/routine_expense.dart';
+import 'package:walletwise/utils/inputs/range_dropdown2.dart';
+
 import 'package:walletwise/utils/tabs/tab.dart';
 
 class ExpenseScreen extends StatefulWidget {
@@ -23,15 +25,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-                padding: const EdgeInsets.all(8),
-                child: Container(
-                    padding: const EdgeInsets.all(10),
-                    color: AppColors.lowDarkBlue,
-                    child: const Text(
-                      "Last 30 days",
-                      textAlign: TextAlign.start,
-                    ))),
+            const Padding(
+              padding: EdgeInsets.all(6),
+              child: DropdownButtonExample(),
+            ),
             const Text(
               "Total:25000",
               textAlign: TextAlign.center,

@@ -4,6 +4,7 @@ class Stock {
   String securityName;
   String name;
   CurrentData? currentData;
+
   Stock({
     required this.id,
     required this.symbol,

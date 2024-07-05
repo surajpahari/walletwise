@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/utils/inputs/range_dropdown2.dart';
 import 'package:walletwise/utils/forms/income/daily_income.dart';
 import 'package:walletwise/utils/tabs/tab.dart';
 import 'package:walletwise/data/income_data.dart';
@@ -24,15 +25,10 @@ class _IncomeScreenState extends State<IncomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-              padding: const EdgeInsets.all(8),
-              child: Container(
-                  padding: const EdgeInsets.all(10),
-                  color: AppColors.lowDarkBlue,
-                  child: const Text(
-                    "Last 7 days",
-                    textAlign: TextAlign.start,
-                  ))),
+          const Padding(
+            padding: EdgeInsets.all(6),
+            child: DropdownButtonExample(),
+          ),
           ExpenseBarChart(
               color: Colors.green, categories: IncomeData.incomeCategories),
           Column(
