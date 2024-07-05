@@ -16,9 +16,6 @@ class ApiUrls {
   static Url logoutUrl = Url('/api/auth/logout');
   static Url changePasswordUrl = Url('api/test');
 
-  //urls related to the income
-  static Url addIncome = Url('/api/income/add');
-
   //urls realted to the assets
   static Url addAssets = Url('/api/assets');
 
@@ -50,6 +47,10 @@ class ApiUrls {
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
   static Url fetchUserCategories = Url("/api/expenses-category");
+  //urls related to the income
+  static Url addIncome = Url('/api/income/add');
+  static Url fetchIncomeCategories = Url("/api/all-expense-categories");
+  static Url fetchUserIncomeCategories = Url("/api/expenses-category");
 
   static Url Function(dynamic) fetchItems =
       (id) => Url("/api/get-expense-items?id=$id");

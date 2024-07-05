@@ -85,45 +85,52 @@ class BalanceCard extends StatelessWidget {
                                                   child: Row(children: [
                                                     Container(
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color: Colors.green,
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
-                                                        child: Icon(
+                                                        child: const Icon(
                                                             Icons.north_east)),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
-                                                    Text("Rs 1001")
+                                                    Obx(() => Text(
+                                                          "Rs ${BalanceCardData.inAmount.toString()}.00",
+                                                        )),
                                                   ]),
                                                 ),
                                               ),
 
-                                              SizedBox(
+                                              const SizedBox(
                                                   width:
                                                       16), // Add space between the two Container widgets
                                               Container(
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xff1f1a30),
+                                                    color:
+                                                        const Color(0xff1f1a30),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             18)),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(10),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
                                                   child: Row(children: [
                                                     Container(
-                                                      decoration: BoxDecoration(
+                                                      decoration:
+                                                          const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color: Colors.red,
                                                       ),
-                                                      child: Icon(
+                                                      child: const Icon(
                                                           Icons.south_west),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
-                                                    Text("Rs 1001")
+                                                    Obx(() => Text(
+                                                          "Rs ${BalanceCardData.outAmount.toString()}.00",
+                                                        )),
                                                   ]),
                                                 ),
                                               ),

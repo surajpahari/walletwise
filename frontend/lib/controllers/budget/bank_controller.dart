@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
-import 'package:walletwise/data/balance_data.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/models/bank_account.dart';
 import 'package:walletwise/utils/forms/wwForm.dart';
@@ -60,7 +59,7 @@ class BankAccController extends Wwform {
             successAction: (response) {
               update(response);
               //refetching the updated balance
-              BalanceCardController.fetch();
+              BalanceCardController.fetchBalanceCardData();
               clearFields();
               WwSnackbar.builder(
                   context, "Sucesssfully Added", WwSnackbartype.success);

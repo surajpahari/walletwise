@@ -5,7 +5,7 @@ import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/data/balance_card.dart';
 
 class BalanceCardController {
-  static void fetch() {
+  static void fetchBalanceCardData() {
     ModelOperation().add(
       body: {},
       url: ApiUrls.fetchBalance,
@@ -13,6 +13,8 @@ class BalanceCardController {
       successAction: (response) {
         final data = jsonDecode(response);
         BalanceCardData.balance.value = data['total_amount'];
+        BalanceCardData.inAmount.value = data['in_amount'];
+        BalanceCardData.outAmount.value = data['out_amount'];
       },
     );
   }

@@ -55,7 +55,7 @@ Route::get('get-expense-items', function (Request $request) {
                 ],
             ];
             break;
-        case 4:
+        case '2':
             $data = [
                 [
                     'category' => 'Food',

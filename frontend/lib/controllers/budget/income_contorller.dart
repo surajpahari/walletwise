@@ -18,23 +18,19 @@ class IncomeController extends Wwform {
   final TextEditingController date = TextEditingController();
   final TextEditingController peroid = TextEditingController(text: "peroid");
   GlobalKey<FormState> expenseFormKey = GlobalKey<FormState>();
-  //void add() {
-  //  print(date.text.toString());
-  //  print(amount.text);
-  //}
-  //
+
 //for fetching fetchExpenseCategories
-  static Future<void> fetchExpenseCategories() async {
+  static Future<void> fetchIncomeCategories() async {
     try {
-      ModelOperation.fetchFunction(ApiUrls.fetchExpenseCategories,
+      ModelOperation.fetchFunction(ApiUrls.fetchIncomeCategories,
           (json) => ExpenseCategory.fromJson(json),
           targetList: ExpenseData.categoryList, listKey: "expenses");
     } catch (e) {
-      print('Error: $e');
+      rethrow;
     }
   }
 
-  Future<void> addRoutineExpense(BuildContext context) async {
+  Future<void> addRoutineIncome(BuildContext context) async {
     formState.value = 1;
     try {
       await ModelOperation().add(
@@ -49,7 +45,6 @@ class IncomeController extends Wwform {
         },
         url: ApiUrls.addExpense,
         successAction: (response) {
-          print("hey");
           formState.value = 0;
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);
@@ -61,11 +56,11 @@ class IncomeController extends Wwform {
         },
       );
     } catch (e) {
-      print('Error:$e');
+      rethrow;
     }
   }
 
-  Future<void> addDailyExpense(BuildContext context) async {
+  Future<void> addDailyIncome(BuildContext context) async {
     formState.value = 1;
     try {
       await ModelOperation().add(
