@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_add_controller.dart';
+import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/data/payment_data.dart';

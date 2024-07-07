@@ -54,11 +54,17 @@ class ApiUrls {
 
   static Url Function(dynamic) fetchItems =
       (id) => Url("/api/get-expense-items?id=$id");
-  static getQueryUrl(Url url, String queryName, String query) {
-    return Url("${url.value}?$queryName=$query");
-  }
 
   //get the last 30 days data from python
   static Url getlast30 = Url("");
   static Url getStockDetail = Url("");
+
+  //python url
+  static String pythonBaseUrl = "http://127.0.0.1:5000/";
+  static Url Function(dynamic, String) getStockInsights =
+      (id, symbol) => Url("/get-stock-insights?id=$id&name=$symbol");
+  static Url Function(dynamic, String) getStockChart =
+      (id, symbol) => Url("/get-stock-chart?id=$id&name=$symbol");
+  static Url Function(dynamic, String) getCurrentStockData =
+      (id, symbol) => Url("/get-current-data?id=$id&name=$symbol");
 }

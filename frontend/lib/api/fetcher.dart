@@ -8,12 +8,15 @@ enum HttpMethod { post, get, delete, put }
 
 class FetchAPI extends ApiToken {
   static int totalCall = 0;
-  final baseUrl = AppConstant.baseUrl;
+  final String baseUrl;
   bool isAuth;
   Url url;
   Object body;
   HttpMethod method;
-  FetchAPI(this.url, this.method, {this.body = const {}, this.isAuth = false});
+  FetchAPI(this.url, this.method,
+      {this.body = const {},
+      this.isAuth = false,
+      this.baseUrl = AppConstant.baseUrl});
   Future<dynamic> fetchUnauthorizedAPI() async {
     try {
       if (method == HttpMethod.post) {

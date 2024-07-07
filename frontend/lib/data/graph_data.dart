@@ -23,7 +23,17 @@ class OHLCdata {
   final double low;
   final double open;
   final double close;
+  factory OHLCdata.fromJson(Map<String, dynamic> json) {
+    return OHLCdata(
+        json['published_date'] as String? ??
+            '', // Provide default value 0 if null
+        json['high'] as double? ?? 0.0, // Provide default value '' if null
+        json['low'] as double? ?? 0.0, // Provide default value '' if null
+        json['open'] as double? ?? 0.0, // Provide default value '' if null
+        json['close'] as double? ?? 0.0); // Provide default value 0.0 if null
+  }
 }
+
 
      
   //defination of the class for every graph in the app

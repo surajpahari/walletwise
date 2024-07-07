@@ -160,10 +160,33 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
     Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);
     Route::get ('/all-expense-categories',[ExpenseCategoryController::class,'getAllCategory']);
+    //for the stocks
 });
 
 //Route for the test
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post("/stocks/add_stocks",function(){
+        return response()->json('hell');
+    });
+
+   Route::get('/stocks/bought-stocks',function(){
+    $data = [
+        [
+            'id'=>1,
+            'stock'=>[
+                'id'=>1,
+                'symbol'=>"PFL",
+                'securityName'=>"Pokhara finance",
+                'name'=>"Pokhara finanance",
+            ],
+            'date'=>"2022/03/5",
+            'unit'=>15,
+            'amount'=>1200
+        ]
+    ];
+    return response()->json($data);
+    });
+
     //fetching category and its expense for last 7 days
     Route::get('/expenses-category',function(){
     $data = [
@@ -188,4 +211,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 }
 );
+
 

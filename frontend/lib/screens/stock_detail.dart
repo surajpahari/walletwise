@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 import 'package:walletwise/data/stock_search_result.dart';
 import 'package:walletwise/models/stock.dart';
+import 'package:walletwise/screens/stock_insights.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 import 'package:walletwise/utils/cards/stock_card.dart';
@@ -24,16 +27,23 @@ class StockDetail extends StatelessWidget {
                 child: Column(children: [
               StockCard(stock: stock),
               WwCandleChart(
-                data: StockData.currentOHLCData,
+                stock: stock,
               ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          StockFetchController controller =
+                              StockFetchController();
+                          controller.getStockInsights(stock);
+                          controller.getStockChart(stock);
+                          controller.getCurrentData(stock);
+                          Get.to(StockInsights(stock: stock));
+                        },
                         child: const Text(
-                          "Apply model",
+                          "Insights",
                           style: TextStyle(color: Colors.white),
                         )),
                     const SizedBox(

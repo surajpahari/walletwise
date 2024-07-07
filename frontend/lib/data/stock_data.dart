@@ -15,4 +15,6 @@ class UserStockData {
         unit: 100,
         boughtAmount: 100)
   ].obs;
+  //list of the candle last for the selected one
+  //insightData
 }
