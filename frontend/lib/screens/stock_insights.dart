@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 import 'package:walletwise/theme/theme_constant.dart';
+import 'package:walletwise/utils/cards/warning_card.dart';
 
 class StockInsights extends StatefulWidget {
   final Stock stock;
@@ -19,8 +20,10 @@ class _StockInsightsState extends State<StockInsights> {
         child: Scaffold(
           appBar: WalletWiseBar.normalPageBar("Insights"),
           body: SingleChildScrollView(
-            child: Column(
-                children: [Text(widget.stock.name, style: const TextStyle())]),
+            child: Column(children: [
+              const WarningCard(),
+              Text(widget.stock.name, style: const TextStyle()),
+            ]),
           ),
         ));
   }

@@ -20,13 +20,9 @@ class StockFetchController {
   }
 
   Future<List<OHLCdata>> getStockChart(Stock stock) async {
-    //return Future<List<OHLCdata>>.delayed(
-    //  const Duration(seconds: 2),
-    //  () => StockData.currentOHLCData,
-    //);
     try {
       http.Response? response = await FetchAPI(
-              ApiUrls.getCurrentStockData(stock.id, stock.symbol),
+              ApiUrls.getStockChart(stock.id, stock.symbol),
               HttpMethod.get,
               baseUrl: ApiUrls.pythonBaseUrl)
           .fetchUnauthorizedAPI();

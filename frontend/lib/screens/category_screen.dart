@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
+import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 import 'package:walletwise/utils/charts/piecharts/category_pie_chart.dart';
 
@@ -47,7 +50,32 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   "Total: Rs ${widget.total}",
                   style: const TextStyle(color: Colors.white, fontSize: 30.0),
                 ),
-                Obx(() => CategoryPieChart(ExpenseData.detailedCategory[0])),
+                Container(
+                  constraints: BoxConstraints(maxWidth: 200),
+                  child: Obx(
+                      () => CategoryPieChart(ExpenseData.detailedCategory[0])),
+                ),
+                Container(
+                    constraints: BoxConstraints(maxWidth: 200),
+                    child: Obx(() => Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: ExpenseData.detailedCategory[0]
+                              .getPieData()
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                            int index = entry.key;
+                            var pieData = entry.value;
+                            return Indicator(
+                              color: AppColors.pieChartColors[index],
+                              text: pieData.name,
+                              textColor: AppColors.white,
+                              isSquare: false,
+                            );
+                          }).toList(),
+                        ))),
+
                 const SizedBox(height: 20, width: 20),
                 const Text(
                   "Last 32days",

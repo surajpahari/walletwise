@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:walletwise/models/category.dart';
-import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/graph_data.dart';
 
@@ -26,7 +25,6 @@ class CategoryPieChart extends StatelessWidget {
                   PieChartData(
                     sectionsSpace: 4,
                     borderData: FlBorderData(show: false),
-                    centerSpaceRadius: 50,
                     sections: pieDataList
                         .map((item) => PieChartSectionData(
                               showTitle: false,
@@ -39,15 +37,15 @@ class CategoryPieChart extends StatelessWidget {
                         .toList(),
                   ),
                   swapAnimationDuration:
-                      Duration(milliseconds: 150), // Optional
+                      const Duration(milliseconds: 150), // Optional
                   swapAnimationCurve: Curves.linear,
                 )
-              : Text("no data found"),
+              : const Text("no data found"),
           Text(
             data.amount.toString(),
             //"1000",
             //data.pieData.fold(0.0, (sum, item) => sum + item.value).toString(),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,

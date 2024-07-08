@@ -29,11 +29,20 @@ class StockDetail extends StatelessWidget {
               WwCandleChart(
                 stock: stock,
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                         onPressed: () {
                           StockFetchController controller =
                               StockFetchController();
@@ -50,6 +59,12 @@ class StockDetail extends StatelessWidget {
                       width: 10,
                     ),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.purple,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                         onPressed: () {
                           Dialogbuilder.stockForm(context, stock.id);
                         },

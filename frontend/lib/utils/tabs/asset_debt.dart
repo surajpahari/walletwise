@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/asset_debt_data.dart';
-import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 
 class AssetDebt extends StatefulWidget {
@@ -40,7 +38,7 @@ class _AssetDebtState extends State<AssetDebt> {
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Center(
                         child: Text(
                           "Assets",
@@ -52,7 +50,8 @@ class _AssetDebtState extends State<AssetDebt> {
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
                                   decorationThickness: 2)
-                              : TextStyle(fontSize: 20, color: Colors.white),
+                              : const TextStyle(
+                                  fontSize: 20, color: Colors.white),
                         ),
                       ),
                     ),
@@ -70,25 +69,26 @@ class _AssetDebtState extends State<AssetDebt> {
                     constraints: const BoxConstraints(maxWidth: 300),
                     decoration: BoxDecoration(
                       color: AppColors.purple,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Column(children: [
                         Text(
                           "Debt",
                           style: _selectedIndex == 1
-                              ? TextStyle(
+                              ? const TextStyle(
                                   letterSpacing: 2,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
                                   decorationThickness: 2)
-                              : TextStyle(fontSize: 20, color: Colors.white),
+                              : const TextStyle(
+                                  fontSize: 20, color: Colors.white),
                         ),
                       ]),
                     ),
@@ -101,51 +101,13 @@ class _AssetDebtState extends State<AssetDebt> {
         SizedBox(height: 20),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
-            constraints: BoxConstraints(maxWidth: 200, maxHeight: 300),
+            //color: Colors.blue,
+            padding: EdgeInsets.all(2),
+            constraints: BoxConstraints(minWidth: 200, maxHeight: 300),
             child: _selectedIndex == 0
                 ? MyPieChart(AssetDebtData.pieDataList)
                 : MyPieChart(AssetDebtData.debtPieChartData),
           ),
-          _selectedIndex == 0
-              ? Container(
-                  constraints: BoxConstraints(
-                    maxWidth: 200,
-                  ),
-                  child: Obx(() => Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: AssetDebtData.pieDataList
-                            .asMap()
-                            .entries
-                            .map((entry) {
-                          int index = entry.key;
-                          var pieData = entry.value;
-                          return Indicator(
-                            color: AppColors.pieChartColors[index],
-                            text: pieData.name,
-                            isSquare: false,
-                          );
-                        }).toList(),
-                      )),
-                )
-              : Container(
-                  child: Obx(() => Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: AssetDebtData.debtPieChartData
-                            .asMap()
-                            .entries
-                            .map((entry) {
-                          int index = entry.key;
-                          var pieData = entry.value;
-                          return Indicator(
-                            color: AppColors.pieChartColors[index],
-                            text: pieData.name,
-                            isSquare: false,
-                          );
-                        }).toList(),
-                      )),
-                )
         ])
       ],
     );

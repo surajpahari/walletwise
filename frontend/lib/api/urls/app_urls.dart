@@ -20,7 +20,7 @@ class ApiUrls {
   static Url addAssets = Url('/api/assets');
 
   //urls related to the debts
-  static Url addDebt = Url('/api/saving/add');
+  static Url addDebt = Url('/api/debts');
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');

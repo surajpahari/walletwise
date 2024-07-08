@@ -4,6 +4,7 @@ import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_add_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
+import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/data/payment_data.dart';
@@ -58,10 +59,12 @@ class MainScreen extends StatelessWidget {
 
               ElevatedButton(
                   onPressed: () {
+                    AssetDebtData.assetsData.value = [];
+                    AssetDebtData.pieDataList.value = [];
                     //ExpenseController.fetchItemForCategory(1);
                     //ExpenseController.fetchUserCategories();
                   },
-                  child: const Text("fetch")),
+                  child: const Text("fetch2")),
               gap(20),
               //ASSETDEBT SECTION
               const AssetDebt(),
