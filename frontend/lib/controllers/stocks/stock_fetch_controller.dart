@@ -7,13 +7,16 @@ import "package:walletwise/data/stock_search_result.dart";
 import "package:walletwise/models/stock.dart";
 
 class StockFetchController {
-  Future<void> getStockInsights(Stock stock) async {
+  Future<dynamic> getTechnicalInsights(Stock stock) async {
     try {
       http.Response? response = await FetchAPI(
               ApiUrls.getStockInsights(stock.id, stock.symbol), HttpMethod.get,
               baseUrl: ApiUrls.pythonBaseUrl)
           .fetchUnauthorizedAPI();
-      print(response?.body);
+      if (response != null && response.statusCode == 200) {
+        dynamic finalResponse = jsonDecode(response.body);
+        return finalResponse;
+      }
     } catch (e) {
       rethrow;
     }
@@ -22,8 +25,7 @@ class StockFetchController {
   Future<List<OHLCdata>> getStockChart(Stock stock) async {
     try {
       http.Response? response = await FetchAPI(
-              ApiUrls.getStockChart(stock.id, stock.symbol),
-              HttpMethod.get,
+              ApiUrls.getStockChart(stock.id, stock.symbol), HttpMethod.get,
               baseUrl: ApiUrls.pythonBaseUrl)
           .fetchUnauthorizedAPI();
       if (response != null && response.statusCode == 200) {

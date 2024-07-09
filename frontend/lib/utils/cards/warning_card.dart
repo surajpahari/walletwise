@@ -12,7 +12,7 @@ class WarningCard extends StatelessWidget {
             child: Wrap(children: [
               Icon(Icons.warning),
               Text(
-                  "This app is not viable for your loss or profit , this just gives the insights depending on the stock history"),
+                  "This app is not liable for any capital loss or profit , this just gives the insights depending on the stock history"),
             ])));
   }
 }

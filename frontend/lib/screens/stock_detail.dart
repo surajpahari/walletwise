@@ -46,7 +46,6 @@ class StockDetail extends StatelessWidget {
                         onPressed: () {
                           StockFetchController controller =
                               StockFetchController();
-                          controller.getStockInsights(stock);
                           controller.getStockChart(stock);
                           controller.getCurrentData(stock);
                           Get.to(StockInsights(stock: stock));

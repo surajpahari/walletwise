@@ -58,6 +58,7 @@ class _WwCandleChartState extends State<WwCandleChart> {
         constraints: const BoxConstraints(maxHeight: 350),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          reverse: true,
           child: SizedBox(
             width: 800, // Set a larger width to make the chart scrollable
             child: SfCartesianChart(
