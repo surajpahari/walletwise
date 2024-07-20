@@ -3,44 +3,15 @@ import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/models/stock.dart';
 import 'package:walletwise/screens/stock_detail.dart';
-import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 
-class StockCard extends StatefulWidget {
+class StockCard extends StatelessWidget {
   final Stock stock;
-  const StockCard({Key? key, required this.stock}) : super(key: key);
-
-  @override
-  State<StockCard> createState() => _StockCardState();
-}
-
-class _StockCardState extends State<StockCard> {
-  double? high;
-  double? low;
-  double? open;
-  double? close;
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchData();
-  }
-
-  void _fetchData() async {
-    StockFetchController fetchController = StockFetchController();
-    var currentData = await fetchController.getCurrentData(widget.stock);
-    setState(() {
-      high = currentData['high']?.toDouble();
-      low = currentData['low']?.toDouble();
-      open = currentData['open']?.toDouble();
-      close = currentData['close']?.toDouble();
-    });
-  }
-
+  StockCard({required this.stock});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Get.to(StockDetail(stock: widget.stock));
+          Get.to(StockDetail(stock: stock));
         },
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -56,7 +27,7 @@ class _StockCardState extends State<StockCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.stock.symbol,
+                    stock.symbol,
                     style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -64,7 +35,7 @@ class _StockCardState extends State<StockCard> {
                     ),
                   ),
                   Text(
-                    'Rs${low ?? ' ---'}',
+                    'Rs${stock.currentData?.low ?? ' ---'}',
                     style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -73,23 +44,23 @@ class _StockCardState extends State<StockCard> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10.0),
+              SizedBox(height: 10.0),
               Text(
-                widget.stock.name,
+                stock.name,
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.grey[400], // Lighter text color
                 ),
               ),
-              const SizedBox(height: 5.0),
+              SizedBox(height: 5.0),
               Text(
-                '${widget.stock.currentData?.increaseRate ?? '---'} (${widget.stock.currentData?.increasePercent ?? '---'}%)',
+                '${stock.currentData?.increaseRate ?? '---'} (${stock.currentData?.increasePercent ?? '---'}%)',
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.greenAccent, // Green text color
                 ),
               ),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,9 +74,9 @@ class _StockCardState extends State<StockCard> {
                           color: Colors.grey[400], // Lighter text color
                         ),
                       ),
-                      const SizedBox(height: 5.0),
+                      SizedBox(height: 5.0),
                       Text(
-                        'Rs ${high ?? '---'}',
+                        'Rs ${stock.currentData?.high ?? '---'}',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -124,9 +95,9 @@ class _StockCardState extends State<StockCard> {
                           color: Colors.grey[400], // Lighter text color
                         ),
                       ),
-                      const SizedBox(height: 5.0),
+                      SizedBox(height: 5.0),
                       Text(
-                        'Rs ${high ?? '---'}',
+                        'Rs ${stock.currentData?.high ?? '---'}',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
@@ -145,9 +116,9 @@ class _StockCardState extends State<StockCard> {
                           color: Colors.grey[400], // Lighter text color
                         ),
                       ),
-                      const SizedBox(height: 5.0),
+                      SizedBox(height: 5.0),
                       Text(
-                        'Rs${low ?? ' ---'}',
+                        'Rs${stock.currentData?.low ?? ' ---'}',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,

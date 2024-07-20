@@ -67,6 +67,11 @@ class _StockInsightsState extends State<StockInsights> {
                   }
                 },
               ),
+              const Text(
+                "Next 12 months max and min forecast price",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 23),
+              )
             ],
           ),
         ),

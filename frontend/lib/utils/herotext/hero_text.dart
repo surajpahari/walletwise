@@ -14,7 +14,7 @@ class HeroText {
 
     if (signal == "Strong Bullish") {
       color = Colors.green;
-    } else if (signal == "Medium Bullish") {
+    } else if (signal == "Medium Bullish" || signal == "Weak Bullish") {
       color = Colors.blue;
     } else {
       color = Colors.black; // Default color or handle other cases

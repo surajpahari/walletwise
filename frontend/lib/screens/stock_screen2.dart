@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/utils/cards/stock_card.dart';
-import 'package:walletwise/data/stock_search_result.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/screens/stock_detail.dart';
 import 'package:walletwise/controllers/stocks/stock_search_controller.dart';
+import 'package:walletwise/data/stock_search_result.dart';
+import 'package:walletwise/screens/stock_detail.dart';
+import 'package:walletwise/utils/cards/stock_card.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 
-class StockScreen extends StatefulWidget {
-  const StockScreen({super.key});
-
-  @override
-  State<StockScreen> createState() => _StockScreenState();
-}
-
-class _StockScreenState extends State<StockScreen> {
-  @override
-  void initState() {
-    super.initState();
-    StockController.fetchRandomStocks();
-  }
+class StockScreen extends StatelessWidget {
+  const StockScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +29,53 @@ class _StockScreenState extends State<StockScreen> {
                 Icon(Icons.search)
               ],
             ),
+            //Container(
+            //  margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+            //  decoration: BoxDecoration(
+            //    borderRadius: BorderRadius.circular(10),
+            //    boxShadow: [
+            //      BoxShadow(
+            //        color: Colors.grey[800]!,
+            //        spreadRadius: 2,
+            //        blurRadius: 10,
+            //        offset: Offset(0, 3),
+            //      ),
+            //    ],
+            //    gradient: LinearGradient(
+            //      colors: [Color(0xFFF9603E), Color(0xFFE86C51)],
+            //      begin: Alignment.topLeft,
+            //      end: Alignment.bottomRight,
+            //    ),
+            //  ),
+            //  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            //child: Row(
+            //  children: [
+            //    Icon(
+            //      Icons.whatshot,
+            //      color: Colors.white,
+            //      size: 30,
+            //    ),
+            //    SizedBox(width: 10),
+            //Text(
+            //  "Hot Stocks",
+            //  style: TextStyle(
+            //    fontSize: 25,
+            //    fontWeight: FontWeight.bold,
+            //    color: Colors.white,
+            //  ),
+            //    //),
+            //  ],
+            //),
+            //),
             Expanded(
-              child: Obx(
-                () => SingleChildScrollView(
-                  child: Wrap(
-                    children: StockData.hotStock.asMap().entries.map((entry) {
-                      return Column(
-                        children: [StockCard(stock: entry.value)],
-                      );
-                    }).toList(),
-                  ),
-                ),
+              child: ListView.builder(
+                itemCount: StockData.hotStock.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: StockCard(stock: StockData.hotStock[index]),
+                  );
+                },
               ),
             ),
           ],
@@ -80,23 +105,22 @@ class _StockScreenState extends State<StockScreen> {
                               controller.onChange(value);
                             },
                             controller: controller.searchQuery,
-                            style: const TextStyle(
-                                color: Colors.white), // Text color
+                            style: TextStyle(color: Colors.white), // Text color
                             decoration: InputDecoration(
                               labelText: "Search for stock",
-                              labelStyle: const TextStyle(
-                                  color: Colors.white), // Label color
-                              prefixIcon: const Icon(Icons.search,
+                              labelStyle:
+                                  TextStyle(color: Colors.white), // Label color
+                              prefixIcon: Icon(Icons.search,
                                   color: Colors.white), // Icon color
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                     color: Colors.white), // Border color
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          const Text(
+                          SizedBox(height: 20),
+                          Text(
                             "Suggestions:",
                             style: TextStyle(
                               fontSize: 16,
@@ -104,7 +128,7 @@ class _StockScreenState extends State<StockScreen> {
                               color: Colors.black, // Text color
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Obx(
                             () {
                               return Expanded(
@@ -116,7 +140,7 @@ class _StockScreenState extends State<StockScreen> {
                                   return ListTile(
                                     title: Text(
                                       suggestion.name,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           color: Colors.black), // Text color
                                     ),
                                     onTap: () {

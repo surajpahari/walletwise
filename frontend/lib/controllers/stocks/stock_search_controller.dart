@@ -33,6 +33,7 @@ class StockController {
   //add the random stock to the data
   static void randomStocks(responseBody) {
     final List<dynamic> jsonResponse = jsonDecode(responseBody);
+    StockData.hotStock.clear();
     for (var item in jsonResponse) {
       StockData.hotStock.add(Stock.fromJson(item));
     }

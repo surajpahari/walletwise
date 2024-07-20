@@ -31,7 +31,7 @@ class StockFetchController {
       if (response != null && response.statusCode == 200) {
         try {
           dynamic decodedJson = jsonDecode(response.body);
-          print(decodedJson);
+          //print(decodedJson);
           if (decodedJson is List) {
             List<OHLCdata> ohlcDataList =
                 decodedJson.map((json) => OHLCdata.fromJson(json)).toList();
@@ -41,7 +41,7 @@ class StockFetchController {
             return ohlcDataList;
           } else if (decodedJson is Map<String, dynamic>) {
             OHLCdata ohlcData = OHLCdata.fromJson(decodedJson);
-            print([ohlcData][0]);
+            //print([ohlcData][0]);
             return ([ohlcData]);
           } else {
             print('Unexpected JSON format');
@@ -61,7 +61,7 @@ class StockFetchController {
     }
   }
 
-  Future<void> getCurrentData(Stock stock) async {
+  Future<Map<String, dynamic>> getCurrentData(Stock stock) async {
     try {
       http.Response? response = await FetchAPI(
               ApiUrls.getCurrentStockData(stock.id, stock.symbol),
@@ -69,6 +69,18 @@ class StockFetchController {
               baseUrl: ApiUrls.pythonBaseUrl)
           .fetchUnauthorizedAPI();
       print(response?.body);
+
+      if (response != null && response.body != null) {
+        var decodedResponse = jsonDecode(response.body);
+
+        if (decodedResponse is List &&
+            decodedResponse.isNotEmpty &&
+            decodedResponse[0] is Map<String, dynamic>) {
+          return decodedResponse[0] as Map<String, dynamic>;
+        }
+      }
+
+      return {}; // Return an empty map if the response is null or not as expected
     } catch (e) {
       rethrow;
     }
