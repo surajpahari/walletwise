@@ -18,6 +18,7 @@ class ApiUrls {
 
   //urls realted to the assets
   static Url addAssets = Url('/api/assets');
+  static Url fetchAssets = Url('/api/fetch-assets');
 
   //urls related to the debts
   static Url addDebt = Url('/api/debts');

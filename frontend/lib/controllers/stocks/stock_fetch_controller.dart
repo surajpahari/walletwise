@@ -5,8 +5,9 @@ import "package:walletwise/api/fetcher.dart";
 import "package:walletwise/api/urls/app_urls.dart";
 import "package:walletwise/data/stock_search_result.dart";
 import "package:walletwise/models/stock.dart";
+import "package:get/get.dart";
 
-class StockFetchController {
+class StockFetchController extends GetxController {
   Future<dynamic> getTechnicalInsights(Stock stock) async {
     try {
       http.Response? response = await FetchAPI(

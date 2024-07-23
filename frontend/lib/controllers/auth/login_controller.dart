@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/data/expense_data.dart';
 import 'dart:convert';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
@@ -8,8 +7,8 @@ import 'package:walletwise/constants/token.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/bank_controller.dart';
 import 'package:walletwise/controllers/budget/payment_controller.dart';
+import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
-import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/navigation_menu.dart';
 
 class LoginController extends ApiToken {
@@ -58,6 +57,7 @@ class LoginController extends ApiToken {
           BankAccController.fetchBankAccount();
           SavinggoalController.fetchSaving();
           PaymentController.fetchPayment();
+          ExpenseController.fetchExpenseCategories();
         } else {
           print("No");
         }

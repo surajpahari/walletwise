@@ -37,8 +37,12 @@ class ModelOperation {
 
 //for fetching the model and storing it the targetList
   static Future<List<T>> fetchFunction<T>(
-      Url apiUrl, T Function(Map<String, dynamic>) fromJson,
-      {List<T>? targetList, String? listKey}) async {
+    Url apiUrl,
+    T Function(Map<String, dynamic>) fromJson, {
+    List<T>? targetList,
+    String? listKey,
+    Function? successAction,
+  }) async {
     try {
       print(apiUrl.value);
       var response = await FetchAPI(
@@ -69,7 +73,12 @@ class ModelOperation {
           print(e);
           throw Exception(e);
         }
-
+        //call the sucess Action then
+        if (response?.statusCode == 200) {
+          if (successAction != null) {
+            successAction(response?.body);
+          }
+        }
         print('Success: Data fetched and updated.');
         //return modelList; // Return the fetched list
         return [];

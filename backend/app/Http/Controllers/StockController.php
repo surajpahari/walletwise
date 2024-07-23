@@ -79,9 +79,10 @@ class StockController extends Controller
     {
         $stocks = Stock::inRandomOrder()
             ->where('activeStatus', 'A')
+            ->where('check', 1)
             ->take(10)
             ->get();
 
         return response()->json($stocks);
-    }
+   }
 }

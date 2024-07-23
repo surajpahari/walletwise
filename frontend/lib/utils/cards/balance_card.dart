@@ -96,7 +96,7 @@ class BalanceCard extends StatelessWidget {
                                                       width: 10,
                                                     ),
                                                     Obx(() => Text(
-                                                          "Rs ${BalanceCardData.inAmount.toString()}.00",
+                                                          "Rs ${BalanceCardData.inAmount.toString()}.10",
                                                         )),
                                                   ]),
                                                 ),

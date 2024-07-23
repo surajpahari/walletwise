@@ -17,7 +17,10 @@ class _StockScreenState extends State<StockScreen> {
   @override
   void initState() {
     super.initState();
-    StockController.fetchRandomStocks();
+    if (StockData.hotStock.isEmpty) {
+      print("fetching stock data");
+      StockController.fetchRandomStocks();
+    }
   }
 
   @override

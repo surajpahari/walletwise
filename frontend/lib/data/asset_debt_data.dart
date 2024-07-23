@@ -9,6 +9,13 @@ class AssetDebtData {
     pieDataList.add(PieData(name: asset.name, value: asset.amount));
   }
 
+  static void updateChart() {
+    pieDataList.clear();
+    assetsData.forEach((asset) {
+      pieDataList.add(PieData(name: asset.name, value: asset.amount));
+    });
+  }
+
   static RxList<Assets> assetsData = <Assets>[].obs;
   static RxList<PieData> pieDataList = <PieData>[].obs;
 

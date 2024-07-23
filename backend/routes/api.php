@@ -187,6 +187,29 @@ Route::middleware(['auth:sanctum'])->group(function () {
     return response()->json($data);
     });
 
+    //fetch assets
+    Route::get('/fetch-assets',function(){
+        $data = [
+            [
+                'name' => 'Education',
+                'amount' => 7300,
+                'id' => 1,
+            ],
+            [
+                'name' => 'Food',
+                'amount' => 1500,
+                'id' => 2,
+            ],
+            [
+                'name' => 'Others',
+                'amount' => 1500,
+                'id' => 5,
+            ],
+
+        ];
+        return response()->json($data);
+    });
+
     //fetching category and its expense for last 7 days
     Route::get('/expenses-category',function(){
     $data = [
