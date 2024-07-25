@@ -71,7 +71,7 @@ class StockFetchController extends GetxController {
           .fetchUnauthorizedAPI();
       print(response?.body);
 
-      if (response != null && response.body != null) {
+      if (response != null) {
         var decodedResponse = jsonDecode(response.body);
 
         if (decodedResponse is List &&
@@ -81,6 +81,26 @@ class StockFetchController extends GetxController {
         }
       }
 
+      return {}; // Return an empty map if the response is null or not as expected
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>> getForecastData(Stock stock) async {
+    try {
+      http.Response? response = await FetchAPI(
+              ApiUrls.getForecastData(stock.id, stock.symbol), HttpMethod.get,
+              baseUrl: ApiUrls.pythonBaseUrl)
+          .fetchUnauthorizedAPI();
+      print(response?.body);
+
+      if (response != null) {
+        var decodedResponse = jsonDecode(response.body);
+        if (decodedResponse is Map<String, dynamic>) {
+          return decodedResponse;
+        }
+      }
       return {}; // Return an empty map if the response is null or not as expected
     } catch (e) {
       rethrow;

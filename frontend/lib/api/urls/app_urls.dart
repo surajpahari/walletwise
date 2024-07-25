@@ -68,4 +68,6 @@ class ApiUrls {
       (id, symbol) => Url("/get-stock-chart?id=$id&name=$symbol");
   static Url Function(dynamic, String) getCurrentStockData =
       (id, symbol) => Url("/get-current-data?id=$id&name=$symbol");
+  static Url Function(dynamic, String) getForecastData =
+      (id, symbol) => Url("/get-forecast-data?id=$id&name=$symbol");
 }
