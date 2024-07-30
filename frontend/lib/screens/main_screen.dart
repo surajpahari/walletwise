@@ -16,6 +16,7 @@ import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/cards/upcoming_payment_card.dart';
 import 'package:walletwise/utils/charts/line_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
+import 'package:walletwise/utils/gaps/Xgap.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
 import 'package:walletwise/data/balance_data.dart';
 
@@ -54,7 +55,7 @@ class MainScreen extends StatelessWidget {
                     //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
                     BalanceCardController.fetchBalanceCardData();
-                    AssetController().getAssets(context);
+                    AssetController.getAssets(context);
                     ExpenseController.fetchExpenseCategories();
                     StockAddController.fetchBoughtStock();
                   },
@@ -110,6 +111,7 @@ class MainScreen extends StatelessWidget {
                     return UpcomingPaymentCard(payment: payment);
                   }).toList())),
 
+//gapY("md"),
               SizedBox(
                 height: 20,
               ),

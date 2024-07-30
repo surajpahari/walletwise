@@ -22,6 +22,7 @@ class ApiUrls {
 
   //urls related to the debts
   static Url addDebt = Url('/api/debts');
+  static Url fetchDebt = Url('/api/fetch-debts');
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');
@@ -42,12 +43,13 @@ class ApiUrls {
   static Url fetchUpcomingPayment = Url("/api/upcoming");
 
   //urls for the balanceCard
-  static Url fetchBalance = Url("/api/total-balance"); //get
+  static Url fetchBalance = Url("/api/get-balance-info"); //get
 
   //urls for the expenses
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
   static Url fetchUserCategories = Url("/api/expenses-category");
+
   //urls related to the income
   static Url addIncome = Url('/api/income/add');
   static Url fetchIncomeCategories = Url("/api/all-expense-categories");

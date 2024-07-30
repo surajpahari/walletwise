@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/debt.dart';
+import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
 import 'package:walletwise/utils/forms/wwForm.dart';
@@ -42,6 +44,23 @@ class DebtController extends Wwform {
       }
     } else {
       WwSnackbar.builder(context, "Invalid Inputs", WwSnackbartype.error);
+    }
+  }
+
+  static Future<void> getDebt(BuildContext context) async {
+    //formState.value = 1;
+    try {
+      ModelOperation.fetchFunction(ApiUrls.fetchDebt, Debt.fromJson,
+          targetList: AssetDebtData.debtData, successAction: (response) {
+        try {
+          //update(response);
+        } catch (e) {
+          throw Exception("Failed to update assets:$e");
+        }
+      });
+      AssetDebtData.updateDebtChart();
+    } catch (e) {
+      //formState.value = 0;
     }
   }
 }

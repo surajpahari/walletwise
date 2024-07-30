@@ -16,10 +16,11 @@ class BalanceController extends Controller
     public function getTotalBalance()
     {
         $totalAmount = $this->balanceService->getTotalBalance();
-
-        return response()->json(['total_amount' => $totalAmount,
+        return response()->json([
+            'total_amount' => $totalAmount,
             //in and outAmount of last 30 days
-            'in_amount'=>1300, 'out_amount'=>1600
+            'in_amount'=>1300,
+            'out_amount'=>1600
         ]);
 
     }

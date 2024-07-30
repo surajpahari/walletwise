@@ -158,11 +158,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/upcoming', [ExpenseController::class, 'getUpcomingExpenses']);
     Route::resource('bank-balances', BankBalanceController::class);
     Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
-    Route::get('/total-balance', [BalanceController::class, 'getTotalBalance']);
+    Route::get('/get-balance-info', [BalanceController::class, 'getTotalBalance']);
     Route::get ('/all-expense-categories',[ExpenseCategoryController::class,'getAllCategory']);
     //for the stocks
 });
 
+
+
+
+//TESTING TESTING TESTING
 //Route for the test
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post("/stocks/add_stocks",function(){
@@ -185,6 +189,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ]
     ];
     return response()->json($data);
+    });
+
+    //fetch-debts
+    Route::get('/fetch-debts',function(){
+        $data = [
+            [
+                'name' => 'Home Loan',
+                'amount' => 7300,
+                'id' => 1,
+            ],
+            [
+                'name' => 'Food',
+                'amount' => 1500,
+                'id' => 2,
+            ],
+
+        ];
+        return response()->json($data);
     });
 
     //fetch assets

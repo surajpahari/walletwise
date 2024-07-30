@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/controllers/budget/asset_controller.dart';
+import 'package:walletwise/controllers/budget/debt_controller.dart';
 import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/utils/charts/pie_chart.dart';
 
@@ -11,6 +13,13 @@ class AssetDebt extends StatefulWidget {
 }
 
 class _AssetDebtState extends State<AssetDebt> {
+  @override
+  void initState() {
+    super.initState();
+    AssetController.getAssets(context);
+    DebtController.getDebt(context);
+  }
+
   int _selectedIndex =
       0; // Initialize to 0 for "Asset" to be displayed by default
 

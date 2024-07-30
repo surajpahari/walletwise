@@ -32,7 +32,7 @@ class AssetController extends Wwform {
     formState.value = 0;
   }
 
-  void update(response) async {
+  static void update(response) async {
     try {
       final data = jsonDecode(response);
       if (data.containsKey('asset')) {
@@ -77,21 +77,21 @@ class AssetController extends Wwform {
     }
   }
 
-//Upload the saving
-  Future<void> getAssets(BuildContext context) async {
-    formState.value = 1;
+//fetch the assets
+  static Future<void> getAssets(BuildContext context) async {
+    //formState.value = 1;
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchAssets, Assets.fromJson,
           targetList: AssetDebtData.assetsData, successAction: (response) {
         try {
-          update(response);
+          //update(response);
         } catch (e) {
           throw Exception("Failed to update assets:$e");
         }
       });
       AssetDebtData.updateChart();
     } catch (e) {
-      formState.value = 0;
+      //formState.value = 0;
     }
   }
 }

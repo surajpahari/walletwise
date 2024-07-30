@@ -1,4 +1,5 @@
 import "package:get/get.dart";
+import 'package:walletwise/models/debt.dart';
 import "package:walletwise/data/graph_data.dart";
 import "package:walletwise/models/assets.dart";
 
@@ -16,9 +17,16 @@ class AssetDebtData {
     });
   }
 
+  static void updateDebtChart() {
+    debtPieChartData.clear();
+    debtData.forEach((asset) {
+      debtPieChartData.add(PieData(name: asset.name, value: asset.amount));
+    });
+  }
+
   static RxList<Assets> assetsData = <Assets>[].obs;
   static RxList<PieData> pieDataList = <PieData>[].obs;
 
-  static RxList<Assets> debtData = <Assets>[].obs;
+  static RxList<Debt> debtData = <Debt>[].obs;
   static RxList<PieData> debtPieChartData = <PieData>[].obs;
 }
