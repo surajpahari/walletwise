@@ -54,12 +54,24 @@ class ModelOperation {
         //tryL to convert it into the list
         try {
           List<dynamic> jsonResponse = [];
+
           if (listKey != null) {
-            jsonResponse = jsonDecode(response.body)[listKey];
-            print(jsonDecode(response.body)[listKey]);
+            var decodedBody = jsonDecode(response.body);
+            if (decodedBody.containsKey(listKey)) {
+              jsonResponse = decodedBody[listKey];
+              print(jsonResponse);
+            } else {
+              throw Exception('Key "$listKey" does not exist in the response.');
+            }
           } else {
             jsonResponse = jsonDecode(response.body);
           }
+          //checking if the response is empty
+          if (jsonResponse.isEmpty) {
+            targetList?.clear();
+            return [];
+          }
+
           List<T> modelList =
               jsonResponse.map((item) => fromJson(item)).toList();
 
