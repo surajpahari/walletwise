@@ -107,12 +107,12 @@ class _AssetDebtState extends State<AssetDebt> {
             ],
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
             //color: Colors.blue,
-            padding: EdgeInsets.all(2),
-            constraints: BoxConstraints(minWidth: 200, maxHeight: 300),
+            padding: const EdgeInsets.all(2),
+            constraints: const BoxConstraints(minWidth: 200, maxHeight: 300),
             child: _selectedIndex == 0
                 ? MyPieChart(AssetDebtData.pieDataList)
                 : MyPieChart(AssetDebtData.debtPieChartData),

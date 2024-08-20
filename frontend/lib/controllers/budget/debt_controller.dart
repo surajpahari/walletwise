@@ -51,8 +51,7 @@ class DebtController extends Wwform {
     //formState.value = 1;
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchDebt, Debt.fromJson,
-          targetList: AssetDebtData.debtData,
-          listKey: 'data', successAction: (response) {
+          targetList: AssetDebtData.debtData, successAction: (response) {
         try {
           //update(response);
         } catch (e) {

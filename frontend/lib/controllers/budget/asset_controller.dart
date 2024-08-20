@@ -82,9 +82,10 @@ class AssetController extends Wwform {
     //formState.value = 1;
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchAssets, Assets.fromJson,
-          listKey: "data",
+          //listKey: "data",
           targetList: AssetDebtData.assetsData, successAction: (response) {
         try {
+          print(response);
           //update(response);
         } catch (e) {
           throw Exception("Failed to update assets:$e");

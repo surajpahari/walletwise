@@ -18,7 +18,7 @@ class ApiUrls {
 
   //urls realted to the assets
   static Url addAssets = Url('/api/assets');
-  static Url fetchAssets = Url('/api/fetch-assets');
+  static Url fetchAssets = Url('/api/assets/fetch');
 
   //urls related to the debts
   static Url addDebt = Url('/api/debts');
@@ -44,6 +44,9 @@ class ApiUrls {
 
   //urls for the balanceCard
   static Url fetchBalance = Url("/api/get-balance-info"); //get
+
+  //urls for the balanceChart
+  static Url fetchBalanceHistory = Url("/api/get-balance-card");
 
   //urls for the expenses
   static Url addExpense = Url("/api/expenses");

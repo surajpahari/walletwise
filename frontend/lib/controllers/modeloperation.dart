@@ -82,6 +82,7 @@ class ModelOperation {
             print(targetList);
           }
         } catch (e) {
+          print(response);
           print(e);
           throw Exception(e);
         }

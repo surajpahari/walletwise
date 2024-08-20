@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/asset_controller.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
+import 'package:walletwise/controllers/budget/debt_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_add_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
@@ -16,7 +17,6 @@ import 'package:walletwise/utils/cards/savinggoal_card.dart';
 import 'package:walletwise/utils/cards/upcoming_payment_card.dart';
 import 'package:walletwise/utils/charts/line_chart.dart';
 import 'package:walletwise/utils/dialogs/DialogBuilder.dart';
-import 'package:walletwise/utils/gaps/Xgap.dart';
 import 'package:walletwise/utils/tabs/asset_debt.dart';
 import 'package:walletwise/data/balance_data.dart';
 
@@ -54,10 +54,11 @@ class MainScreen extends StatelessWidget {
                     //ExpenseController.fetchExpenseCategories();
                     //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
-                    BalanceCardController.fetchBalanceCardData();
+                    //BalanceCardController.fetchBalanceCardData();
                     AssetController.getAssets(context);
-                    ExpenseController.fetchExpenseCategories();
-                    StockAddController.fetchBoughtStock();
+                    DebtController.getDebt(context);
+                    //ExpenseController.fetchExpenseCategories();
+                    //StockAddController.fetchBoughtStock();
                   },
                   child: const Text("fetch")),
 
@@ -112,15 +113,15 @@ class MainScreen extends StatelessWidget {
                   }).toList())),
 
 //gapY("md"),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               title("Balance"),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Container(child: WwLineChart(data: BalanceData.balanceHistory)),
-              SizedBox(
+              const WwLineChart(),
+              const SizedBox(
                 height: 60,
               ),
 
