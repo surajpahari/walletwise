@@ -36,8 +36,9 @@ class ApiUrls {
 
   //urls realted to the saving goals
   static Url fetchSavingGoal = Url("/api/savings/fetch");
-  static Url addSaving = Url('/api/saving/add');
-  static Url editSaving = Url("/api/saving/edit");
+  //put id concat
+  static Url addSaving = Url('/api/saving');
+  static Url editSaving = Url("/api/saving/");
 
   //urls realted to the payments;
   static Url fetchUpcomingPayment = Url("/api/upcoming");

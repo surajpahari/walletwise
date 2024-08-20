@@ -65,7 +65,7 @@ class SavinggoalController extends Wwform {
           "type": 'routine',
           "name": "chocofun",
         },
-        url: ApiUrls.addExpense,
+        url: ApiUrls.addSaving,
         //body: {"amount": "400", "fire": "fire"},
         //url: ApiUrls.addSaving,
         successAction: (response) {
