@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,8 +69,23 @@ class User extends Authenticatable
         return $this->hasMany(Asset::class);
     }
 
+    public function debts(): HasMany
+    {
+        return $this->hasMany(Debt::class);
+    }
+
+    public function savings(): HasMany
+    {
+        return $this->hasMany(Saving::class);
+    }
+
     public function expenses(): HasMany
     {
         return $this->hasMany(Expense::class);
+    }
+
+    public function stocks(): BelongsToMany
+    {
+        return $this->belongsToMany(Stock::class, 'stock_user');
     }
 }

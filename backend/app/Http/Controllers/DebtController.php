@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAssetRequest;
-use App\Http\Requests\UpdateAssetRequest;
-use App\Http\Resources\AssetCollection;
-use App\Models\Asset;
+use App\Http\Requests\StoreDebtRequest;
+use App\Http\Requests\UpdateDebtRequest;
+use App\Http\Resources\DebtCollection;
+use App\Http\Resources\DebtResource;
+use App\Models\Debt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AssetController extends Controller
+class DebtController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,25 +31,25 @@ class AssetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAssetRequest $request)
+    public function store(StoreDebtRequest $request)
     {
         $fields = $request->validated();
         $fields['user_id'] = Auth::id();
 
-        $asset = Asset::create($fields);
+        $debt = Debt::create($fields);
 
-        $assetResource = new AssetResource($asset);
+        $debtResource = new DebtResource($debt);
 
         return response()->json([
-            'message' => 'Asset created',
-            'asset' => $assetResource,
+            'message' => 'Debt created',
+            'debt' => $debtResource,
         ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Asset $asset)
+    public function show(Debt $debt)
     {
         //
     }
@@ -56,7 +57,7 @@ class AssetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Asset $asset)
+    public function edit(Debt $debt)
     {
         //
     }
@@ -64,7 +65,7 @@ class AssetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAssetRequest $request, Asset $asset)
+    public function update(UpdateDebtRequest $request, Debt $debt)
     {
         //
     }
@@ -72,7 +73,7 @@ class AssetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asset $asset)
+    public function destroy(Debt $debt)
     {
         //
     }
@@ -80,14 +81,14 @@ class AssetController extends Controller
     public function fetch(Request $request)
     {
         $user = Auth::user();
-        $assets = $user->assets;
+        $debts = $user->debts;
 
-        $assetsResource = new AssetCollection($assets);
+        $debtsResource = new DebtCollection($debts);
 
-        return $assetsResource
+        return $debtsResource
             ->additional([
                 'status' => 'Request was successful.',
-                'message' => 'Assets fetched succesfully.',
+                'message' => 'Debts fetched succesfully.',
             ]);
     }
 }

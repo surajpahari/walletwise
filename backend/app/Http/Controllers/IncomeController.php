@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreExpenseRequest;
-use App\Http\Requests\UpdateExpenseRequest;
-use App\Http\Resources\UpcomingExpensesResource;
-use App\Models\Expense;
+use App\Http\Requests\StoreIncomeRequest;
+use App\Http\Requests\UpdateIncomeRequest;
+use App\Http\Resources\UpcomingIncomesResource;
+use App\Models\Income;
 use App\Services\BalanceService;
 use Carbon\Carbon;
 use Exception;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class ExpenseController extends Controller
+class IncomeController extends Controller
 {
     private $balanceService;
 
@@ -41,7 +41,7 @@ class ExpenseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExpenseRequest $request)
+    public function store(StoreIncomeRequest $request)
     {
         $fields = $request->validated();
         $fields['user_id'] = Auth::id();
@@ -51,7 +51,7 @@ class ExpenseController extends Controller
 
         if (! isset($fields['period'])) {
             try {
-                $deductExpenseAmount = $this->balanceService->deductExpenseAmount(
+                $increaseIncomeAmount = $this->balanceService->increaseIncomeAmount(
                     $sourceName,
                     $sourceId,
                     $fields['amount']
@@ -64,21 +64,20 @@ class ExpenseController extends Controller
             }
         }
 
-        $expense = Expense::create($fields);
+        $income = Income::create($fields);
 
-        // $expenseResource = new ExpenseResource($expense);
+        // $incomeResource = new IncomeResource($income);
 
         return response()->json([
-            'message' => 'Expense created',
-            'expense' => $expense,
+            'message' => 'Income created',
+            'income' => $income,
         ]);
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Expense $expense)
+    public function show(Income $income)
     {
         //
     }
@@ -86,7 +85,7 @@ class ExpenseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Expense $expense)
+    public function edit(Income $income)
     {
         //
     }
@@ -94,7 +93,7 @@ class ExpenseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateExpenseRequest $request, Expense $expense)
+    public function update(UpdateIncomeRequest $request, Income $income)
     {
         //
     }
@@ -102,19 +101,19 @@ class ExpenseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Expense $expense)
+    public function destroy(Income $income)
     {
         //
     }
 
-    public function getUpcomingExpenses(Request $request)
+    public function getUpcomingIncomes(Request $request)
     {
         try {
-            $expenseQuery = Expense::query();
-            $upcomingExpenses = $expenseQuery->upcoming()->get();
-            $upcomingExpensesResource = UpcomingExpensesResource::collection($upcomingExpenses);
+            $incomeQuery = Income::query();
+            $upcomingIncomes = $incomeQuery->upcoming()->get();
+            $upcomingIncomesResource = UpcomingIncomesResource::collection($upcomingIncomes);
 
-            return response()->json(['message' => 'Upcoming Expenses', 'expenses' => $upcomingExpensesResource]);
+            return response()->json(['message' => 'Upcoming Incomes', 'incomes' => $upcomingIncomesResource]);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
@@ -128,14 +127,14 @@ class ExpenseController extends Controller
 
         $date = Carbon::today()->subDays($duration);
 
-        $expenses = Expense::query()
+        $incomes = Income::query()
             ->where('date', '>=', $date)
-            ->leftJoin('expense_categories', 'expenses.category_id', '=', 'expense_categories.id')
-            ->select('category_id', 'expense_categories.name as category', DB::raw('SUM(amount) as total_amount'))
+            ->leftJoin('income_categories', 'incomes.category_id', '=', 'income_categories.id')
+            ->select('category_id', 'income_categories.name as category', DB::raw('SUM(amount) as total_amount'))
             ->groupBy('category_id')
             ->get();
 
-        return response()->json(['expenses' => $expenses]);
+        return response()->json(['incomes' => $incomes]);
 
     }
 }

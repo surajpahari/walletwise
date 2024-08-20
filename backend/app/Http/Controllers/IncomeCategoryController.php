@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreExpenseCategoryRequest;
-use App\Http\Requests\UpdateExpenseCategoryRequest;
-use App\Models\ExpenseCategory;
+use App\Http\Requests\StoreIncomeCategoryRequest;
+use App\Http\Requests\UpdateIncomeCategoryRequest;
+use App\Models\IncomeCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ExpenseCategoryController extends Controller
+class IncomeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class ExpenseCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExpenseCategoryRequest $request)
+    public function store(StoreIncomeCategoryRequest $request)
     {
         //
     }
@@ -37,26 +37,26 @@ class ExpenseCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, ExpenseCategory $expenseCategory)
+    public function show(Request $request, IncomeCategory $incomeCategory)
     {
         $duration = $request->duration;
         $date = Carbon::today()->subDays($duration);
 
-        $expenses = ExpenseCategory::with(['expenses' => function ($q) use ($date) {
+        $incomes = IncomeCategory::with(['incomes' => function ($q) use ($date) {
             $q->select('id', 'name', 'date', 'category_id', 'amount')
                 ->where('date', '>=', $date);
         }])
-            ->where('id', '=', $expenseCategory->id)
+            ->where('id', '=', $incomeCategory->id)
             ->select('id', 'name')
             ->get();
 
-        return response()->json($expenses);
+        return response()->json($incomes);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ExpenseCategory $expenseCategory)
+    public function edit(IncomeCategory $incomeCategory)
     {
         //
     }
@@ -64,7 +64,7 @@ class ExpenseCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateExpenseCategoryRequest $request, ExpenseCategory $expenseCategory)
+    public function update(UpdateIncomeCategoryRequest $request, IncomeCategory $incomeCategory)
     {
         //
     }
@@ -72,15 +72,8 @@ class ExpenseCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ExpenseCategory $expenseCategory)
+    public function destroy(IncomeCategory $incomeCategory)
     {
         //
-    }
-
-    public function getAllCategory()
-    {
-        $categories = ExpenseCategory::select('id', 'name')->get();
-
-        return response()->json(['message' => 'All cateogries', 'categories' => $categories]);
     }
 }

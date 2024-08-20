@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Expense extends Model
+class Income extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
+        'category_id',
+        'name',
+        'type',
+        'source',
         'bank_balance_id',
         'cash_in_hand_id',
-        'type',
-        'name',
-        'category_id',
         'amount',
         'date',
         'period',
@@ -28,23 +28,13 @@ class Expense extends Model
         $query->whereNotNull('period');
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function bankBalance(): BelongsTo
+    public function category()
     {
-        return $this->belongsTo(BankBalance::class);
-    }
-
-    public function cashInHand(): BelongsTo
-    {
-        return $this->belongsTo(CashInHand::class);
-    }
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(ExpenseCategory::class, 'category_id');
+        return $this->belongsTo(IncomeCategory::class, 'category_id');
     }
 }
