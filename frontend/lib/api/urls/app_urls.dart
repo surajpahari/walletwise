@@ -31,13 +31,13 @@ class ApiUrls {
   //urls related to the stocks
   static Url searchStocks = Url("/api/search_stock");
   static Url randomStocks = Url("/api/random_stock");
-  static Url addStocks = Url("/api/stocks/add_stocks");
-  static Url fetchBoughtStocks = Url("/api/stocks/bought-stocks");
+  static Url addStocks = Url("/api/stocks");
+  static Url fetchBoughtStocks = Url("/api/get-bought-stocks");
+  //static Url fetchBoughtStocks = Url("/api/stocks/bought-stocks");
 
   //urls realted to the saving goals
   static Url fetchSavingGoal = Url("/api/savings/fetch");
-  //put id concat
-  static Url addSaving = Url('/api/saving');
+  static Url addSaving = Url("/api/savings");
   static Url editSaving = Url("/api/saving/");
 
   //urls realted to the payments;
@@ -52,16 +52,21 @@ class ApiUrls {
   //urls for the expenses
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
-  static Url fetchUserCategories = Url("/api/expenses-category");
+  static Url Function(dynamic, String) fetchExpenseItem =
+
+      //(id, duration) => Url("/api/expense-detail/$id/?duration=$duration");
+      (id, duration) => Url("/api/expenses-detail");
+  static Url Function(String) fetchExpense =
+      (duration) => Url("/api/expenses/fetch?duration=$duration");
 
   //urls related to the income
   static Url addIncome = Url('/api/income/add');
   static Url fetchIncomeCategories = Url("/api/all-expense-categories");
   static Url fetchUserIncomeCategories = Url("/api/expenses-category");
 
-  static Url Function(dynamic) fetchItems =
-      (id) => Url("/api/get-expense-items?id=$id");
-
+  //static Url Function(dynamic) fetchItems =
+  //    (id) => Url("/api/get-expense-items?id=$id");
+  //
   //get the last 30 days data from python
   static Url getlast30 = Url("");
   static Url getStockDetail = Url("");

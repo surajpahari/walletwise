@@ -1,4 +1,6 @@
 import "dart:convert";
+import "package:walletwise/api/fetcher.dart";
+import "package:walletwise/models/item.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:walletwise/api/urls/app_urls.dart";
@@ -40,10 +42,14 @@ class ExpenseController extends Wwform {
 
 //for fetching the user category
   static Future<void> fetchUserCategories() async {
+    String duration = '7';
+    Url fetchUrl = ApiUrls.fetchExpense(duration);
+    print(fetchUrl.value);
+
     try {
       ModelOperation.fetchFunction(
-          ApiUrls.fetchUserCategories, (json) => Category.fromAmountJson(json),
-          targetList: ExpenseData.userCategoryList);
+          fetchUrl, (json) => Category.fromAmountJson(json),
+          listKey: 'expenses', targetList: ExpenseData.userCategoryList);
     } catch (e) {
       print("Error:$e");
     }
@@ -114,25 +120,57 @@ class ExpenseController extends Wwform {
   }
 
 //fetch the item form the category
-  static Future<void> fetchItemForCategory(int categoryId) async {
-    ModelOperation.fetchWithId(ApiUrls.fetchItems(categoryId.toString()),
-        id: '1', successAction: (response) {
-      //print(jsonResponse[0]);
 
-      var jsonResponse = jsonDecode(response) as List<dynamic>;
-      print("decode is $jsonResponse");
-      ExpenseData.detailedCategory.value = jsonResponse
-          .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
-          .toList();
-      //ExpenseData.detailedCategory.value = (jsonResponse as List<dynamic>)
-      //    .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
-      //    .toList();
-      //ExpenseData.detailedCategory = jsonResponse.map((item) {
-      //  Category.fromItemsJson(jsonResponse);
-      //}).toList();
-      print("mapped ExpenseData.detailedCategory");
-    });
+  static Future<void> fetchItemForCategory() async {
+    Url url = ApiUrls.fetchExpenseItem('7', '1');
+    try {
+      ModelOperation.fetchFunction(url, (json) => Item.fromJson(json),
+          targetList: ExpenseData.fetchedItem, successAction: (response) {
+        ExpenseData.updateChart();
+        print(ExpenseData.fetchedItem.length);
+      });
+    } catch (e) {
+      print(e);
+    }
   }
+  //ModelOperation.fetchFunction(url, (json) => Category.fromItemsJson(json),
+  //    targetList: ExpenseData.userCategoryList);
+  ////var response = await FetchAPI(
+  //        url, HttpMethod.get) // Ensure the correct HTTP method is used.
+  //    .fetchAuthorizedAPI();
+  //print(response.body);
+  //
+  //ModelOperation.fetch(url,f, successAction: (response) {
+  //var decodedResponse = response;
+  //try {
+  //print("response is ");
+  //print(response[0]);
+  //return;
+  //ExpenseData.detailedCategory.value = expenses
+  //    .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
+  //    .toList();
+  //print("decoded response");
+  //print(decodedResponse);
+  //  } catch (e) {
+  //    print(e);
+  //  }
+  //});
+  //ModelOperation.fetchWithId(ApiUrls.fetchExpenseItem(categoryId.toString()),
+  //id: categoryId, successAction: (response) {
+  //print(jsonResponse[0]);
+  //var jsonResponse = jsonDecode(response) as List<dynamic>;
+  //print("decode is $jsonResponse");
+  //ExpenseData.detailedCategory.value = jsonResponse
+  //    .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
+  //    .toList();
+  ////ExpenseData.detailedCategory.value = (jsonResponse as List<dynamic>)
+  //    .map((item) => Category.fromItemsJson(item as Map<String, dynamic>))
+  //    .toList();
+  //ExpenseData.detailedCategory = jsonResponse.map((item) {
+  //  Category.fromItemsJson(jsonResponse);
+  //}).toList();
+  //print("mapped ExpenseData.detailedCategory");
+  //});
 
   @override
   void clearFields() {}

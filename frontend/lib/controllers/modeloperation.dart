@@ -35,7 +35,7 @@ class ModelOperation {
     }
   }
 
-//for fetching the model and storing it the targetList
+  //for fetching the model and storing it the targetList
   static Future<List<T>> fetchFunction<T>(
     Url apiUrl,
     T Function(Map<String, dynamic>) fromJson, {
@@ -106,6 +106,33 @@ class ModelOperation {
 
   //for fetching the items with id
 
+  static Future<bool> fetch(Url apiUrl,
+      {Function? successAction, Function? errorAction}) async {
+    try {
+      final response =
+          await FetchAPI(apiUrl, HttpMethod.get).fetchAuthorizedAPI();
+      print(response?.statusCode);
+      if (response?.statusCode == 200) {
+        if (successAction != null) {
+          successAction(response);
+        }
+        return true;
+      } else {
+        debugPrint(response?.body);
+        if (errorAction != null) {
+          errorAction();
+        }
+        return false;
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+      if (errorAction != null) {
+        errorAction();
+      }
+      return false;
+    }
+  }
+
   static Future<bool> fetchWithId(Url apiUrl,
       {String? id, Function? successAction, Function? errorAction}) async {
     if (id == null) {
@@ -117,7 +144,6 @@ class ModelOperation {
           await FetchAPI(apiUrl, HttpMethod.get, body: {'id': id.toString()})
               .fetchAuthorizedAPI();
       print(response?.statusCode);
-      print(response?.body);
       if (response?.statusCode == 200) {
         if (successAction != null) {
           successAction(response?.body);

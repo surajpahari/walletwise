@@ -54,8 +54,8 @@ class AssetController extends Wwform {
     try {
       await ModelOperation().add(
           body: {
+            "name": title.text,
             "amount": int.parse(amount.text).toString(),
-            "name": title.text
           },
           url: ApiUrls.addAssets,
           successAction: (response) {
@@ -82,10 +82,11 @@ class AssetController extends Wwform {
     //formState.value = 1;
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchAssets, Assets.fromJson,
-          //listKey: "data",
+          listKey: "data",
           targetList: AssetDebtData.assetsData, successAction: (response) {
         try {
           print(response);
+          AssetDebtData.updateChart();
           //update(response);
         } catch (e) {
           throw Exception("Failed to update assets:$e");

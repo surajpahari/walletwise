@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/models/item.dart';
 
 class ItemCard extends StatelessWidget {
   final String title;
   final int amount;
-  final int total;
-  final Item item;
+  final String date;
 
   const ItemCard({
     Key? key,
     required this.title,
     required this.amount,
-    required this.item,
-    required this.total,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -50,9 +47,9 @@ class ItemCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  "2023-01-34",
-                  style: TextStyle(
+                Text(
+                  date,
+                  style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,

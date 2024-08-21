@@ -55,14 +55,48 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   style: const TextStyle(color: Colors.white, fontSize: 30.0),
                 ),
                 Container(
-                  constraints: const BoxConstraints(maxWidth: 200),
+                  constraints: BoxConstraints(maxWidth: 200),
                   child: Obx(() {
                     // Ensure detailedCategory has at least one element
-                    if (ExpenseData.itemPieDataList.isNotEmpty) {
-                      return CategoryPieChart(
-                          ExpenseData.itemPieDataList, widget.total);
+                    if (ExpenseData.detailedCategory.isNotEmpty) {
+                      return CategoryPieChart(ExpenseData.detailedCategory[0]);
                     } else {
-                      return const Center(
+                      return Center(
+                        child: Text('No pie chart data available'),
+                      );
+                    }
+                  }),
+                ),
+                Container(
+                  constraints: BoxConstraints(maxWidth: 200),
+                  child: Obx(() {
+                    // Ensure detailedCategory and getPieData are not empty
+                    if (ExpenseData.detailedCategory.isNotEmpty &&
+                        ExpenseData.detailedCategory[0]
+                            .getPieData()
+                            .isNotEmpty) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: ExpenseData.detailedCategory[0]
+                            .getPieData()
+                            .asMap()
+                            .entries
+                            .map((entry) {
+                          int index = entry.key;
+                          var pieData = entry.value;
+                          return Indicator(
+                            color: AppColors.pieChartColors[index %
+                                AppColors.pieChartColors
+                                    .length], // Ensure index is within bounds
+                            text: pieData.name,
+                            textColor: AppColors.white,
+                            isSquare: false,
+                          );
+                        }).toList(),
+                      );
+                    } else {
+                      return Center(
                         child: Text('No pie chart data available'),
                       );
                     }
@@ -75,17 +109,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
                 Obx(() {
                   // Ensure detailedCategory and items are not empty
-                  if (ExpenseData.fetchedItem.isNotEmpty) {
+                  if (ExpenseData.detailedCategory.isNotEmpty &&
+                      ExpenseData.detailedCategory[0].items.isNotEmpty) {
                     return Column(
-                      children: ExpenseData.fetchedItem
+                      children: ExpenseData.detailedCategory[0].items
                           .map((item) => ItemCard(
                               title: item.name,
                               amount: item.amount,
-                              date: item.date ?? ''))
+                              total: item.amount,
+                              item: item))
                           .toList(),
                     );
                   } else {
-                    return const Center(
+                    return Center(
                       child: Text('No items available'),
                     );
                   }

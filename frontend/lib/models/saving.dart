@@ -19,7 +19,7 @@ class Saving {
     return {
       'amount': amount,
       'note': note,
-      'title': name,
+      'name': name,
       'date': date,
     };
   }
@@ -28,8 +28,9 @@ class Saving {
     return Saving(
       amount: json['amount'] as int? ?? 0, // Provide default value 0 if null
       note: json['note'] as String? ?? '', // Provide default value '' if null
-      name: json['title'] as String? ?? '', // Provide default value '' if null
-      date: json['date'] as String? ?? '', // Provide default value '' if null
+      name: json['name'] as String? ?? '', // Provide default value '' if null
+      date:
+          json['end-date'] as String? ?? '', // Provide default value '' if null
       saved: json['saved'] != null
           ? json['saved'].toDouble()
           : 0.0, // Provide default value 0.0 if null

@@ -7,11 +7,11 @@ import 'package:walletwise/data/graph_data.dart';
 typedef PieDataExtractor = PieData Function(dynamic item);
 
 class CategoryPieChart extends StatelessWidget {
-  final Category data;
   final List<PieData> pieDataList;
+  final int amount;
 
   int index = -1;
-  CategoryPieChart(this.data, {Key? key}) : pieDataList = data.getPieData();
+  CategoryPieChart(this.pieDataList, this.amount, {Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class CategoryPieChart extends StatelessWidget {
                 )
               : const Text("no data found"),
           Text(
-            data.amount.toString(),
+            amount.toStringAsFixed(0),
             //"1000",
             //data.pieData.fold(0.0, (sum, item) => sum + item.value).toString(),
             style: const TextStyle(

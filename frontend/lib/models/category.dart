@@ -28,18 +28,29 @@ class Category {
   }
 
   factory Category.fromItemsJson(Map<String, dynamic> json) {
-    String category = json['category'];
+    String category = json['name'] ?? '';
     int id = json['id'] as int? ?? 0;
-    List<Item> items = (json['items'] as List<dynamic>)
+    List<Item> items = (json['expenses'] as List<dynamic>? ?? [])
         .map((itemJson) => Item.fromJson(itemJson as Map<String, dynamic>))
         .toList();
     return Category.withItems(id: id, category: category, items: items);
   }
 
+  //factory Category.fromItemsJson(Map<String, dynamic> json) {
+  //  String category = json['name'];
+  //  int id = json['id'] as int? ?? 0;
+  //  List<Item> items = (json['expenses'] as List<dynamic>)
+  //      .map((itemJson) => Item.fromJson(itemJson as Map<String, dynamic>))
+  //      .toList();
+  //  return Category.withItems(id: id, category: category, items: items);
+  //}
+
+//[{category_id: 1, category: Food, total_amount: 134},
+//{category_id: 2, category: Drugs, total_amount: 1000}]
   factory Category.fromAmountJson(Map<String, dynamic> json) {
+    int id = json['category_id'] as int? ?? 0;
     String category = json['category'] as String? ?? "";
-    int id = json['id'] as int? ?? 0;
-    int amount = json['amount'] as int? ?? 0;
+    int amount = json['total_amount'] as int? ?? 0;
 
     return Category.withAmount(
         id: id, category: category, amount: amount.toDouble());
@@ -52,8 +63,7 @@ class Category {
         return PieData(value: item.amount.toDouble(), name: item.name);
       }).toList();
     } else {
-      print("hell");
-
+      //print("hell");
       return <PieData>[PieData(name: "hell", value: 200)];
     }
   }

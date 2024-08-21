@@ -29,7 +29,7 @@ class SavingGoalForm extends StatelessWidget {
                           TextFormField(
                             validator: (value) =>
                                 WwValidator.isInputEmpty(value),
-                            controller: controller.title,
+                            controller: controller.name,
                             decoration: const InputDecoration(
                               prefix: Icon(Icons.title),
                               labelText: ("Title"),
@@ -88,7 +88,7 @@ class SavingGoalForm extends StatelessWidget {
                                               BorderRadius.circular(5))),
                                   onPressed: () {
                                     print(controller.formState.value);
-                                    controller.submitForm(context);
+                                    controller.addSaving(context);
                                     // ScaffoldMessenger.of(context).showSnackBar(
                                     //   SnackBar(
                                     //     content: Text('Yay! A SnackBar!'),

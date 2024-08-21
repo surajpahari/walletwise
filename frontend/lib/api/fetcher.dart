@@ -30,11 +30,12 @@ class FetchAPI extends ApiToken {
         final response = await http.get(
           Uri.parse('$baseUrl${url.value}'),
           // Send authorization headers to the backend.
+          //body:body
         );
         return response;
       }
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 

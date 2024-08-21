@@ -1,11 +1,24 @@
 import "package:walletwise/models/stock.dart";
 
 class BoughtStock {
-  String date;
+  String? date;
   Stock stock;
   double boughtAmount;
   double? currentAmount;
   int unit;
+
+  //[
+  //    'id' => 1,
+  //    'stock' => [
+  //        'id' => 1,
+  //        'symbol' => 'PFL',
+  //        'securityName' => 'Pokhara finance',
+  //        'name' => 'Pokhara finanance',
+  //    ],
+  //    'date' => '2022/03/5',
+  //    'unit' => 15,
+  //    'amount' => 1200,
+  //],
 
   BoughtStock(
       {required this.date,
@@ -25,7 +38,7 @@ class BoughtStock {
   factory BoughtStock.fromJson(Map<String, dynamic> json) {
     try {
       Stock stock = Stock.fromJson(json['stock']);
-      String date = json['date'];
+      String date = json['date'] as String;
       int unit = json['unit'] as int;
       double boughtAmount = (json['amount'] as num).toDouble();
       return BoughtStock(

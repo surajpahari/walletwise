@@ -27,12 +27,17 @@ class SignUpController extends ApiToken {
     if (!signupFormkey.currentState!.validate()) {
       return;
     }
-    await FetchAPI(ApiUrls.signupUrl, HttpMethod.post, body: body)
-        .fetchUnauthorizedAPI()
-        .then((response) => _handleSucessfullSingup(response));
+    try {
+      await FetchAPI(ApiUrls.signupUrl, HttpMethod.post, body: body)
+          .fetchUnauthorizedAPI()
+          .then((response) => _handleSucessfullSingup(response));
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _handleSucessfullSingup(response) {
+    print(response.body);
     if (response.statusCode != null) {
       if (response.statusCode == 200) {
         Get.to(const Login());

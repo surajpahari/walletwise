@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/utils/date_picker.dart';
+import 'package:walletwise/utils/texfields/ww_submit.dart';
 import 'package:walletwise/utils/texfields/ww_textfield.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/utils/gaps/Xgap.dart';
@@ -42,7 +44,6 @@ class AddSavingGoalForm extends StatelessWidget {
                         return null;
                       }),
                   gapY("md"),
-                  const SizedBox(height: 20),
                   WwTextfield(
                       label: "Amount",
                       controller: controller.amount,
@@ -51,14 +52,34 @@ class AddSavingGoalForm extends StatelessWidget {
                         return null;
                       }),
                   const SizedBox(height: 20),
-                  WwTextfield(
-                      label: "EndDate",
-                      controller: controller.endDate,
-                      icon: const Icon(Icons.title),
-                      validator: (value) {
-                        return null;
-                      }),
+                  DatePicker(
+                    controller: controller.endDate,
+                    firstDate: DateTime(2023),
+                    lastDate: DateTime(2025),
+                  ),
                   gapY("md"),
+                  WwSubmit(
+                      onPressed: () {
+                        controller.addSaving(context);
+                      },
+                      child: Obx(
+                        () => controller.formState.value == 1
+                            ? const Column(
+                                children: [
+                                  Text(
+                                    "Adding",
+                                    style: TextStyle(
+                                        fontSize: 24, color: Colors.white),
+                                  ),
+                                  LinearProgressIndicator(color: Colors.white),
+                                ],
+                              )
+                            : const Text(
+                                "Add",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 24),
+                              ),
+                      )),
                   Obx(
                     () => controller.formState.value == 1
                         ? const Column(

@@ -57,20 +57,23 @@ class SavinggoalController extends Wwform {
     formState.value = 1;
     ModelOperation().add(
         body: {
-          "amount": "50000",
-          "category_id": "1",
-          "date": '2024/06/20',
-          "bank_balance_id": '1',
-          "period": '20',
-          "type": 'routine',
-          "name": "chocofun",
+          'name': name.text,
+          'amount': amount.text,
+          'saved': '0',
+          'start-date': '2024-08-20',
+          'end-date': endDate.text,
+          'note': 'no',
         },
         url: ApiUrls.addSaving,
         //body: {"amount": "400", "fire": "fire"},
         //url: ApiUrls.addSaving,
         successAction: (response) {
+          Saving? newSaving = createSaving();
+          if (newSaving != null) {
+            SavingGoalData.savinglist.add(newSaving);
+          }
           WwSnackbar.builder(
-              context, "SuccessFullyAddec", WwSnackbartype.success);
+              context, "SuccessFully Added", WwSnackbartype.success);
           clearFields();
         },
         errorAction: () {
@@ -83,6 +86,7 @@ class SavinggoalController extends Wwform {
       await ModelOperation.fetchFunction(
         ApiUrls.fetchSavingGoal,
         (json) => Saving.fromJson(json),
+        listKey: 'data',
         targetList: SavingGoalData.savinglist,
       );
     } catch (e) {
