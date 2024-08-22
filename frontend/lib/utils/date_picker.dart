@@ -6,9 +6,11 @@ class DatePicker extends StatefulWidget {
       required this.lastDate,
       required this.firstDate,
       this.label,
+      this.size,
       Key? key})
       : super(key: key);
   final String? label;
+  final String? size;
   final TextEditingController controller;
   final DateTime firstDate;
   final DateTime lastDate;

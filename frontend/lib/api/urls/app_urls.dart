@@ -53,14 +53,26 @@ class ApiUrls {
   static Url addExpense = Url("/api/expenses");
   static Url fetchExpenseCategories = Url("/api/all-expense-categories");
   static Url Function(dynamic, String) fetchExpenseItem =
-
       //(id, duration) => Url("/api/expense-detail/$id/?duration=$duration");
       (id, duration) => Url("/api/expenses-detail");
   static Url Function(String) fetchExpense =
       (duration) => Url("/api/expenses/fetch?duration=$duration");
 
+  //urls for the transaction
+  static Url Function(String) getTransactionRecord =
+      (duration) => Url("/api/get-transaction-record");
+  static Url Function(
+      String, String, String, String, String) getTransactionRecords = (
+    from,
+    to,
+    type,
+    bank,
+    search,
+  ) =>
+      Url("/api/transactions/fetch?from=$from?to=$to?type=$type?bank=$bank?search=$search");
+
   //urls related to the income
-  static Url addIncome = Url('/api/income/add');
+  static Url addIncome = Url('/api/incomes');
   static Url fetchIncomeCategories = Url("/api/all-expense-categories");
   static Url fetchUserIncomeCategories = Url("/api/expenses-category");
 

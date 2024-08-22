@@ -27,6 +27,7 @@ class WwTextfield extends StatelessWidget {
         labelStyle: TextStyle(color: Colors.white),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20), // Make the border rounded
+          borderSide: const BorderSide(color: Colors.white),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20), // Make the border rounded

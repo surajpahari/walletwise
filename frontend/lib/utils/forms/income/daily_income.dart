@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
+import 'package:walletwise/controllers/budget/income_contorller.dart';
 import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/models/bank_account.dart';
@@ -16,7 +17,7 @@ class DailyIncomeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = ExpenseController();
+    final controller = IncomeController();
 
     return Builder(
       builder: (context) {
@@ -27,7 +28,7 @@ class DailyIncomeForm extends StatelessWidget {
             child: Column(
               children: [
                 WwTextfield(
-                  controller: controller.item,
+                  controller: controller.source,
                   icon: const Icon(Icons.title),
                   validator: (value) {
                     return null;
@@ -77,7 +78,7 @@ class DailyIncomeForm extends StatelessWidget {
                 gapY("md"),
                 WwSubmit(
                   onPressed: () {
-                    controller.addRoutineExpense(context);
+                    controller.addDailyIncome(context);
                   },
                   child: Obx(
                     () => controller.formState.value == 1

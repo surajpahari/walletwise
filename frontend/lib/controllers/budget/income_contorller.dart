@@ -66,13 +66,13 @@ class IncomeController extends Wwform {
       await ModelOperation().add(
         body: {
           'bank_balance_id': selectedBankAccount?.id.toString(),
-          'name': source.text,
+          'source': source.text,
           'type': 'daily',
           'amount': amount.text,
           'date': date.text,
           'category_id': selectedCategory?.id.toString(),
         },
-        url: ApiUrls.addExpense,
+        url: ApiUrls.addIncome,
         successAction: (response) {
           print("hey");
           formState.value = 0;

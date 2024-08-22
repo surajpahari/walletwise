@@ -21,19 +21,6 @@ class BudgetController {
     }
   }
 
-  static Future<dynamic> getFullBudgets(int id) async {
-    print(id);
-    var response = await FetchAPI(ApiUrls.test2Url, HttpMethod.get,
-        body: {'id': id.toString()}).fetchAuthorizedAPI();
-    if (response.statusCode == 200) {
-      print(response.body);
-      final List<dynamic> jsonResponse = jsonDecode(response.body);
-      categories = jsonResponse.map((item) => Category.fromJson(item)).toList();
-    } else {
-      throw Exception('Failed to load budgets');
-    }
-  }
-
   // // static Future<dynamic> getFullBudgets() async {
   // //   var response =
   // //       await FetchAPI(ApiUrls.test2Url, HttpMethod.get).fetchAuthorizedAPI();

@@ -6,6 +6,7 @@ import 'package:walletwise/controllers/budget/asset_controller.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/budget/debt_controller.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
+import 'package:walletwise/controllers/budget/transaction_record_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_add_controller.dart';
 import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 import 'package:walletwise/data/asset_debt_data.dart';
@@ -60,6 +61,7 @@ class MainScreen extends StatelessWidget {
                     //
                     ExpenseController.fetchItemForCategory();
                     ExpenseController.fetchUserCategories();
+                    TransactionRecordController.fetchRecords();
                     //BankAccController.fetchBankAccount();
                     //ExpenseController.fetchExpenseCategories();
                     StockAddController.fetchBoughtStock();

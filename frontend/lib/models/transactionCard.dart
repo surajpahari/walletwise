@@ -13,8 +13,7 @@ class TransactionCardData {
     return TransactionCardData(
         title: json['name'] as String? ?? '',
         amount: json['amount'] as int? ?? 0,
-        date: json['date'] as String? ??
-            '', // Assuming date is a String, adjust if needed
-        type: json['name'] as String? ?? '');
+        date: json['date'] as String? ?? '',
+        type: json['type'] as String? ?? '');
   }
 }

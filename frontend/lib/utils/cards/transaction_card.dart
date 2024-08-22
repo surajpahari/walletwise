@@ -20,20 +20,21 @@ class TransactionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10), // Rounded corners
       ),
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      color: Colors.grey[800], // Dark background color
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,7 +43,7 @@ class TransactionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: type == '1' ? Colors.green : Colors.red,
+                    color: type == 'income' ? Colors.green : Colors.red,
                   ),
                 ),
                 Text(
@@ -57,7 +58,6 @@ class TransactionCard extends StatelessWidget {
           ],
         ),
       ),
-      color: Colors.grey[800], // Dark background color
     );
   }
 }
