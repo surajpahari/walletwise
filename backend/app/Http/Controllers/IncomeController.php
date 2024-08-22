@@ -46,10 +46,10 @@ class IncomeController extends Controller
         $fields = $request->validated();
         $fields['user_id'] = Auth::id();
 
-        $sourceName = $fields['bank_balance_id'] ? 'bank_balance' : 'cash_in_hand';
-        $sourceId = $fields['bank_balance_id'] ?? $fields['cash_in_hand_id'];
+        if ($fields['type'] == 'daily') {
+            $sourceName = $fields['bank_balance_id'] ? 'bank_balance' : 'cash_in_hand';
+            $sourceId = $fields['bank_balance_id'] ?? $fields['cash_in_hand_id'];
 
-        if (! isset($fields['period'])) {
             try {
                 $increaseIncomeAmount = $this->balanceService->increaseIncomeAmount(
                     $sourceName,

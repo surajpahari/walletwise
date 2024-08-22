@@ -15,6 +15,16 @@ class StoreIncomeRequest extends FormRequest
         return true;
     }
 
+    private function eitherBankOrCashIdRequiredRules()
+    {
+        return [
+            'bank_balance_id' => ['nullable', Rule::exists('bank_balances', 'id')],
+            'cash_in_hand_id' => ['nullable', Rule::exists('cash_in_hands', 'id')],
+            'bank_balance_id' => 'required_without_all:cash_in_hand_id',
+            'cash_in_hand_id' => 'required_without_all:bank_balance_id',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,17 +32,18 @@ class StoreIncomeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'bank_balance_id' => ['nullable', Rule::exists('bank_balances', 'id')],
-            'cash_in_hand_id' => ['nullable', Rule::exists('cash_in_hands', 'id')],
-            'bank_balance_id' => 'required_without_all:cash_in_hand_id',
-            'cash_in_hand_id' => 'required_without_all:bank_balance_id',
+        $baseRules = [
             'type' => ['required', 'string'],
             'source' => ['required', 'string'],
             'category_id' => ['required', 'integer', Rule::exists('income_categories', 'id')],
             'amount' => ['required', 'string'],
             'date' => ['required', 'string'],
-            'period' => ['nullable', 'integer'],
         ];
+
+        if ($this->input('type') == 'daily') {
+            return array_merge($baseRules, $this->eitherBankOrCashIdRequiredRules());
+        }
+
+        return $baseRules;
     }
 }
