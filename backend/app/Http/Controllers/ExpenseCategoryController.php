@@ -44,7 +44,8 @@ class ExpenseCategoryController extends Controller
 
         $expenses = ExpenseCategory::with(['expenses' => function ($q) use ($date) {
             $q->select('id', 'name', 'date', 'category_id', 'amount')
-                ->where('date', '>=', $date);
+                ->where('date', '>=', $date)
+                ->where('type', '=', 'daily');
         }])
             ->where('id', '=', $expenseCategory->id)
             ->select('id', 'name')
