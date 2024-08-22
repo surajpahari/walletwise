@@ -76,8 +76,8 @@ class TransactionController extends Controller
         $last30Days = Carbon::today()->subDays(30);
         $today = Carbon::today();
 
-        $incomesQuery = Income::query();
-        $expensesQuery = Expense::query();
+        $incomesQuery = Income::query()->where('type', 'daily');
+        $expensesQuery = Expense::query()->where('type', 'daily');
 
         if (isset($bank)) {
             $incomesQuery->where('bank_balance_id', $bank);

@@ -23,6 +23,15 @@ class Income extends Model
         'period',
     ];
 
+    protected $appends = [
+        'identifier',
+    ];
+
+    public function getIdentifierAttribute()
+    {
+        return 'income';
+    }
+
     public function scopeUpcoming(Builder $query)
     {
         $query->whereNotNull('period');

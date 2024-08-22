@@ -23,6 +23,15 @@ class Expense extends Model
         'period',
     ];
 
+    protected $appends = [
+        'identifier',
+    ];
+
+    public function getIdentifierAttribute()
+    {
+        return 'expense';
+    }
+
     public function scopeUpcoming(Builder $query)
     {
         $query->whereNotNull('period');
