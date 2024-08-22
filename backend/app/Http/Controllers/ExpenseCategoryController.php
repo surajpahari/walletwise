@@ -48,7 +48,8 @@ class ExpenseCategoryController extends Controller
         }])
             ->where('id', '=', $expenseCategory->id)
             ->select('id', 'name')
-            ->get();
+            ->first()
+            ->expenses;
 
         return response()->json($expenses);
     }
