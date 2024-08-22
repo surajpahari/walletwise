@@ -116,7 +116,7 @@ class TransactionController extends Controller
 
         $transactions = null;
         if ($type == 'INCOMES') {
-            $incomes = $incomesQuery->get();
+            $incomes = $incomesQuery->select('*', 'source as name')->get();
 
             $transactions = $incomes->sortByDesc('date')->values();
 
@@ -126,7 +126,7 @@ class TransactionController extends Controller
             $transactions = $expenses->sortByDesc('date')->values();
         } else {
             // Fetch both
-            $incomes = $incomesQuery->get();
+            $incomes = $incomesQuery->select('*', 'source as name')->get();
             $expenses = $expensesQuery->get();
 
             $transactions = $incomes->concat($expenses)->sortByDesc('date')->values();
