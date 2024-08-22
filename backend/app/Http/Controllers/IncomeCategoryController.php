@@ -44,11 +44,13 @@ class IncomeCategoryController extends Controller
 
         $incomes = IncomeCategory::with(['incomes' => function ($q) use ($date) {
             $q->select('id', 'name', 'date', 'category_id', 'amount')
-                ->where('date', '>=', $date);
+                ->where('date', '>=', $date)
+                ->where('type', '=', 'daily');
         }])
             ->where('id', '=', $incomeCategory->id)
             ->select('id', 'name')
-            ->get();
+            ->first()
+            ->incomes;
 
         return response()->json($incomes);
     }
