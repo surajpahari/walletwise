@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/utils/inputs/range_dropdown2.dart';
 import 'package:walletwise/utils/forms/income/daily_income.dart';
@@ -31,11 +32,16 @@ class _IncomeScreenState extends State<IncomeScreen> {
           ),
           ExpenseBarChart(
               color: Colors.green, categories: IncomeData.incomeCategories),
-          Column(
-            children: IncomeData.incomeCategories.map((category) {
-              return IncomeCard(category: category);
-            }).toList(),
-          ),
+          Obx(() => Wrap(
+                alignment: WrapAlignment.end,
+                children: IncomeData.userCategoryList
+                    .asMap()
+                    .entries
+                    .map((entry) => Column(
+                          children: [IncomeCard(category: entry.value)],
+                        ))
+                    .toList(),
+              )),
         ],
       )),
       floatingActionButton: Padding(

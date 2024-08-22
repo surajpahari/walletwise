@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/bank_controller.dart';
+import 'package:walletwise/controllers/budget/income_contorller.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/asset_controller.dart';
@@ -54,17 +55,19 @@ class MainScreen extends StatelessWidget {
               gap(20),
               ElevatedButton(
                   onPressed: () {
+                    IncomeController.fetchItemForCategory();
+                    //IncomeController.fetchIncomes();
                     //ExpenseController.fetchExpenseCategories();
                     //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
                     //BalanceCardController.fetchBalanceCardData();
                     //
-                    ExpenseController.fetchItemForCategory();
                     ExpenseController.fetchUserCategories();
-                    TransactionRecordController.fetchRecords();
+                    //TransactionRecordController.fetchRecords();
+                    //IncomeController.fetchIncomes();
                     //BankAccController.fetchBankAccount();
                     //ExpenseController.fetchExpenseCategories();
-                    StockAddController.fetchBoughtStock();
+                    //StockAddController.fetchBoughtStock();
                   },
                   child: const Text("fetch")),
               gap(20),

@@ -121,8 +121,8 @@ class ExpenseController extends Wwform {
 
 //fetch the item form the category
 
-  static Future<void> fetchItemForCategory() async {
-    Url url = ApiUrls.fetchExpenseItem('7', '1');
+  static Future<void> fetchItemForCategory(id) async {
+    Url url = ApiUrls.fetchExpenseItem(id.toString(), '7');
     try {
       ModelOperation.fetchFunction(url, (json) => Item.fromJson(json),
           targetList: ExpenseData.fetchedItem, successAction: (response) {

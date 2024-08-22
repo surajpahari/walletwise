@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
+import "package:walletwise/models/item.dart";
 import "package:get/get.dart";
+import "package:walletwise/data/income_data.dart";
+import "package:walletwise/models/category.dart";
 import "package:walletwise/api/urls/app_urls.dart";
 import "package:walletwise/models/expense_category.dart";
 import "package:walletwise/data/expense_data.dart";
@@ -87,6 +90,39 @@ class IncomeController extends Wwform {
       );
     } catch (e) {
       print('Error:$e');
+    }
+  }
+
+  static Future<void> fetchIncomes() async {
+    String duration = '7';
+    Url fetchUrl = ApiUrls.fetchIncome(duration);
+    print(fetchUrl.value);
+    //try {
+    //  ModelOperation.fetch(fetchUrl, successAction: (response) {
+    //    print(response.body);
+    //  });
+    //} catch (e) {}
+    //return;
+
+    try {
+      ModelOperation.fetchFunction(
+          fetchUrl, (json) => Category.fromAmountJson(json),
+          listKey: 'incomes', targetList: IncomeData.userCategoryList);
+    } catch (e) {
+      print("Error:$e");
+    }
+  }
+
+  static Future<void> fetchItemForCategory() async {
+    Url url = ApiUrls.fetchIncomeItem('1', '7');
+    try {
+      ModelOperation.fetchFunction(url, (json) => Item.fromJson(json),
+          targetList: IncomeData.fetchedItem, successAction: (response) {
+        ExpenseData.updateChart();
+        print(ExpenseData.fetchedItem.length);
+      });
+    } catch (e) {
+      print(e);
     }
   }
 

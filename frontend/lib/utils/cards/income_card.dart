@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:walletwise/constants/app_icons.dart';
 import 'package:walletwise/models/category.dart';
 import 'package:walletwise/screens/category_screen.dart';
+import 'package:walletwise/screens/income_category_screen.dart';
 
 class IncomeCard extends StatelessWidget {
   final Category category;
@@ -18,7 +19,7 @@ class IncomeCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CategoryScreen(
+              builder: (context) => IncomeCategoryScreen(
                 id: category.id,
                 category: category.category,
                 total: category.amount.toInt(),
@@ -65,15 +66,6 @@ class IncomeCard extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Duration: Oct01 to Oct10",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors
-                              .white, // Adjusted text color for visibility
                         ),
                       ),
                     ],

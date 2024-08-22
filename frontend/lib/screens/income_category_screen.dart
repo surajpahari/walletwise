@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/data/income_data.dart';
 import 'package:get/get.dart';
-import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
 import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/piecharts/category_pie_chart.dart';
 
-class CategoryScreen extends StatefulWidget {
+class IncomeCategoryScreen extends StatefulWidget {
   final String category;
   final int total;
   final int id;
 
-  const CategoryScreen(
+  const IncomeCategoryScreen(
       {Key? key, required this.category, required this.id, required this.total})
       : super(key: key);
 
   @override
-  _CategoryScreenState createState() => _CategoryScreenState();
+  _IncomeCategoryScreenState createState() => _IncomeCategoryScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _IncomeCategoryScreenState extends State<IncomeCategoryScreen> {
   @override
   void initState() {
     super.initState();
     // Call appropriate methods to fetch data if needed
     // Example:
     // ExpenseController.fetchUserCategories();
-    ExpenseController.fetchItemForCategory(widget.id);
-    // For debugging, ensure that accessing ExpenseData does not throw an error
-    if (ExpenseData.userCategoryList.isNotEmpty) {
-      print(ExpenseData.userCategoryList[0]);
+    // ExpenseController.fetchItemForCategory(widget.id);
+    // For debugging, ensure that accessing IncomeData does not throw an error
+    if (IncomeData.userCategoryList.isNotEmpty) {
+      print(IncomeData.userCategoryList[0]);
     } else {
       print('No user categories available.');
     }
@@ -59,9 +59,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   constraints: const BoxConstraints(maxWidth: 200),
                   child: Obx(() {
                     // Ensure detailedCategory has at least one element
-                    if (ExpenseData.itemPieDataList.isNotEmpty) {
+                    if (IncomeData.itemPieDataList.isNotEmpty) {
                       return CategoryPieChart(
-                          ExpenseData.itemPieDataList, widget.total);
+                          IncomeData.itemPieDataList, widget.total);
                     } else {
                       return const Center(
                         child: Text('No pie chart data available'),
@@ -76,9 +76,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
                 Obx(() {
                   // Ensure detailedCategory and items are not empty
-                  if (ExpenseData.fetchedItem.isNotEmpty) {
+                  if (IncomeData.fetchedItem.isNotEmpty) {
                     return Column(
-                      children: ExpenseData.fetchedItem
+                      children: IncomeData.fetchedItem
                           .map((item) => ItemCard(
                               title: item.name,
                               amount: item.amount,
@@ -87,7 +87,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     );
                   } else {
                     return const Center(
-                      child: Text('No items available'),
+                      child: Text('This is icome'),
                     );
                   }
                 }),
