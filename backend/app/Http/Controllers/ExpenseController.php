@@ -131,6 +131,7 @@ class ExpenseController extends Controller
 
         $expenses = Expense::query()
             ->where('date', '>=', $date)
+            ->where('type', '=', 'daily')
             ->leftJoin('expense_categories', 'expenses.category_id', '=', 'expense_categories.id')
             ->select('category_id', 'expense_categories.name as category', DB::raw('SUM(amount) as total_amount'))
             ->groupBy('category_id')
