@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAssetRequest;
 use App\Http\Resources\AssetCollection;
 use App\Models\Asset;
 use Illuminate\Http\Request;
+use App\Http\Resources\AssetResource;
 use Illuminate\Support\Facades\Auth;
 
 class AssetController extends Controller

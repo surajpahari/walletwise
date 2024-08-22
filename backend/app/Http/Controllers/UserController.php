@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use Throwable;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -45,10 +46,10 @@ class UserController extends Controller
                 'message' => "User created successfully",
                 'token' => $user->createToken("API TOKEN")->plainTextToken,
             ], 200);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return response()->json([
                 'status' => false,
-                'message' => "Error creating user",
+                'message' => e
             ], 401);
         }
     }

@@ -123,6 +123,7 @@ class ExpenseController extends Controller
 
     public function fetch(Request $request)
     {
+        /*return response()->json(['expenses' => $request->duration]);*/
         $user = Auth::user();
         $duration = $request->duration;
 

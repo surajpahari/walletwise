@@ -86,56 +86,17 @@ Route::get('get-expense-items', function (Request $request) {
     return response()->json($data);
 })->middleware('auth:sanctum');
 
-Route::post('test', function () {
-    $data = [
-        [
-            'category' => 'Education',
-            'amount' => 7300,
-            'duration' => 'Oct01 to Oct10',
-            'id' => 1,
-        ],
-        [
-            'category' => 'Fitness',
-            'amount' => 1500,
-            'duration' => 'Oct01 to Oct10',
-            'id' => 2,
-        ],
-        [
-            'category' => 'Government and bills',
-            'amount' => 1500,
-            'duration' => 'Oct01 to Oct10',
-            'id' => 3,
-        ],
-
-        [
-            'category' => 'Transportation',
-            'amount' => 1500,
-            'duration' => 'Oct01 to Oct10',
-            'id' => 4,
-        ],
-
-        [
-            'category' => 'Others',
-            'amount' => 1500,
-            'duration' => 'Oct01 to Oct10',
-            'id' => 5,
-        ],
-
-    ];
-
-    return response()->json($data);
-})->middleware('auth:sanctum');
 //savings
-Route::post('saving/add', function (Request $request) {
-    return response()->json(['messagge' => 'hi']);
-})->middleware('auth:sanctum');
-
-Route::get('savings/test', function (Request $request) {
-    return response()->json([
-        'edited' => true,
-    ]);
-
-});
+/*Route::post('saving/add', function (Request $request) {*/
+/*    return response()->json(['messagge' => 'hi']);*/
+/*})->middleware('auth:sanctum');*/
+/**/
+/*Route::get('savings/test', function (Request $request) {*/
+/*    return response()->json([*/
+/*        'edited' => true,*/
+/*    ]);*/
+/**/
+/*});*/
 Route::post('/auth/register', [UserController::class, 'create']);
 Route::post('/auth/login', [UserController::class, 'login']);
 Route::post('/auth/logout', [UserController::class, 'logout']);
@@ -193,7 +154,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return response()->json('hell');
     });
 
-    Route::get('/stocks/bought-stocks', function () {
+    Route::get('/get-bought-stocks', function () {
         $data = [
             [
                 'id' => 1,
@@ -207,23 +168,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 'unit' => 15,
                 'amount' => 1200,
             ],
-        ];
-
-        return response()->json($data);
-    });
-
-    //fetch-debts
-    Route::get('/fetch-debts', function () {
-        $data = [
-            [
-                'name' => 'Home Loan',
-                'amount' => 7300,
+[
                 'id' => 1,
-            ],
-            [
-                'name' => 'Food',
-                'amount' => 1500,
-                'id' => 2,
+                'stock' => [
+                    'id' => 1,
+                    'symbol' => 'PFL',
+                    'securityName' => 'Pokhara finance',
+                    'name' => 'Pokhara finanance',
+                ],
+                'date' => '2022/03/5',
+                'unit' => 15,
+                'amount' => 1200,
             ],
 
         ];
@@ -232,24 +187,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     //fetching category and its expense for last 7 days
-    Route::get('/expenses-category', function () {
+    Route::get('/expenses-detail', function () {
         $data = [
             [
-                'category' => 'Education',
+                'id'=>2,
+                'name' => 'item1',
                 'amount' => 7300,
-                'id' => 1,
-            ],
-            [
-                'category' => 'Food',
-                'amount' => 1500,
-                'id' => 2,
-            ],
-            [
-                'category' => 'Others',
-                'amount' => 1500,
-                'id' => 5,
+                'date' => '2034/02/03',
             ],
 
+            [
+                'id'=>4,
+                'name' => 'item2',
+                'amount' => 7300,
+                'date' => '2034/02/03',
+            ]
         ];
 
         return response()->json($data);
