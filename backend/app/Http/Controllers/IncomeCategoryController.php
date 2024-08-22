@@ -43,7 +43,7 @@ class IncomeCategoryController extends Controller
         $date = Carbon::today()->subDays($duration);
 
         $incomes = IncomeCategory::with(['incomes' => function ($q) use ($date) {
-            $q->select('id', 'name', 'date', 'category_id', 'amount')
+            $q->select('id', 'source as name', 'date', 'category_id', 'amount')
                 ->where('date', '>=', $date)
                 ->where('type', '=', 'daily');
         }])
