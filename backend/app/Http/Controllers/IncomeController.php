@@ -129,6 +129,7 @@ class IncomeController extends Controller
 
         $incomes = Income::query()
             ->where('date', '>=', $date)
+            ->where('type', '=', 'daily')
             ->leftJoin('income_categories', 'incomes.category_id', '=', 'income_categories.id')
             ->select('category_id', 'income_categories.name as category', DB::raw('SUM(amount) as total_amount'))
             ->groupBy('category_id')
