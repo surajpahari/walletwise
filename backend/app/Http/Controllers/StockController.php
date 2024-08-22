@@ -16,7 +16,9 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Auth::user()->stocks;
+        $stocks = StockUser::with('stock')
+            ->where('user_id', Auth::id())
+            ->get();
 
         return response()->json([
             'stocks' => $stocks,

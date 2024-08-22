@@ -18,4 +18,9 @@ class StockUser extends Model
         'price',
         'bought_at',
     ];
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class, 'stock_id');
+    }
 }
