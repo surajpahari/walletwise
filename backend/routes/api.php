@@ -206,5 +206,42 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         return response()->json($data);
     });
+Route::get('/get-transaction-record', function () {
+        $data = [
+[
+                'id'=>2,
+                'name' => 'item1',
+                'amount' => 7300,
+                'date' => '2034/02/03',
+                'type'=> 'expense'
+            ],
+
+            [
+                'id'=>4,
+                'name' => 'item2',
+                'amount' => 7300,
+                'date' => '2034/02/03',
+                'type'=> 'income'
+            ],
+
+            [
+                'id'=>2,
+                'name' => 'item1',
+                'amount' => 7300,
+                'date' => '2034/02/03',
+                'type'=> 'expense'
+            ],
+
+            [
+                'id'=>4,
+                'name' => 'item2',
+                'amount' => 7300,
+                'date' => '2034/02/03',
+                'type'=> 'expense'
+            ]
+        ];
+
+        return response()->json($data);
+    });
 }
 );
