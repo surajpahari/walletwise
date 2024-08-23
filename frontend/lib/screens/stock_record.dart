@@ -8,12 +8,13 @@ class StockRecord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return SingleChildScrollView(
+        child: Column(children: [
       Obx(() => Wrap(
           alignment: WrapAlignment.center,
           children: UserStockData.boughtStockList.map((boughtStock) {
             return StockPortfolioCard(boughtStock: boughtStock);
           }).toList())),
-    ]);
+    ]));
   }
 }

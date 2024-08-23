@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "stock": {
+      "id": 1,
+      "symbol": "PFL",
+      "securityName": "Pokhara Finance",
+      "name": "Pokhara Finance"
+    },
+    "bought-date": "2022/03/05",
+    "unit": 15,
+    "amount": 1200
+  },
+  {
+    "id": 1,
+    "stock": {
+      "id": 1,
+      "symbol": "PFL",
+      "securityName": "Pokhara Finance",
+      "name": "Pokhara Finance"
+    },
+    "bought-date": "2022/03/05",
+    "unit": 15,
+    "amount": 1200
+  }
+
+]

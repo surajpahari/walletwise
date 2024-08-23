@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/controllers/budget/debt_controller.dart';
 import 'package:walletwise/controllers/budget/savinggoal_controller.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
@@ -13,7 +14,7 @@ class AddDebtForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = SavinggoalController();
+    final controller = DebtController();
     return Theme(
       data: myTheme,
       child: Scaffold(
@@ -28,7 +29,7 @@ class AddDebtForm extends StatelessWidget {
                   SizedBox(height: 20),
                   TextFormField(
                     validator: (value) => WwValidator.isInputEmpty(value),
-                    controller: controller.name,
+                    controller: controller.title,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.title),
                       labelText: "Name",
@@ -67,7 +68,7 @@ class AddDebtForm extends StatelessWidget {
                       ),
                       onPressed: () {
                         print(controller.formState.value);
-                        controller.addSaving(context);
+                        controller.addDebts(context);
                       },
                       child: Padding(
                         padding: EdgeInsets.all(4),

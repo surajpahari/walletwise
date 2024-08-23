@@ -22,7 +22,7 @@ class ApiUrls {
 
   //urls related to the debts
   static Url addDebt = Url('/api/debts');
-  static Url fetchDebt = Url('/api/fetch-debts');
+  static Url fetchDebt = Url('/api/debts/fetch');
 
   //urls related to the bank
   static Url addBankAcc = Url('/api/bank-balances');
@@ -32,7 +32,7 @@ class ApiUrls {
   static Url searchStocks = Url("/api/search_stock");
   static Url randomStocks = Url("/api/random_stock");
   static Url addStocks = Url("/api/stocks");
-  static Url fetchBoughtStocks = Url("/api/get-bought-stocks");
+  static Url fetchBoughtStocks = Url("/api/stocks");
   //static Url fetchBoughtStocks = Url("/api/stocks/bought-stocks");
 
   //urls realted to the saving goals
@@ -68,7 +68,7 @@ class ApiUrls {
     bank,
     search,
   ) =>
-      Url("/api/transactions/fetch?from=$from?to=$to?type=$type?bank=$bank?search=$search");
+      Url("/api/transactions/fetch?from=$from&to=$to&type=$type&bank=$bank&search=$search");
 
   //urls related to the income
   static Url addIncome = Url('/api/incomes');
@@ -96,4 +96,6 @@ class ApiUrls {
       (id, symbol) => Url("/get-current-data?id=$id&name=$symbol");
   static Url Function(dynamic, String) getForecastData =
       (id, symbol) => Url("/get-forecast-data?id=$id&name=$symbol");
+  static Url Function(dynamic, String) getLSTMChart =
+      (id, symbol) => Url("/get-stock-lstm?id=$id&name=$symbol");
 }

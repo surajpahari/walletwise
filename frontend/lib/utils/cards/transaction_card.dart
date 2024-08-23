@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/transactionCard.dart';
 
 class TransactionCard extends StatelessWidget {
   final String title;
+  final TransactionCardData td;
   final String amount;
   final String date;
   final String type;
@@ -10,6 +12,7 @@ class TransactionCard extends StatelessWidget {
       {required this.title,
       required this.amount,
       required this.date,
+      required this.td,
       required this.type});
 
   @override
@@ -43,7 +46,8 @@ class TransactionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: type == 'income' ? Colors.green : Colors.red,
+                    color:
+                        td.identifier == 'income' ? Colors.green : Colors.red,
                   ),
                 ),
                 Text(

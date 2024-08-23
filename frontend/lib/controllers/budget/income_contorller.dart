@@ -118,7 +118,7 @@ class IncomeController extends Wwform {
     try {
       ModelOperation.fetchFunction(url, (json) => Item.fromJson(json),
           targetList: IncomeData.fetchedItem, successAction: (response) {
-        ExpenseData.updateChart();
+        IncomeData.updateChart();
         print(ExpenseData.fetchedItem.length);
       });
     } catch (e) {

@@ -80,6 +80,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     return Column(
                       children: ExpenseData.fetchedItem
                           .map((item) => ItemCard(
+                              item: item,
                               title: item.name,
                               amount: item.amount,
                               date: item.date ?? ''))

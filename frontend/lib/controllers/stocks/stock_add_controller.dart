@@ -52,6 +52,7 @@ class StockAddController extends Wwform {
     try {
       ModelOperation.fetchFunction(
           ApiUrls.fetchBoughtStocks, (json) => BoughtStock.fromJson(json),
+          listKey: 'stocks',
           targetList: UserStockData.boughtStockList, successAction: (response) {
         print(jsonDecode(response));
       });

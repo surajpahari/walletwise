@@ -28,7 +28,7 @@ class DebtController extends Wwform {
         await ModelOperation().add(
             body: {
               "amount": int.parse(amount.text).toString(),
-              "title": title.text
+              "name": title.text
             },
             url: ApiUrls.addDebt,
             successAction: (response) {
@@ -51,6 +51,7 @@ class DebtController extends Wwform {
     //formState.value = 1;
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchDebt, Debt.fromJson,
+          listKey: "data",
           targetList: AssetDebtData.debtData, successAction: (response) {
         try {
           //update(response);

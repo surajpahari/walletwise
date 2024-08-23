@@ -55,14 +55,18 @@ class MainScreen extends StatelessWidget {
               gap(20),
               ElevatedButton(
                   onPressed: () {
-                    IncomeController.fetchItemForCategory();
+                    //IncomeController.fetchItemForCategory();
+                    //StockAddController.fetchBoughtStock();
+                    //DebtController.getDebt(context);
+                    //StockFetchController().getLstmData();
+                    //ExpenseController.fetchItemForCategory(1);
                     //IncomeController.fetchIncomes();
                     //ExpenseController.fetchExpenseCategories();
                     //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
                     //BalanceCardController.fetchBalanceCardData();
                     //
-                    ExpenseController.fetchUserCategories();
+                    //ExpenseController.fetchUserCategories();
                     //TransactionRecordController.fetchRecords();
                     //IncomeController.fetchIncomes();
                     //BankAccController.fetchBankAccount();

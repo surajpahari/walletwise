@@ -15,6 +15,7 @@ class UserStockData {
     //    unit: 100,
     //    boughtAmount: 100)
   ].obs;
+  static RxList<double> lstmList = <double>[].obs;
   //list of the candle last for the selected one
   //insightData
 }

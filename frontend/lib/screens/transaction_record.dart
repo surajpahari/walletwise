@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:walletwise/controllers/budget/transaction_record_controller.dart';
 import 'package:walletwise/data/transaction_data.dart';
 import 'package:walletwise/utils/cards/transaction_card.dart';
+import 'package:walletwise/utils/forms/transaction/filter_from.dart';
 import 'package:walletwise/utils/forms/transaction/filter_transaction.dart';
 
 class TransactionScreen extends StatefulWidget {
@@ -13,7 +15,7 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
-  bool showFilterOption = false;
+  bool showsFilterOption = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
               children: [
                 Expanded(
                   child: TextField(
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Search',
                       hintStyle: TextStyle(color: Colors.grey[600]),
@@ -37,7 +39,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
                       ),
-                      prefixIcon: Icon(Icons.search, color: Colors.white),
+                      prefixIcon: const Icon(Icons.search, color: Colors.white),
                     ),
                   ),
                 ),
@@ -45,21 +47,23 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      showFilterOption = !showFilterOption;
+                      showFilterOptions.value = !showFilterOptions.value;
                     });
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Icon(Icons.filter_list,
-                        color: showFilterOption ? Colors.blue : Colors.white),
+                        color: showFilterOptions.value == true
+                            ? Colors.blue
+                            : Colors.white),
                   ),
                 ),
               ],
             ),
           ),
-          showFilterOption
-              ? const FilterTransaction()
-              : const SizedBox.shrink(),
+          Obx(() => showFilterOptions.value == true
+              ? FilterForm()
+              : const SizedBox.shrink()),
           Expanded(child: Obx(() {
             // Ensure detailedCategory and items are not empty
             return ListView(
@@ -67,6 +71,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   .map((transaction) => TransactionCard(
                         title: transaction.title,
                         amount: transaction.amount.toString(),
+                        td: transaction,
                         date: transaction.date,
                         type: transaction.type,
                       ))

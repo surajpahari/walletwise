@@ -53,7 +53,10 @@ class FetchAPI extends ApiToken {
 
           return response;
         } else if (method == HttpMethod.get) {
-          final response = await http.get(Uri.parse('$baseUrl${url.value}'),
+          final response = await http.get(
+              Uri.parse(
+                '$baseUrl${url.value}',
+              ),
               // Send authorization headers to the backend.
               headers: {
                 'Authorization': 'Bearer ${ApiToken.authToken}',

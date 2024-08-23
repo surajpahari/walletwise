@@ -68,7 +68,9 @@ class TransactionController extends Controller
     public function fetch(Request $request)
     {
         $from = $request->from;
+
         $to = $request->to;
+
         $type = $request->type; // either income or expense or ALL (both)
         $searchValue = $request->searchValue;
         $bank = $request->bank;

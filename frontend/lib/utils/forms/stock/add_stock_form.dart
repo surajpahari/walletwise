@@ -33,7 +33,7 @@ class AddStockForm extends StatelessWidget {
         ),
         gapY("md"),
         WwTextfield(
-            label: "Unit Price",
+            label: "Total Price",
             controller: controller.price,
             icon: const Icon(Icons.title),
             validator: (value) {

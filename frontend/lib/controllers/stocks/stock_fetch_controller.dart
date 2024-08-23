@@ -1,4 +1,9 @@
 import "dart:convert";
+import "dart:convert";
+import "package:walletwise/data/stock_data.dart";
+import "package:walletwise/models/lstm.dart";
+import "package:walletwise/constants/app_constant.dart";
+import "package:walletwise/controllers/modeloperation.dart";
 import "package:walletwise/data/graph_data.dart";
 import 'package:http/http.dart' as http;
 import "package:walletwise/api/fetcher.dart";
@@ -87,13 +92,31 @@ class StockFetchController extends GetxController {
     }
   }
 
+  Future<List<double>> getLstmData(Stock stock) async {
+    Url url = ApiUrls.getLSTMChart(stock.id, stock.symbol);
+    http.Response? response =
+        await FetchAPI(url, HttpMethod.get, baseUrl: ApiUrls.pythonBaseUrl)
+            .fetchUnauthorizedAPI();
+
+    if (response?.statusCode == 200 && response != null) {
+      var finalResponse = jsonDecode(response.body);
+      List<dynamic> lstmData = finalResponse[0]['lstm'] ?? [];
+
+      // Explicitly casting each element to double
+      List<double> listofDouble = lstmData.map((e) => e as double).toList();
+      return listofDouble; // Return the correctly typed list
+    }
+
+    return []; // Return an empty list of doubles if the API call fails
+  }
+
   Future<Map<String, dynamic>> getForecastData(Stock stock) async {
     try {
       http.Response? response = await FetchAPI(
               ApiUrls.getForecastData(stock.id, stock.symbol), HttpMethod.get,
               baseUrl: ApiUrls.pythonBaseUrl)
           .fetchUnauthorizedAPI();
-      print(response?.body);
+      //print(response?.body);
 
       if (response != null) {
         var decodedResponse = jsonDecode(response.body);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 import 'package:walletwise/models/stock.dart';
+import 'package:walletwise/utils/sections/stocks/lstm_section.dart';
 import 'package:walletwise/utils/appbar/walletWiseBar.dart';
 import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/charts/stocks/forecast_chart.dart';
@@ -153,7 +154,9 @@ class _StockInsightsState extends State<StockInsights> {
                 },
               ),
               gapY('lg'),
-              const Text("Next 30 days forecast using LSTM"),
+              LstmSection(
+                stock: widget.stock,
+              )
             ],
           ),
         ),

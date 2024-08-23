@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/item.dart';
 
 class ItemCard extends StatelessWidget {
   final String title;
   final int amount;
   final String date;
+  final Item item;
 
   const ItemCard({
     Key? key,
     required this.title,
+    required this.item,
     required this.amount,
     required this.date,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(
+      this.title,
+    );
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -39,11 +45,13 @@ class ItemCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "-Rs $amount",
-                  style: const TextStyle(
+                  "Rs $amount",
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Colors.red,
+                    color: item.identifier == "income"
+                        ? Colors.green
+                        : Colors.red, // Use item.identifier here
                   ),
                 ),
                 const SizedBox(height: 8),

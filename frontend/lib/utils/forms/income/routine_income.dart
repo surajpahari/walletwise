@@ -65,6 +65,15 @@ class RoutineIncomeForm extends StatelessWidget {
                     print(bank.amount);
                   },
                 ),
+                SearchInput(
+                  searchList: BankAccountData.bankAccountList,
+                  searchKeyExtractor: (items) => (items as BankAccount).name,
+                  onSelection: (bank) {
+                    controller.selectedBankAccount =
+                        bank is BankAccount ? bank : null;
+                    print(bank.amount);
+                  },
+                ),
                 gapY("md"),
                 WwTextfield(
                   controller: controller.amount,

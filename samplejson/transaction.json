@@ -1,0 +1,16 @@
+[
+  {
+    "id": 2,
+    "name": "item1",
+    "amount": 7300,
+    "date": "2034/02/03",
+    "type": "expense"
+  },
+  {
+    "id": 4,
+    "name": "item2",
+    "amount": 7300,
+    "date": "2034/02/03",
+    "type": "income"
+  }
+]

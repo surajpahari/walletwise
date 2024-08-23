@@ -24,6 +24,8 @@ class _IncomeCategoryScreenState extends State<IncomeCategoryScreen> {
   @override
   void initState() {
     super.initState();
+    print("here");
+    print(IncomeData.fetchedItem[0].date);
     // Call appropriate methods to fetch data if needed
     // Example:
     // ExpenseController.fetchUserCategories();
@@ -80,6 +82,7 @@ class _IncomeCategoryScreenState extends State<IncomeCategoryScreen> {
                     return Column(
                       children: IncomeData.fetchedItem
                           .map((item) => ItemCard(
+                              item: item,
                               title: item.name,
                               amount: item.amount,
                               date: item.date ?? ''))

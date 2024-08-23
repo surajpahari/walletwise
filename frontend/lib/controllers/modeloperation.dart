@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:walletwise/api/fetcher.dart";
 import 'package:http/http.dart' as http;
 import "package:walletwise/api/urls/app_urls.dart";
+import "package:walletwise/constants/app_constant.dart";
 
 class ModelOperation {
   Future<http.Response?> add(
@@ -10,12 +11,13 @@ class ModelOperation {
       required Url url,
       HttpMethod? method,
       Function? successAction,
+      String baseUrl = AppConstant.baseUrl,
       Function? errorAction}) async {
     if (body != null) {
       try {
-        http.Response? response =
-            await FetchAPI(url, method ?? HttpMethod.post, body: body)
-                .fetchAuthorizedAPI();
+        http.Response? response = await FetchAPI(url, method ?? HttpMethod.post,
+                baseUrl: baseUrl, body: body)
+            .fetchAuthorizedAPI();
         if (response?.statusCode == 200) {
           if (successAction != null) {
             successAction(response?.body);
@@ -40,13 +42,14 @@ class ModelOperation {
     Url apiUrl,
     T Function(Map<String, dynamic>) fromJson, {
     List<T>? targetList,
+    String baseUrl = AppConstant.baseUrl,
     String? listKey,
     Function? successAction,
   }) async {
     try {
       print(apiUrl.value);
-      var response = await FetchAPI(
-              apiUrl, HttpMethod.get) // Ensure the correct HTTP method is used.
+      var response = await FetchAPI(apiUrl, HttpMethod.get,
+              baseUrl: baseUrl) // Ensure the correct HTTP method is used.
           .fetchAuthorizedAPI();
 
       if (response.statusCode == 200) {
@@ -107,10 +110,12 @@ class ModelOperation {
   //for fetching the items with id
 
   static Future<bool> fetch(Url apiUrl,
-      {Function? successAction, Function? errorAction}) async {
+      {Function? successAction,
+      Function? errorAction,
+      String baseUrl = AppConstant.baseUrl}) async {
     try {
-      final response =
-          await FetchAPI(apiUrl, HttpMethod.get).fetchAuthorizedAPI();
+      final response = await FetchAPI(apiUrl, HttpMethod.get, baseUrl: baseUrl)
+          .fetchAuthorizedAPI();
       print(response?.statusCode);
       if (response?.statusCode == 200) {
         if (successAction != null) {

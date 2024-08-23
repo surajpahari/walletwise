@@ -38,9 +38,9 @@ class BoughtStock {
   factory BoughtStock.fromJson(Map<String, dynamic> json) {
     try {
       Stock stock = Stock.fromJson(json['stock']);
-      String date = json['date'] as String;
-      int unit = json['unit'] as int;
-      double boughtAmount = (json['amount'] as num).toDouble();
+      String date = json['date'] as String? ?? '';
+      int unit = json['no_of_units'] as int? ?? 0;
+      double boughtAmount = (json['price'] as num? ?? 0).toDouble();
       return BoughtStock(
           stock: stock, date: date, unit: unit, boughtAmount: boughtAmount);
     } catch (e) {
