@@ -1,43 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:walletwise/controllers/stocks/stock_fetch_controller.dart';
 import 'package:walletwise/models/bought_stock.dart';
 import 'package:walletwise/utils/gaps/Xgap.dart';
 
-class StockPortfolioCard extends StatelessWidget {
-  final BoughtStock? boughtStock;
+class StockPortfolioCard extends StatefulWidget {
+  final BoughtStock boughtStock;
   final void Function()? onDismissed; // Callback for when the card is dismissed
 
   const StockPortfolioCard({
     Key? key,
-    this.boughtStock,
+    required this.boughtStock,
     this.onDismissed,
   }) : super(key: key);
 
   @override
+  State<StockPortfolioCard> createState() => _StockPortfolioCardState();
+}
+
+class _StockPortfolioCardState extends State<StockPortfolioCard> {
+  double? high;
+  double? low;
+  double? open;
+  double? close;
+  double? perChange;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  void _fetchData() async {
+    StockFetchController fetchController = Get.find<StockFetchController>();
+    var currentData =
+        await fetchController.getCurrentData(widget.boughtStock.stock);
+    setState(() {
+      high = currentData['high']?.toDouble();
+      low = currentData['low']?.toDouble();
+      open = currentData['open']?.toDouble();
+      close = currentData['close']?.toDouble();
+      perChange = currentData['per_change']?.toDouble();
+      isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Calculate the total investment.
-    final double totalInvestment = boughtStock != null
-        ? boughtStock!.unit * boughtStock!.boughtAmount
-        : 0.0;
+    final double totalInvestment =
+        widget.boughtStock.unit * widget.boughtStock.boughtAmount;
 
-    const double profitLoss = 10;
+    // Calculate current value and profit/loss.
+    final double currentValue = widget.boughtStock.unit * (close ?? 0);
+    final double profitLoss = totalInvestment - currentValue;
+
+    // Determine the color based on profit or loss.
+    final Color profitLossColor = profitLoss >= 0 ? Colors.green : Colors.red;
 
     return Dismissible(
-      key: ValueKey(boughtStock?.stock.id ??
+      key: ValueKey(widget.boughtStock.stock.id ??
           DateTime.now().toString()), // Unique key for each item
       direction: DismissDirection.endToStart, // Swipe direction
       onDismissed: (direction) {
-        if (onDismissed != null) {
-          onDismissed!(); // Call the callback if provided
+        if (widget.onDismissed != null) {
+          widget.onDismissed!(); // Call the callback if provided
           //delete the boughtStock
           //refetch
         }
       },
       background: Container(
-        color: Colors.indigo,
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Icon(Icons.delete, color: Colors.white),
-      ),
+          color: Colors.indigo,
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          //child: const Icon(Icons.delete, color: Colors.white),
+          child: const Text("Delete", style: TextStyle(color: Colors.white))),
       child: Card(
         elevation: 8,
         shape: RoundedRectangleBorder(
@@ -51,7 +89,7 @@ class StockPortfolioCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                boughtStock?.stock.name ?? "--",
+                widget.boughtStock.stock.name,
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -63,28 +101,28 @@ class StockPortfolioCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildInfoText(
-                      'Quantity', boughtStock?.unit.toString() ?? "--"),
+                      'Quantity', widget.boughtStock.unit.toString()),
                   _buildInfoText('Current Price',
-                      '\$${boughtStock?.currentAmount.toString() ?? "--"}'),
+                      '\$${close?.toStringAsFixed(2) ?? "--"}'),
                 ],
               ),
               gapY("sm"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  _buildInfoText('Total Investment',
+                      '\$${totalInvestment.toStringAsFixed(2)}'),
                   _buildInfoText(
-                      'Total Investment', '\$${totalInvestment.toString()}'),
-                  _buildInfoText('Current Value',
-                      '\$${boughtStock?.currentAmount?.toStringAsFixed(2) ?? "--"}'),
+                      'Current Value', '\$${currentValue.toStringAsFixed(2)}'),
                 ],
               ),
               gapY("md"),
               Text(
-                'Profit/Loss: \$${profitLoss.toString()}',
-                style: const TextStyle(
+                'Profit/Loss: \$${profitLoss.toStringAsFixed(2)}',
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: profitLossColor,
                 ),
               ),
             ],

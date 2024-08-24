@@ -19,10 +19,7 @@ class ExpenseData {
     Expense(amount: 480, category: 'food', name: "eggs")
   ];
   //all the available Category
-  static List<ExpenseCategory> categoryList = [
-    ExpenseCategory(name: "food", id: 3),
-    ExpenseCategory(name: "food", id: 3),
-  ];
+  static List<ExpenseCategory> categoryList = [];
 
   static RxList<Category> userCategoryList = <Category>[
     //Category.withAmount(category: "food", id: 3, amount: 400),

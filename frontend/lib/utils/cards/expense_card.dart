@@ -28,7 +28,7 @@ class ExpenseCard extends StatelessWidget {
         },
         child: Card(
           elevation: 4,
-          color: Colors.grey[800], // Adjusted card color to match background
+          color: Colors.grey[900], // Adjusted card color to match background
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Row(

@@ -99,6 +99,7 @@ class StockFetchController extends GetxController {
             .fetchUnauthorizedAPI();
 
     if (response?.statusCode == 200 && response != null) {
+      print(response.body);
       var finalResponse = jsonDecode(response.body);
       List<dynamic> lstmData = finalResponse[0]['lstm'] ?? [];
 

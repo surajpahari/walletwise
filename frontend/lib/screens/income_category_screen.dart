@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:walletwise/data/income_data.dart';
 import 'package:get/get.dart';
+import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/constants/app_colors.dart';
+import 'package:walletwise/controllers/budget/income_contorller.dart';
 import 'package:walletwise/data/expense_data.dart';
+import 'package:walletwise/data/income_data.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
 import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/piecharts/category_pie_chart.dart';
@@ -24,15 +26,13 @@ class _IncomeCategoryScreenState extends State<IncomeCategoryScreen> {
   @override
   void initState() {
     super.initState();
-    print("here");
-    print(IncomeData.fetchedItem[0].date);
     // Call appropriate methods to fetch data if needed
     // Example:
     // ExpenseController.fetchUserCategories();
-    // ExpenseController.fetchItemForCategory(widget.id);
-    // For debugging, ensure that accessing IncomeData does not throw an error
-    if (IncomeData.userCategoryList.isNotEmpty) {
-      print(IncomeData.userCategoryList[0]);
+    IncomeController.fetchItemForCategory(widget.id);
+    // For debugging, ensure that accessing ExpenseData does not throw an error
+    if (ExpenseData.userCategoryList.isNotEmpty) {
+      print(ExpenseData.userCategoryList[0]);
     } else {
       print('No user categories available.');
     }
@@ -90,7 +90,7 @@ class _IncomeCategoryScreenState extends State<IncomeCategoryScreen> {
                     );
                   } else {
                     return const Center(
-                      child: Text('This is icome'),
+                      child: Text('No items available'),
                     );
                   }
                 }),

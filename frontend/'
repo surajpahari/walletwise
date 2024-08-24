@@ -1,6 +1,4 @@
 import "package:flutter/material.dart";
-import "package:walletwise/models/income_category.dart";
-import "package:walletwise/controllers/sheetController.dart";
 import "package:walletwise/models/item.dart";
 import "package:get/get.dart";
 import "package:walletwise/data/income_data.dart";
@@ -15,11 +13,10 @@ import "package:walletwise/utils/snackbar.dart";
 
 class IncomeController extends Wwform {
   static IncomeController get instance => Get.find();
-  final sheetController = Get.put(SheetController());
   final source = TextEditingController();
   final amount = TextEditingController();
   final category = TextEditingController();
-  IncomeCategory? selectedCategory;
+  ExpenseCategory? selectedCategory;
   BankAccount? selectedBankAccount;
   final TextEditingController date = TextEditingController();
   final TextEditingController peroid = TextEditingController(text: "peroid");
@@ -29,11 +26,8 @@ class IncomeController extends Wwform {
   static Future<void> fetchIncomeCategories() async {
     try {
       ModelOperation.fetchFunction(ApiUrls.fetchIncomeCategories,
-          (json) => IncomeCategory.fromJson(json),
-          targetList: IncomeData.allCategories,
-          listKey: "categories", successAction: (response) {
-        //print(response);
-      });
+          (json) => ExpenseCategory.fromJson(json),
+          targetList: ExpenseData.categoryList, listKey: "expenses");
     } catch (e) {
       rethrow;
     }
@@ -53,12 +47,10 @@ class IncomeController extends Wwform {
           'category_id': selectedCategory?.id.toString(),
         },
         url: ApiUrls.addExpense,
-        successAction: (response) async {
+        successAction: (response) {
           formState.value = 0;
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);
-          sheetController.incomeShouldDismiss.value = true;
-          fetchIncomes();
         },
         errorAction: () {
           formState.value = 0;
@@ -87,11 +79,8 @@ class IncomeController extends Wwform {
         successAction: (response) {
           print("hey");
           formState.value = 0;
-
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);
-
-          sheetController.incomeShouldDismiss.value = true;
         },
         errorAction: () {
           formState.value = 0;
@@ -118,17 +107,14 @@ class IncomeController extends Wwform {
     try {
       ModelOperation.fetchFunction(
           fetchUrl, (json) => Category.fromAmountJson(json),
-          listKey: 'incomes',
-          targetList: IncomeData.userCategoryList, successAction: (response) {
-        print(response);
-      });
+          listKey: 'incomes', targetList: IncomeData.incomeCategories);
     } catch (e) {
       print("Error:$e");
     }
   }
 
-  static Future<void> fetchItemForCategory(id) async {
-    Url url = ApiUrls.fetchIncomeItem(id, '30');
+  static Future<void> fetchItemForCategory() async {
+    Url url = ApiUrls.fetchIncomeItem('1', '7');
     try {
       ModelOperation.fetchFunction(url, (json) => Item.fromJson(json),
           targetList: IncomeData.fetchedItem, successAction: (response) {

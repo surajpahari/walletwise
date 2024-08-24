@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/constants/app_colors.dart';
 import 'package:walletwise/data/expense_data.dart';
+import 'package:walletwise/theme/theme_constant.dart';
 import 'package:walletwise/utils/cards/item_card.dart';
 import 'package:walletwise/utils/charts/indicator.dart';
 import 'package:walletwise/utils/charts/piecharts/category_pie_chart.dart';
@@ -38,65 +39,68 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.category),
-      ),
-      backgroundColor: Colors.grey[900],
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return Theme(
+        data: myTheme,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.category),
+          ),
+          backgroundColor: Colors.grey[900],
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
-                Text(
-                  "Total: Rs ${widget.total}",
-                  style: const TextStyle(color: Colors.white, fontSize: 30.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 10),
+                    Text(
+                      "Total: Rs ${widget.total}",
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 30.0),
+                    ),
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 200),
+                      child: Obx(() {
+                        // Ensure detailedCategory has at least one element
+                        if (ExpenseData.itemPieDataList.isNotEmpty) {
+                          return CategoryPieChart(
+                              ExpenseData.itemPieDataList, widget.total);
+                        } else {
+                          return const Center(
+                            child: Text('No pie chart data available'),
+                          );
+                        }
+                      }),
+                    ),
+                    const SizedBox(height: 20, width: 20),
+                    const Text(
+                      "Last 32 days",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    Obx(() {
+                      // Ensure detailedCategory and items are not empty
+                      if (ExpenseData.fetchedItem.isNotEmpty) {
+                        return Column(
+                          children: ExpenseData.fetchedItem
+                              .map((item) => ItemCard(
+                                  item: item,
+                                  title: item.name,
+                                  amount: item.amount,
+                                  date: item.date ?? ''))
+                              .toList(),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text('No items available'),
+                        );
+                      }
+                    }),
+                  ],
                 ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  child: Obx(() {
-                    // Ensure detailedCategory has at least one element
-                    if (ExpenseData.itemPieDataList.isNotEmpty) {
-                      return CategoryPieChart(
-                          ExpenseData.itemPieDataList, widget.total);
-                    } else {
-                      return const Center(
-                        child: Text('No pie chart data available'),
-                      );
-                    }
-                  }),
-                ),
-                const SizedBox(height: 20, width: 20),
-                const Text(
-                  "Last 32 days",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-                Obx(() {
-                  // Ensure detailedCategory and items are not empty
-                  if (ExpenseData.fetchedItem.isNotEmpty) {
-                    return Column(
-                      children: ExpenseData.fetchedItem
-                          .map((item) => ItemCard(
-                              item: item,
-                              title: item.name,
-                              amount: item.amount,
-                              date: item.date ?? ''))
-                          .toList(),
-                    );
-                  } else {
-                    return const Center(
-                      child: Text('No items available'),
-                    );
-                  }
-                }),
               ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

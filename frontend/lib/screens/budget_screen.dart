@@ -20,7 +20,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
       child: Scaffold(
         backgroundColor: Colors.grey[900],
         appBar: AppBar(
-          backgroundColor: Colors.grey[900],
+          //backgroundColor: Colors.grey[900],
           elevation: 0.0,
           automaticallyImplyLeading: false,
           title: PreferredSize(
@@ -39,7 +39,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: _selectedIndex == 0
-                            ? Colors.red
+                            ? Colors.red[900] // Slightly lighter dark red
+// Even darker red
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -71,7 +72,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: _selectedIndex == 1
-                            ? Colors.green
+                            ? Colors.green[900]
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8.0),
                       ),

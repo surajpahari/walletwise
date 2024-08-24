@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/data/income_data.dart';
 import 'package:get/get.dart';
 import 'package:walletwise/controllers/budget/expense_controller.dart';
 import 'package:walletwise/controllers/budget/income_contorller.dart';
@@ -6,6 +7,7 @@ import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/models/bank_account.dart';
 import 'package:walletwise/models/expense_category.dart';
+import 'package:walletwise/models/income_category.dart';
 import 'package:walletwise/utils/date_picker.dart';
 import 'package:walletwise/utils/gaps/Xgap.dart';
 import 'package:walletwise/utils/inputs/search_input.dart';
@@ -37,13 +39,12 @@ class DailyIncomeForm extends StatelessWidget {
                 ),
                 gapY("md"),
                 SearchInput(
-                  searchList: ExpenseData.categoryList,
-                  searchKeyExtractor: (items) =>
-                      (items as ExpenseCategory).name,
+                  searchList: IncomeData.allCategories,
+                  searchKeyExtractor: (items) => (items as IncomeCategory).name,
                   label: "Category",
                   onSelection: (category) {
                     controller.selectedCategory =
-                        category is ExpenseCategory ? category : null;
+                        category is IncomeCategory ? category : null;
                     print(category.id);
                   },
                 ),

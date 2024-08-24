@@ -15,6 +15,7 @@ import 'package:walletwise/data/bank_account.dart';
 import 'package:walletwise/data/expense_data.dart';
 import 'package:walletwise/data/payment_data.dart';
 import 'package:walletwise/data/saving_goals.dart';
+import 'package:walletwise/models/category.dart';
 import 'package:walletwise/utils/cards/bank_card.dart';
 import 'package:walletwise/utils/cards/balance_card.dart';
 import 'package:walletwise/utils/cards/savinggoal_card.dart';
@@ -63,10 +64,33 @@ class MainScreen extends StatelessWidget {
                     //IncomeController.fetchIncomes();
                     //ExpenseController.fetchExpenseCategories();
                     //print(ExpenseData.detailedCategory);
-                    //ExpenseController.fetchUserCategories();
+                    ExpenseController.fetchUserCategories();
                     //BalanceCardController.fetchBalanceCardData();
                     //
+
+                    //TransactionRecordController.fetchRecords();
+                    //IncomeController.fetchIncomes();
+                    //BankAccController.fetchBankAccount();
+                    //ExpenseController.fetchExpenseCategories();
+                    //StockAddController.fetchBoughtStock();
+                  },
+                  child: const Text("fetch")),
+
+              ElevatedButton(
+                  onPressed: () {
+                    //IncomeController.fetchItemForCategory();
+                    //StockAddController.fetchBoughtStock();
+                    //DebtController.getDebt(context);
+                    //StockFetchController().getLstmData();
+                    //ExpenseController.fetchItemForCategory(1);
+                    //IncomeController.fetchIncomes();
+                    //ExpenseController.fetchExpenseCategories();
+                    //print(ExpenseData.detailedCategory);
                     //ExpenseController.fetchUserCategories();
+                    //IncomeController.fetchIncomeCategories();
+                    //BalanceCardController.fetchBalanceCardData();
+                    //
+
                     //TransactionRecordController.fetchRecords();
                     //IncomeController.fetchIncomes();
                     //BankAccController.fetchBankAccount();
@@ -124,7 +148,7 @@ class MainScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const WwLineChart(),
+              //const WwLineChart(),
               const SizedBox(
                 height: 60,
               ),

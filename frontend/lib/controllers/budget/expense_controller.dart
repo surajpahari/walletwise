@@ -1,5 +1,3 @@
-import "dart:convert";
-import "package:walletwise/api/fetcher.dart";
 import "package:walletwise/models/item.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
@@ -42,7 +40,7 @@ class ExpenseController extends Wwform {
 
 //for fetching the user category
   static Future<void> fetchUserCategories() async {
-    String duration = '7';
+    String duration = '30';
     Url fetchUrl = ApiUrls.fetchExpense(duration);
     print(fetchUrl.value);
 

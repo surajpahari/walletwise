@@ -23,7 +23,7 @@ class TransactionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10), // Rounded corners
       ),
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      color: Colors.grey[800], // Dark background color
+      color: Colors.grey[900], // Dark background color
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

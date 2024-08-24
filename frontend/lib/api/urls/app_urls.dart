@@ -59,7 +59,7 @@ class ApiUrls {
       (id, duration) => Url("/api/expense-categories/$id?duration=$duration");
   //urls for the transaction
   static Url Function(String) getTransactionRecord =
-      (duration) => Url("/api/get-transaction-record");
+      (duration) => Url("/api/transactions/fetch");
   static Url Function(
       String, String, String, String, String) getTransactionRecords = (
     from,
@@ -72,7 +72,7 @@ class ApiUrls {
 
   //urls related to the income
   static Url addIncome = Url('/api/incomes');
-  static Url fetchIncomeCategories = Url("/api/all-expense-categories");
+  static Url fetchIncomeCategories = Url("/api/all-income-categories");
   static Url fetchUserIncomeCategories = Url("/api/expenses-category");
   static Url Function(dynamic, String) fetchIncomeItem =
       (id, duration) => Url("/api/income-categories/$id?duration=$duration");

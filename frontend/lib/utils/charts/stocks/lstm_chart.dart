@@ -47,7 +47,7 @@ class LstmGraph extends StatelessWidget {
                 xValueMapper: (_ChartData data, _) => data.x,
                 yValueMapper: (_ChartData data, _) => data.y,
                 name: 'LTP Data',
-                color: Colors.blue,
+                color: Colors.orange,
                 enableTooltip: true, // Enable tooltip for this series
               ),
               // Dotted line for y = yLine1

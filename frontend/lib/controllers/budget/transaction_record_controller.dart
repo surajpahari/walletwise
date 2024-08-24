@@ -22,10 +22,11 @@ class TransactionRecordController extends Wwform {
 
   static Future<void> fetchRecords() async {
     Url url = ApiUrls.getTransactionRecord('1');
+    print(url.value);
     try {
       await ModelOperation.fetchFunction(
           url, (json) => TransactionCardData.fromJson(json),
-          targetList: transactionRecord);
+          listKey: 'transaction', targetList: transactionRecord);
     } catch (e) {
       throw Exception(e);
     }
@@ -34,19 +35,21 @@ class TransactionRecordController extends Wwform {
   Future<void> filter({required bool expense, required bool income}) async {
     String type = "";
     if (expense == true && income == false) {
-      type = "expense";
+      type = "EXPENSES";
     } else if (income == true && expense == false) {
-      type = "income";
+      type = "INCOMES";
     } else if (expense == true && income == true) {
-      type = "both";
+      type = "BOTH";
     }
-    //return;
+    print(type);
     String fromDate = from.text;
     String toDate = to.text;
     String searchValue = '';
     String bankAccount = selectedBankAccount?.id.toString() ?? '';
     Url fetch = ApiUrls.getTransactionRecords(
         fromDate, toDate, type, bankAccount, searchValue);
+    print(fetch.value);
+    //return;
     try {
       await ModelOperation.fetchFunction(
           fetch, (json) => TransactionCardData.fromJson(json),

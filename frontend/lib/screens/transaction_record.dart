@@ -16,6 +16,11 @@ class TransactionScreen extends StatefulWidget {
 
 class _TransactionScreenState extends State<TransactionScreen> {
   bool showsFilterOption = false;
+  @override
+  void initState() {
+    super.initState();
+    TransactionRecordController.fetchRecords();
+  }
 
   @override
   Widget build(BuildContext context) {

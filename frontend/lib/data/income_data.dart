@@ -1,6 +1,7 @@
 import "package:get/get.dart";
 import "package:walletwise/data/graph_data.dart";
 import "package:walletwise/models/category.dart";
+import "package:walletwise/models/income_category.dart";
 import "package:walletwise/models/item.dart";
 import "package:walletwise/models/expense.dart";
 
@@ -24,8 +25,14 @@ class IncomeData {
     //Category.withAmount(category: "food", id: 3, amount: 400),
   ].obs;
 
-  static List<Category> incomeCategories = [
-    Category.withAmount(id: 1, category: "Job", amount: 2000),
-    Category.withAmount(id: 2, category: "Upwork", amount: 20000)
-  ];
+  static RxList<IncomeCategory> allCategories = <IncomeCategory>[].obs;
+  //static List<IncomeCategory> categoryList = [
+  //  ExpenseCategory(name: "food", id: 3),
+  //  ExpenseCategory(name: "food", id: 3),
+  //];
+
+  static RxList<Category> incomeCategories = <Category>[
+    //Category.withAmount(id: 1, category: "Job", amount: 2000),
+    //Category.withAmount(id: 2, category: "Upwork", amount: 20000)
+  ].obs;
 }

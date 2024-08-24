@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import "package:get/get.dart";
 import 'package:walletwise/controllers/modeloperation.dart';
 import 'package:walletwise/api/fetcher.dart';
 import 'package:walletwise/api/urls/app_urls.dart';
@@ -72,6 +73,7 @@ class SavinggoalController extends Wwform {
           if (newSaving != null) {
             SavingGoalData.savinglist.add(newSaving);
           }
+          Get.back();
           WwSnackbar.builder(
               context, "SuccessFully Added", WwSnackbartype.success);
           clearFields();
