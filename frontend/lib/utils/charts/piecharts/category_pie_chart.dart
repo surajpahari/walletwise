@@ -60,6 +60,9 @@ class CategoryPieChart extends StatelessWidget {
     if (index == -1) {
       return Colors.red;
     }
+    if (index > 3) {
+      return Colors.blue;
+    }
     return AppColors.pieChartColors[index];
   }
 }

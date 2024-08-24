@@ -18,7 +18,7 @@ class Login extends StatelessWidget {
                   'WalletWise',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 )),
-            body: SingleChildScrollView(
+            body: const SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Column(
@@ -32,9 +32,6 @@ class Login extends StatelessWidget {
                     SizedBox(
                       height: 45,
                     ),
-                    Dividertext(dividerText: "or login with"),
-                    SizedBox(height: 30),
-                    SocialButtons()
                   ],
                 ),
               ),

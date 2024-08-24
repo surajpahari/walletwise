@@ -54,50 +54,50 @@ class MainScreen extends StatelessWidget {
               //balnaceCard section
               const BalanceCard(),
               gap(20),
-              ElevatedButton(
-                  onPressed: () {
-                    //IncomeController.fetchItemForCategory();
-                    //StockAddController.fetchBoughtStock();
-                    //DebtController.getDebt(context);
-                    //StockFetchController().getLstmData();
-                    //ExpenseController.fetchItemForCategory(1);
-                    //IncomeController.fetchIncomes();
-                    //ExpenseController.fetchExpenseCategories();
-                    //print(ExpenseData.detailedCategory);
-                    ExpenseController.fetchUserCategories();
-                    //BalanceCardController.fetchBalanceCardData();
-                    //
+              //ElevatedButton(
+              //onPressed: () {
+              //IncomeController.fetchItemForCategory();
+              //StockAddController.fetchBoughtStock();
+              //DebtController.getDebt(context);
+              //StockFetchController().getLstmData();
+              //ExpenseController.fetchItemForCategory(1);
+              //IncomeController.fetchIncomes();
+              //ExpenseController.fetchExpenseCategories();
+              //print(ExpenseData.detailedCategory);
+              //ExpenseController.fetchUserCategories();
+              //BalanceCardController.fetchBalanceCardData();
+              //
 
-                    //TransactionRecordController.fetchRecords();
-                    //IncomeController.fetchIncomes();
-                    //BankAccController.fetchBankAccount();
-                    //ExpenseController.fetchExpenseCategories();
-                    //StockAddController.fetchBoughtStock();
-                  },
-                  child: const Text("fetch")),
+              //TransactionRecordController.fetchRecords();
+              //IncomeController.fetchIncomes();
+              //BankAccController.fetchBankAccount();
+              //ExpenseController.fetchExpenseCategories();
+              //StockAddController.fetchBoughtStock();
+              //},
+              //child: const Text("fetch")),
 
-              ElevatedButton(
-                  onPressed: () {
-                    //IncomeController.fetchItemForCategory();
-                    //StockAddController.fetchBoughtStock();
-                    //DebtController.getDebt(context);
-                    //StockFetchController().getLstmData();
-                    //ExpenseController.fetchItemForCategory(1);
-                    //IncomeController.fetchIncomes();
-                    //ExpenseController.fetchExpenseCategories();
-                    //print(ExpenseData.detailedCategory);
-                    //ExpenseController.fetchUserCategories();
-                    //IncomeController.fetchIncomeCategories();
-                    //BalanceCardController.fetchBalanceCardData();
-                    //
+              //ElevatedButton(
+              //onPressed: () {
+              //IncomeController.fetchItemForCategory();
+              //StockAddController.fetchBoughtStock();
+              //DebtController.getDebt(context);
+              //StockFetchController().getLstmData();
+              //ExpenseController.fetchItemForCategory(1);
+              //IncomeController.fetchIncomes();
+              //ExpenseController.fetchExpenseCategories();
+              //print(ExpenseData.detailedCategory);
+              //ExpenseController.fetchUserCategories();
+              //IncomeController.fetchIncomeCategories();
+              //BalanceCardController.fetchBalanceCardData();
+              //
 
-                    //TransactionRecordController.fetchRecords();
-                    //IncomeController.fetchIncomes();
-                    //BankAccController.fetchBankAccount();
-                    //ExpenseController.fetchExpenseCategories();
-                    //StockAddController.fetchBoughtStock();
-                  },
-                  child: const Text("fetch")),
+              //TransactionRecordController.fetchRecords();
+              //IncomeController.fetchIncomes();
+              //BankAccController.fetchBankAccount();
+              //ExpenseController.fetchExpenseCategories();
+              //StockAddController.fetchBoughtStock();
+              //},
+              //child: const Text("fetch")),
               gap(20),
               //ASSETDEBT SECTION
               const AssetDebt(),
@@ -144,16 +144,6 @@ class MainScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              title("Balance"),
-              const SizedBox(
-                height: 20,
-              ),
-              //const WwLineChart(),
-              const SizedBox(
-                height: 60,
-              ),
-
-              //Container(
               //  constraints: BoxConstraints(maxWidth: 500),
               //  child: MyLineChart(getChartData()), // Add the line chart here
               //),

@@ -59,43 +59,39 @@ class AddSavingGoalForm extends StatelessWidget {
                   ),
                   gapY("md"),
                   WwSubmit(
-                      onPressed: () {
-                        controller.addSaving(context);
-                      },
-                      child: Obx(
-                        () => controller.formState.value == 1
-                            ? const Column(
-                                children: [
-                                  Text(
-                                    "Adding",
-                                    style: TextStyle(
-                                        fontSize: 24, color: Colors.white),
+                    onPressed: () {
+                      controller.addSaving(context);
+                    },
+                    child: Obx(
+                      () => controller.formState.value == 1
+                          ? const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Adding...",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  LinearProgressIndicator(color: Colors.white),
-                                ],
-                              )
-                            : const Text(
-                                "Add",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 24),
+                                ),
+                                SizedBox(height: 2),
+                                CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth:
+                                      3, // Thinner progress indicator for a sleeker look
+                                ),
+                              ],
+                            )
+                          : const Text(
+                              "Add",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
                               ),
-                      )),
-                  Obx(
-                    () => controller.formState.value == 1
-                        ? const Column(
-                            children: [
-                              Text(
-                                "Adding",
-                                style: TextStyle(
-                                    fontSize: 24, color: Colors.white),
-                              ),
-                              LinearProgressIndicator(color: Colors.white),
-                            ],
-                          )
-                        : const Text(
-                            "Add",
-                            style: TextStyle(color: Colors.white, fontSize: 24),
-                          ),
+                            ),
+                    ),
                   )
                 ],
               ),

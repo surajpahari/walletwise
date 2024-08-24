@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:get/get.dart";
 import 'package:walletwise/models/debt.dart';
 import 'package:walletwise/data/asset_debt_data.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
@@ -32,6 +33,7 @@ class DebtController extends Wwform {
             },
             url: ApiUrls.addDebt,
             successAction: (response) {
+              Get.back();
               clearFields();
               WwSnackbar.builder(
                   context, "Sucesssfully Added", WwSnackbartype.success);

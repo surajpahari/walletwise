@@ -34,6 +34,7 @@ class AddAssetForm extends StatelessWidget {
                       validator: (value) {
                         return null;
                       }),
+                  gapY('md'),
                   WwTextfield(
                       label: "Amount",
                       controller: controller.amount,

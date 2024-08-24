@@ -24,8 +24,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   void initState() {
     super.initState();
-    //ExpenseController.fetchUserCategories();
-    //ExpenseController.fetchExpenseCategories();
+    ExpenseController.fetchUserCategories();
+    ExpenseController.fetchExpenseCategories();
   }
 
   @override

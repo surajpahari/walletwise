@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:walletwise/controllers/budget/balance_card_controller.dart';
 import 'package:walletwise/controllers/modeloperation.dart';
@@ -61,10 +61,12 @@ class BankAccController extends Wwform {
               //refetching the updated balance
               BalanceCardController.fetchBalanceCardData();
               clearFields();
+              Get.back();
               WwSnackbar.builder(
                   context, "Sucesssfully Added", WwSnackbartype.success);
             },
             errorAction: () {
+              Get.back();
               formState.value = 0;
             });
       } catch (e) {

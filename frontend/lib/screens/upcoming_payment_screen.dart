@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:walletwise/models/payment.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+  final Payment payment;
+  const PaymentScreen({required this.payment, super.key});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -13,4 +15,3 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return const Placeholder();
   }
 }
-
