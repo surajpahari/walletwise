@@ -120,6 +120,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('assets', AssetController::class);
 
     Route::get('/expenses/fetch', [ExpenseController::class, 'fetch']);
+    Route::patch('/expenses/pay/{expense}', [ExpenseController::class, 'pay']);
     Route::resource('expenses', ExpenseController::class);
 
     Route::get('/incomes/fetch', [IncomeController::class, 'fetch']);
@@ -170,7 +171,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 'unit' => 15,
                 'amount' => 1200,
             ],
-[
+            [
                 'id' => 1,
                 'stock' => [
                     'id' => 1,
@@ -192,55 +193,55 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/expenses-detail', function () {
         $data = [
             [
-                'id'=>2,
+                'id' => 2,
                 'name' => 'item1',
                 'amount' => 7300,
                 'date' => '2034/02/03',
             ],
 
             [
-                'id'=>4,
+                'id' => 4,
                 'name' => 'item2',
                 'amount' => 7300,
                 'date' => '2034/02/03',
-            ]
+            ],
         ];
 
         return response()->json($data);
     });
-Route::get('/get-transaction-record', function () {
+    Route::get('/get-transaction-record', function () {
         $data = [
-[
-                'id'=>2,
+            [
+                'id' => 2,
                 'name' => 'item1',
                 'amount' => 7300,
                 'date' => '2034/02/03',
-                'type'=> 'expense'
+                'type' => 'expense',
             ],
 
             [
-                'id'=>4,
+                'id' => 4,
                 'name' => 'item2',
                 'amount' => 7300,
                 'date' => '2034/02/03',
-                'type'=> 'income'
+                'type' => 'income',
             ],
 
             [
-                'id'=>2,
+                'id' => 2,
                 'name' => 'item1',
                 'amount' => 7300,
                 'date' => '2034/02/03',
-                'type'=> 'expense'
+                'type' => 'expense',
             ],
 
             [
-                'id'=>4,
+                'id' => 4,
                 'name' => 'item2',
                 'amount' => 7300,
                 'date' => '2034/02/03',
-                'type'=> 'expense'
-            ]
+                'type' => 'expense',
+            ],
         ];
 
         return response()->json($data);

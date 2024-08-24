@@ -103,7 +103,9 @@ class IncomeController extends Controller
      */
     public function destroy(Income $income)
     {
-        //
+        $income->delete();
+
+        return response()->json(['message' => 'Income deleted successfully']);
     }
 
     public function getUpcomingIncomes(Request $request)

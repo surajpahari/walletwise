@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PayExpenseRequest;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Http\Resources\UpcomingExpensesResource;
@@ -99,12 +100,44 @@ class ExpenseController extends Controller
         //
     }
 
+    public function pay(PayExpenseRequest $request, Expense $expense)
+    {
+        $fields = $request->validated();
+
+        $expense->date = Carbon::today()->toDateString('Y-m-d');
+        $expense->save();
+
+        $newExpense = $expense->replicate();
+        $newExpense->type = 'daily';
+        $newExpense->save();
+
+        $sourceName = $fields['bank_balance_id'] ? 'bank_balance' : 'cash_in_hand';
+        $sourceId = $fields['bank_balance_id'] ?? $fields['cash_in_hand_id'];
+
+        try {
+            $deductExpenseAmount = $this->balanceService->deductExpenseAmount(
+                $sourceName,
+                $sourceId,
+                $newExpense->amount,
+            );
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 403);
+
+        }
+
+        return response()->json(['message' => 'Expense paid', 'expense' => $expense]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return response()->json(['message' => 'Expense deleted successfully']);
     }
 
     public function getUpcomingExpenses(Request $request)

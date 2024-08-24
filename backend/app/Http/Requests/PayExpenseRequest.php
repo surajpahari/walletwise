@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateExpenseRequest extends FormRequest
+class PayExpenseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,18 +33,9 @@ class UpdateExpenseRequest extends FormRequest
     public function rules(): array
     {
         $baseRules = [
-            'type' => ['required', 'string'],
-            'name' => ['required', 'string'],
-            'category_id' => ['required', 'integer', Rule::exists('expense_categories', 'id')],
-            'amount' => ['required', 'string'],
-            'date' => ['required', 'string'],
-            'period' => ['nullable', 'integer'],
+            // 'date' => ['required', 'string'],
         ];
 
-        if ($this->input('type') == 'daily') {
-            return array_merge($baseRules, $this->eitherBankOrCashIdRequiredRules());
-        }
-
-        return $baseRules;
+        return array_merge($baseRules, $this->eitherBankOrCashIdRequiredRules());
     }
 }
