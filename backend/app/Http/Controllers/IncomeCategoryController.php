@@ -78,4 +78,11 @@ class IncomeCategoryController extends Controller
     {
         //
     }
+    public function getAllCategory()
+    {
+        $categories = IncomeCategory::select('id', 'name')->get();
+
+        return response()->json(['message' => 'All cateogries', 'categories' => $categories]);
+    }
+
 }

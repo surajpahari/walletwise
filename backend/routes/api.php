@@ -130,6 +130,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/all-accounts', [BankBalanceController::class, 'getBankAccounts']);
     Route::get('/get-balance-info', [BalanceController::class, 'getTotalBalance']);
     Route::get('/all-expense-categories', [ExpenseCategoryController::class, 'getAllCategory']);
+    Route::get('/all-income-categories', [IncomeCategoryController::class, 'getAllCategory']);
+
     Route::get('/expense-categories/{expenseCategory}', [ExpenseCategoryController::class, 'show']);
 
     Route::get('/income-categories/{incomeCategory}', [IncomeCategoryController::class, 'show']);

@@ -138,4 +138,5 @@ class IncomeController extends Controller
         return response()->json(['incomes' => $incomes]);
 
     }
+
 }
