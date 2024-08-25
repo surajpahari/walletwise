@@ -23,14 +23,14 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.teal[800] // Darker color for a more seamless blend
+              borderRadius: BorderRadius.circular(8), color: Colors.black
+              //color: Colors.teal[800] // Darker color for a more seamless blend
               ),
           child: DropdownButton(
             value: dropdownValue,
             underline: const SizedBox.shrink(),
             dropdownColor:
-                Colors.teal[800], // Darker color for a more seamless blend
+                Colors.black, // Darker color for a more seamless blend
             elevation: 0,
             items: const [
               DropdownMenuItem(

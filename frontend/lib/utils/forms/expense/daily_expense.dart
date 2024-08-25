@@ -82,18 +82,31 @@ class DailyExpenseForm extends StatelessWidget {
                   child: Obx(
                     () => controller.formState.value == 1
                         ? const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Adding",
+                                "Adding...",
                                 style: TextStyle(
-                                    fontSize: 24, color: Colors.white),
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              LinearProgressIndicator(color: Colors.white),
+                              SizedBox(height: 2),
+                              CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth:
+                                    3, // Thinner progress indicator for a sleeker look
+                              ),
                             ],
                           )
                         : const Text(
                             "Add",
-                            style: TextStyle(color: Colors.white, fontSize: 24),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                   ),
                 )

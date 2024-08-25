@@ -1,3 +1,6 @@
+import "package:walletwise/controllers/budget/balance_card_controller.dart";
+import "package:walletwise/controllers/budget/bank_controller.dart";
+import "package:walletwise/controllers/sheetController.dart";
 import "package:walletwise/models/item.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
@@ -16,6 +19,7 @@ class ExpenseController extends Wwform {
   final item = TextEditingController();
   final amount = TextEditingController();
   final category = TextEditingController();
+  final sheetController = Get.put(SheetController());
   ExpenseCategory? selectedCategory;
   BankAccount? selectedBankAccount;
   final TextEditingController date = TextEditingController();
@@ -55,6 +59,7 @@ class ExpenseController extends Wwform {
 
 //to add the routine Expenses
   Future<void> addRoutineExpense(BuildContext context) async {
+    print(selectedBankAccount?.id.toString());
     formState.value = 1;
     try {
       await ModelOperation().add(
@@ -71,6 +76,7 @@ class ExpenseController extends Wwform {
         successAction: (response) {
           print("hey");
           formState.value = 0;
+          sheetController.expenseSheetDismiss.value = true;
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);
           PaymentController.fetchPayment();
@@ -102,6 +108,10 @@ class ExpenseController extends Wwform {
         url: ApiUrls.addExpense,
         successAction: (response) {
           print("hey");
+          sheetController.expenseSheetDismiss.value = true;
+          fetchUserCategories();
+          BankAccController.fetchBankAccount();
+          BalanceCardController.fetchBalanceCardData();
           formState.value = 0;
           WwSnackbar.builder(
               context, "Sucessfully Added", WwSnackbartype.success);

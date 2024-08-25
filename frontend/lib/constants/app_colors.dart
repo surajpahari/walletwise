@@ -30,6 +30,10 @@ class AppColors {
     Color(0xff3C4FB5),
     Color(0xff3F9DB9),
     Color(0xffEA9F28),
+    Color(0xff244c14),
+    Color(0xff712b1f),
+    Color(0xFF424242), // Custom dark grey color
+
     Colors.purple,
   ];
 }

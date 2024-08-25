@@ -67,7 +67,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           onPressed: () {
             showModalBottomSheet(
               sheetAnimationStyle:
-                  AnimationStyle(duration: const Duration(seconds: 1)),
+                  AnimationStyle(duration: const Duration(milliseconds: 400)),
               useSafeArea: true,
               backgroundColor: AppColors.black,
               context: context,
